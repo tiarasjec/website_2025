@@ -131,6 +131,17 @@ export default function AdminUsersTablePage() {
                                     onClick={() =>
                                         updateRole({
                                             id: user.id,
+                                            role: "super_admin",
+                                            name: user.name!,
+                                        })
+                                    }
+                                >
+                                    Make Super Admin
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    onClick={() =>
+                                        updateRole({
+                                            id: user.id,
                                             role: "admin",
                                             name: user.name!,
                                         })
