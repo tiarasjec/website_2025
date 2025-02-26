@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { DataTableStoreProvider } from "@/stores/dataTableStoreProvider";
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,13 +19,18 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <SessionProvider>
-                    {children}
-                    <Toaster />
-                </SessionProvider>
-            </body>
-        </html>
+        <>
+            <html lang="en">
+                <body className={inter.className}>
+                    <SessionProvider>
+                        <TooltipProvider>
+                            <DataTableStoreProvider isSelecting={false}>{children}</DataTableStoreProvider>
+                            <Toaster />
+                        </TooltipProvider>
+                    </SessionProvider>
+                </body>
+            </html>
+            <Script src="https://checkout.razorpay.com/v2/checkout.js" />
+        </>
     );
 }
