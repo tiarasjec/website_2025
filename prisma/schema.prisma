@@ -12,6 +12,7 @@ enum UserRole {
   PARTICIPANT
   COORDINATOR
   ADMIN
+  SUPER_ADMIN
 }
 
 model Payment {
