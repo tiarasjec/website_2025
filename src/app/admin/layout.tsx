@@ -26,7 +26,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
     if (!session) {
         return <>Unauthorized</>;
     }
-    if (session.user.role !== UserRole.ADMIN) {
+    if (session.user.role !== UserRole.ADMIN && session.user.role !== UserRole.SUPER_ADMIN) {
         return <>Forbidden</>;
     }
 
