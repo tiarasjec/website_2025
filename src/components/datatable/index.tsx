@@ -80,9 +80,10 @@ interface IAdvancedDataTable<T> {
 
 export function AdvancedDataTable<T>(props: IAdvancedDataTable<T>) {
     const { columns, data } = props;
-    const { isSelecting, setExtraProps } = useDataTableStore((state) => ({
-        ...state,
-    }));
+    const store = useDataTableStore();
+    const isSelecting = store((state) => state.isSelecting);
+    const setExtraProps = store((state) => state.setExtraProps);
+
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [columnPinning, setColumnPinning] = useState({});
@@ -101,7 +102,7 @@ export function AdvancedDataTable<T>(props: IAdvancedDataTable<T>) {
 
     useEffect(() => {
         setExtraProps(props.exportProps, props.contextMenuProps);
-    }, [props, setExtraProps]);
+    }, [props.exportProps, props.contextMenuProps, setExtraProps]);
 
     const table = useReactTable({
         data,
