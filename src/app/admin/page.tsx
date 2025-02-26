@@ -1,4 +1,5 @@
 "use client";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState, useEffect } from "react";
 import { AdvancedDataTable } from "@/components/datatable";
@@ -13,7 +14,6 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 
@@ -24,13 +24,13 @@ async function updateRole({ id, role, name }: { id: string; role: Lowercase<User
     if (res.status === 200) {
         toast.success(`${name} is now a ${role}`);
     } else {
-        toast.error("Something went wrong");
+        toast.error(`Failed to make ${name} a ${role}`);
     }
 }
 
 async function getData() {
     const response = await fetch("/api/admin");
-    return await response.json();
+    return response.json();
 }
 
 export default function AdminUsersTablePage() {
@@ -71,6 +71,14 @@ export default function AdminUsersTablePage() {
                 accessorKey: "name",
                 id: "name",
                 cell: (info) => info.getValue(),
+            },
+            {
+                accessorKey: "email",
+                id: "email",
+                header: "Email",
+                meta: {
+                    filterVariant: "text",
+                },
             },
             {
                 accessorKey: "events",
