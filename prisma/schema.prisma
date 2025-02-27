@@ -107,7 +107,7 @@ model Event {
   id                  String    @id @default(cuid())
   name                String
   description         String
-  catogory            String
+  category            String
   rules               String[]
   prerequisites       String[]
   general_rules       String[]
