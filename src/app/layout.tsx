@@ -7,7 +7,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DataTableStoreProvider } from "@/stores/dataTableStoreProvider";
 import Script from "next/script";
 import { TailwindIndicator } from "@/components/shared/tailwind";
+import { ThemeProvider } from "next-themes";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+
 export const metadata: Metadata = {
     title: "Tiara 2025",
     description:
@@ -23,19 +26,21 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <>
-            <html lang="en">
-                <body className={inter.className}>
+        <html lang="en" suppressHydrationWarning>
+            <body className={`${inter.className} bg-background text-foreground`}>
+                <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                     <SessionProvider>
                         <TooltipProvider>
-                            <DataTableStoreProvider>{children}</DataTableStoreProvider>
-                            <Toaster />
+                            <DataTableStoreProvider>
+                                {children}
+                                <Toaster />
+                            </DataTableStoreProvider>
                         </TooltipProvider>
                         <TailwindIndicator />
                     </SessionProvider>
-                </body>
-            </html>
+                </ThemeProvider>
+            </body>
             <Script src="https://checkout.razorpay.com/v2/checkout.js" />
-        </>
+        </html>
     );
 }
