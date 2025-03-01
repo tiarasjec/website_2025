@@ -36,7 +36,7 @@ export const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
 };
 
 export const generatedSignature = (razorpayOrderId: string, razorpayPaymentId: string) => {
-    const keySecret = process.env.RAZORPAY_SECRET;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
 
     if (!keySecret) {
         throw new Error("RAZORPAY_SECRET is not set");
