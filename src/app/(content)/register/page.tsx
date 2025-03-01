@@ -11,6 +11,9 @@ import { cn } from "@/lib/utils";
 import { UserRole } from "@prisma/client";
 import { signIn, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import { PageLoading } from "@/components/ui/page-loading";
+import { DataLoading } from "@/components/ui/page-loading";
+import { RestrictedAccess } from "@/components/ui/restricted-access";
 
 // export const maxDuration = 300;
 
@@ -36,7 +39,7 @@ function processEvents(
 }
 
 const Register: React.FC = () => {
-    const session = useSession({
+    const { data: session, status } = useSession({
         required: true,
         onUnauthenticated: async () => {
             await signIn("google");
@@ -184,9 +187,12 @@ const Register: React.FC = () => {
         return totalSum;
     };
 
+    if (status === "loading") {
+        return <PageLoading />;
+    }
 
     if (isLoading) {
-        return <div>Loading events...</div>;
+        return <DataLoading />;
     }
 
     return (
@@ -213,7 +219,7 @@ const Register: React.FC = () => {
                         id="name"
                         aria-label="Name"
                         placeholder="Name"
-                        value={session.data?.user?.name!}
+                        value={session?.user?.name!}
                         disabled
                     />
                     <br />
@@ -223,7 +229,7 @@ const Register: React.FC = () => {
                         id="email"
                         aria-label="Email"
                         placeholder="Email"
-                        value={session.data?.user?.email!}
+                        value={session?.user?.email!}
                         disabled
                     />
                     <br />
