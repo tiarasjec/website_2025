@@ -2,6 +2,11 @@ import { NextResponse, NextRequest } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
+interface EventRegistration {
+    name: string;
+    registrations: number;
+}
+
 export async function GET(req: NextRequest, { params }: { params: { event: string } }) {
     const session = await auth();
     if (!session) {
@@ -10,7 +15,7 @@ export async function GET(req: NextRequest, { params }: { params: { event: strin
     if (session.user.role === "PARTICIPANT") {
         return NextResponse.json({ error: "Unauthorized", isOk: false }, { status: 401 });
     }
-    const events = [];
+    const events: EventRegistration[] = [];
     const allEvents = await prisma.event.findMany({
         select: {
             name: true,
