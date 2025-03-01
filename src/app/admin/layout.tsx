@@ -18,17 +18,24 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { UserRole } from "@prisma/client";
 import { ThemeProvider } from "next-themes";
+import { PageLoading } from "@/components/ui/page-loading";
+import { RestrictedAccess } from "@/components/ui/restricted-access";
 
 export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
-    const { data: session } = useSession({
+    const { data: session, status } = useSession({
         required: true,
     });
 
-    if (!session) {
-        return <>Unauthorized</>;
+    if (status === "loading") {
+        return <PageLoading />;
     }
+
+    if (!session) {
+        return <RestrictedAccess message="Please sign in to access the admin dashboard" />;
+    }
+
     if (session.user.role !== UserRole.ADMIN && session.user.role !== UserRole.SUPER_ADMIN) {
-        return <>Forbidden</>;
+        return <RestrictedAccess message="You don't have permission to access the admin dashboard" />;
     }
 
     return (
