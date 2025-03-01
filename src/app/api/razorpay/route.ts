@@ -46,7 +46,6 @@ export async function POST(request: NextRequest) {
     const options = {
         amount: amount.toString(),
         currency,
-        receipt_id: shortid.generate(),
         payment_capture,
     };
 
