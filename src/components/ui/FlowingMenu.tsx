@@ -115,7 +115,7 @@ const MenuItem: React.FC<MenuItemProps & {paragraph?: string}> = ({ link, text, 
       ref={itemRef}
     >
       <a
-        className={`${tiaraFont.className} flex items-center justify-center h-full relative cursor-pointer no-underline text-black text-[4vh] hover:text-[#060606] focus:text-black focus-visible:text-[#060606]`}
+        className={`${tiaraFont.className} flex items-center justify-center h-full relative cursor-pointer no-underline text-white text-[4vh] hover:text-[#060606] focus:text-white focus-visible:text-[#060606]`}
         href={link}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
