@@ -19,7 +19,7 @@ function page() {
   return (
     <div>
       <ShaderVisualization />
-      <h1 className={cn("text-center text-8xl text-white", tiaraFont.className)}>About TIARA</h1>
+      <h1 className={cn("text-center text-8xl text-white", tiaraFont.className)}>About Tiara</h1>
       <TextGenerateEffect words={text} className='ml-12 mt-10' />
     </div>
   )
