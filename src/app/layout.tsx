@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${inter.className} bg-background text-foreground`}>
+            <body className={`${inter.className} overflow-x-hidden bg-background text-foreground`}>
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                     <SessionProvider>
                         <TooltipProvider>
