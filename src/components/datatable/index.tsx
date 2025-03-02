@@ -81,9 +81,7 @@ interface IAdvancedDataTable<T> {
 export function AdvancedDataTable<T>(props: IAdvancedDataTable<T>) {
     const { columns, data } = props;
     const store = useDataTableStore();
-    const isSelecting = store((state) => state.isSelecting);
-    const setExtraProps = store((state) => state.setExtraProps);
-
+    const { isSelecting, setExtraProps } = store();
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [columnPinning, setColumnPinning] = useState({});
@@ -101,8 +99,10 @@ export function AdvancedDataTable<T>(props: IAdvancedDataTable<T>) {
     }, [columns, isSelecting]);
 
     useEffect(() => {
-        setExtraProps(props.exportProps, props.contextMenuProps);
-    }, [props.exportProps, props.contextMenuProps, setExtraProps]);
+        if (props.exportProps || props.contextMenuProps) {
+            setExtraProps(props.exportProps, props.contextMenuProps);
+        }
+    }, [props.exportProps, props.contextMenuProps]);
 
     const table = useReactTable({
         data,
@@ -160,7 +160,7 @@ export function AdvancedDataTable<T>(props: IAdvancedDataTable<T>) {
             onDragEnd={onDragEnd}
             sensors={sensors}
         >
-            <div className="p-2 rounded mb-12">
+            <div className="p-2 rounded mb-12 -m-3">
                 <div className={"flex flex-row items-center justify-between"}>
                     <div className={"flex flex-row items-center"}>
                         <DataTableInput

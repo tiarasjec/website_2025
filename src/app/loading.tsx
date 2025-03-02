@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { tiaraFont } from "@/libs/fonts";
 // import { cn } from "@/libs/utils";
 
@@ -10,3 +11,10 @@ export default function Loading() {
     </div>
   );
 }
+=======
+import { PageLoading } from "@/components/ui/page-loading";
+
+export default function RootLoading() {
+    return <PageLoading />;
+}
+>>>>>>> 46bb9cee29b40d8494fda0369ce977427d3d9453

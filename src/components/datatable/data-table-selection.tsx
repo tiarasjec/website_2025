@@ -7,14 +7,11 @@ import { Table } from "@tanstack/react-table";
 
 export function DataTableSelections<T>({ table }: { table: Table<T> }) {
     const store = useDataTableStore();
-    const isSelecting = store((state) => state.isSelecting);
-    const toggleSelection = store((state) => state.toggleSelection);
-
+    const { toggleSelection, isSelecting } = store();
     const onPress = () => {
         toggleSelection();
         table.resetRowSelection();
     };
-
     return (
         <Button
             onClick={onPress}

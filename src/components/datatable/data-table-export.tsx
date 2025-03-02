@@ -13,8 +13,7 @@ interface IDataTableExport<T> {
 
 export function DataTableExport<T>({ table, onUserExport }: IDataTableExport<T>) {
     const store = useDataTableStore();
-    const exportProps = store((state) => state.exportProps);
-
+    const { exportProps } = store();
     const onPress = () => {
         const data = exportExcelData(
             table.options.data,
