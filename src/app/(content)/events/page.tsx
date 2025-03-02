@@ -2,7 +2,7 @@
 import Container from "@/components/shared/container";
 import { LinkProps } from "@/components/ui/hover/link";
 import { useEffect, useState } from "react";
-import EventWidget from "@/components/widgets/EventWidget";
+import EventWidget from "@/components/widget/EventWidget";
 import { cn } from "@/lib/utils";
 import { tiaraFont } from "@/lib/fonts";
 
