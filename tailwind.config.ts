@@ -59,7 +59,19 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		translate: {
+			'101': '101%',
+		},
+		keyframes: {
+		marquee: {
+			'from': { transform: 'translateX(0%)' },
+			'to': { transform: 'translateX(-50%)' }
+		}
+		},
+		animation: {
+		marquee: 'marquee 15s linear infinite'
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

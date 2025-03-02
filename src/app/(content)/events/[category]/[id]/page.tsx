@@ -4,7 +4,7 @@ import Image from "next/image";
 // import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import Loading from "@/app/loading";
-import { EncryptButton } from "@components/ui/hover/button";
+// import { EncryptButton } from "@components/ui/hover/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { tiaraFont } from "@/lib/fonts";
@@ -184,7 +184,10 @@ const Page = () => {
                                 </div>
                                 <div className="text-center 2xl:text-2xl">
                                     <Link href="/register">
-                                        <EncryptButton targetText="register now" />
+                                        <button>
+                                            <span className="text-lg text-tiara_red">Register Now</span>
+                                        </button>
+                                        {/* <EncryptButton targetText="register now" /> */}
                                     </Link>
                                 </div>
                             </div>

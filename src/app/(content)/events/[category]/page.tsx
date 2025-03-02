@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation"; // Import usePathname from next/navigation
+import { usePathname } from "next/navigation"; 
 import { CardType } from "@/components/ui/hover/scroll";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
@@ -88,8 +88,6 @@ export default function EventsPage() {
                     </CardBody>
                   </CardContainer>
                 )
-                
-                
               );
             })}
         </div>
