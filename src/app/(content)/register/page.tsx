@@ -202,7 +202,7 @@ const Register: React.FC = () => {
                     <div className="grid gap-0.5">
                         <CardTitle className="group flex items-center gap-2 text-lg">
                             <span className={cn("tracking-widest", tiaraFont.className)}>
-                                Ti<span className="text-red-500">ar</span>a {"'"}24
+                                Ti<span className="text-red-500">ar</span>a {"'"}25
                             </span>{" "}
                             Event Registration
                         </CardTitle>
