@@ -1,5 +1,4 @@
 import FlowingMenu from "@/components/ui/FlowingMenu";
-import { tiaraFont } from "@/lib/fonts";
 
 const demoItems = [
   {
@@ -31,7 +30,6 @@ const demoItems = [
 export default function EventWidget() {
   return (
     <div style={{ height: "600px", position: "relative" }}>
-      <h1 className={`${tiaraFont.className} text-4xl md:text-4xl mb-4`}>Event Categories</h1>
       <FlowingMenu items={demoItems} />
     </div>
   );
