@@ -30,6 +30,7 @@ jobs:
 
             - name: Check Environment Variables
               run: |
+                  echo "AUTH_SECRET is set: $([ -n "$AUTH_SECRET" ] && echo true || echo false)"
                   echo "AUTH_GOOGLE_ID is set: $([ -n "$AUTH_GOOGLE_ID" ] && echo true || echo false)"
                   echo "AUTH_GOOGLE_SECRET is set: $([ -n "$AUTH_GOOGLE_SECRET" ] && echo true || echo false)"
                   echo "NEXTAUTH_URL is set: $([ -n "$NEXTAUTH_URL" ] && echo true || echo false)"
@@ -39,6 +40,7 @@ jobs:
                   echo "ADMIN_EMAIL is set: $([ -n "$ADMIN_EMAIL" ] && echo true || echo false)"
                   echo "RESEND_API_KEY is set: $([ -n "$RESEND_API_KEY" ] && echo true || echo false)"
               env:
+                  AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
                   AUTH_GOOGLE_ID: ${{ secrets.AUTH_GOOGLE_ID }}
                   AUTH_GOOGLE_SECRET: ${{ secrets.AUTH_GOOGLE_SECRET }}
                   NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
@@ -51,6 +53,7 @@ jobs:
             - name: Build Project
               run: npm run build
               env:
+                  AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
                   AUTH_GOOGLE_ID: ${{ secrets.AUTH_GOOGLE_ID }}
                   AUTH_GOOGLE_SECRET: ${{ secrets.AUTH_GOOGLE_SECRET }}
                   NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
