@@ -10,9 +10,9 @@ export default function CTA() {
   return (
 
  
-          <div className="relative w-full h-64">
+    <div className="relative w-auto h-auto">
   
-      <div className="relative z-10 w-full h-full flex items-center justify-center">
+    
         <RotatingText
           texts={['Innovation','Technology','Challenges','Creativity','Learning',]}
           mainClassName={cn("px-2 sm:px-2 md:px-3 bg-red-500 text-white text-2xl overflow- py-0.5 sm:py-1 md:py-2 justify-center rounded-lg ", tiaraFont.className)}
@@ -25,7 +25,7 @@ export default function CTA() {
           transition={{ type: "spring", damping: 30, stiffness: 400 }}
           rotationInterval={3000}
         />
-      </div>
+
       </div>
   );
 }
