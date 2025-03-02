@@ -43,8 +43,12 @@
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "date-fns": "^3.6.0",
+<<<<<<< HEAD
         "framer-motion": "^11.18.2",
         "gl-matrix": "^3.4.3",
+=======
+        "framer-motion": "^12.4.7",
+>>>>>>> c83c99748687de3381d6ecfbd60cc88404a4e6cc
         "gsap": "^3.12.7",
         "lodash": "^4.17.21",
         "lodash.isempty": "^4.4.0",
@@ -59,8 +63,12 @@
         "react-dom": "18.3.1",
         "react-hook-form": "^7.54.2",
         "react-hot-keys": "^2.7.3",
+<<<<<<< HEAD
         "resend": "^4.1.2",
         "shortid": "^2.2.17",
+=======
+        "react-icons": "^5.5.0",
+>>>>>>> c83c99748687de3381d6ecfbd60cc88404a4e6cc
         "sonner": "^2.0.1",
         "tailwind-merge": "^3.0.2",
         "tailwindcss-animate": "^1.0.7",
