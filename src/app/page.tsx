@@ -13,11 +13,11 @@ export default function Home() {
   return (
 <>
 <ReactLenis root>
-  <Nav/>
+  {/* <Nav/> */}
 <ShaderVisualization/>
-<Hero/>
+{/* <Hero/> */}
 <div >
-<Marque/>
+{/* <Marque/> */}
 </div>
 <div className="h-screen"></div>
 <Footer/>

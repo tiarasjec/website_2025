@@ -237,10 +237,11 @@ const ShaderVisualization: React.FC = () => {
       const now = performance.now();
       const elapsed = now - lastUpdate;
       
+      // Skip frames on mobile to maintain consistent framerate
       if (elapsed >= updateInterval) {
         shaderMaterial.uniforms.iTime.value = clock.getElapsedTime();
         
-
+        // Update audio texture less frequently on mobile
         if (!isMobile || Math.floor(clock.getElapsedTime() * 10) % 2 === 0) {
           shaderMaterial.uniforms.iChannel0.value = updateAudioTexture();
         }
