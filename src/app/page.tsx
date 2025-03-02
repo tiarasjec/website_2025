@@ -4,8 +4,9 @@ import Hero from "@/widget/hero";
 import ShaderVisualization from "@/widget/background";
 import Marque from "@/widget/marque";
 import { ReactLenis, useLenis } from 'lenis/react'
-import Nav from "@/widget/header";
+import Header from "@/widget/header";
 import Footer from "@/widget/footer";
+import { Head } from "react-day-picker";
 export default function Home() {
   const lenis = useLenis(({ scroll }) => {
     // called every scroll
@@ -13,9 +14,9 @@ export default function Home() {
   return (
 <>
 <ReactLenis root>
-  {/* <Nav/> */}
+  <Header/>
 <ShaderVisualization/>
-{/* <Hero/> */}
+<Hero/>
 <div >
 <Marque/>
 </div>

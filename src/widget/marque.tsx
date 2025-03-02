@@ -34,7 +34,7 @@ const Marque = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="h-screen page overflow-x-hidden flex items-center">
+    <div ref={containerRef} className="h-screen z-10 page overflow-x-hidden flex items-center">
       <h1
         ref={experienceRef}
         className={cn(

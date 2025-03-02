@@ -88,7 +88,7 @@ export const Footer = () => {
             <span className="text-white">25</span>
           </li>
           <li className="mx-2 sm:mx-4 text-xl sm:text-2xl">|</li>
-          <li className="text-sm sm:text-base">© 2025 Developed by Google DG SJEC</li>
+          <li className="text-sm sm:text-base">© Developed by Google DG SJEC</li>
         </ul>
 
         {/* For desktop: Original layout */}

@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { tiaraFont } from "@/lib/fonts";
@@ -9,84 +9,69 @@ gsap.registerPlugin(useGSAP);
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const tiRef = useRef<HTMLSpanElement>(null);
-  const arRef = useRef<HTMLSpanElement>(null);
-  const aRef = useRef<HTMLSpanElement>(null);
-  const apostropheRef = useRef<HTMLSpanElement>(null);
-  const yearRef = useRef<HTMLSpanElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check for mobile device
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Set on initial load
+    checkDevice();
+    
+    // Update on resize
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   useGSAP(() => {
-    // Initial state - all elements invisible
-    gsap.set([tiRef.current, arRef.current, aRef.current, apostropheRef.current, yearRef.current], {
-      opacity: 0,
-      y: 100,
-    });
-
-    // Create timeline for sequenced animations
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-    // Animate each part of the text
-    tl.to(tiRef.current, { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.8,
-      delay: 0.5
-    })
-    .to(arRef.current, { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.8,
-    }, "-=0.6")
-    .to(aRef.current, { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.8,
-    }, "-=0.6")
-    .to(apostropheRef.current, { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.6,
-      yoyo: true,
-    }, "-=0.4")
-    .set(apostropheRef.current, { opacity: 1,y:0,scale:1 }) // Ensure it remains visible
-   
-    .to(yearRef.current, { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.8,
-    }, "-=0.5")
-    .to([tiRef.current, arRef.current, aRef.current, apostropheRef.current, yearRef.current], {
-      y: -20,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: "power1.inOut",
-      yoyo: true,
-      repeat: 1
-    })
-    .to([tiRef.current, arRef.current, aRef.current, apostropheRef.current, yearRef.current], {
-      scale: 1.1,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: "power1.inOut",
-      yoyo: true,
-      repeat: 1
-    });
-
-  }, []);
+    // Skip heavy animations on mobile
+    if (!textRef.current) return;
+    
+    // Use a single timeline with fewer animations for better performance
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+    
+    // Target the text container instead of individual elements
+    tl.fromTo(textRef.current.children, 
+      { opacity: 0, y: 50 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8,
+        stagger: 0.1,
+        clearProps: "transform" // Clean up after animation
+      }
+    );
+    
+    // Use a simpler bounce effect only for desktop
+    if (!isMobile) {
+      tl.to(textRef.current, {
+        scale: 1.05,
+        duration: 0.5,
+        yoyo: true,
+        repeat: 1,
+        delay: 0.5
+      });
+    }
+  }, [isMobile]);
 
   return (
     <div
       ref={containerRef}
       className={cn(
-        "text-6xl md:text-9xl min-h-screen flex items-center justify-center",
+        "text-6xl md:text-9xl min-h-screen z-10 flex items-center justify-center",
         tiaraFont.className
       )}
     >
-      <span ref={tiRef} className="text-white">Ti</span>
-      <span ref={arRef} style={{ color: "#EB1C2C" }}>ar</span>
-      <span ref={aRef} className='text-white'>a{" "}</span>
-      <span ref={apostropheRef} style={{ color: "#EB1C2C" }}>&apos;</span>
-      <span ref={yearRef} className='text-white'>25{" "}</span>
+      <div ref={textRef} className="flex items-center">
+        <span className="text-white">Ti</span>
+        <span style={{ color: "#EB1C2C" }}>ar</span>
+        <span className='text-white'>a </span>
+        <span style={{ color: "#EB1C2C" }}>&apos;</span>
+        <span className='text-white'>25 </span>
+      </div>
     </div>
   );
 };

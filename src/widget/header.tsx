@@ -1,127 +1,230 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+"use client"
 
-export default function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  
-  // Handle resize events to ensure proper responsive behavior
+import Wave from "react-wavify"
+import { tiaraFont } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
+import { Menu, X } from "lucide-react"
+const ButtonHoverRegister = () => {
+    return (
+      <>
+        <button className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
+          <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
+        Register
+          </div>
+          <div className='absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-neutral-50 transition duration-500 group-hover:translate-y-0'>
+            <span className='absolute h-full w-full translate-y-full skew-y-10 scale-y-0 bg-[#EB1C2C] dark:bg-[#EB1C2C] transition duration-500 group-hover:translate-y-0 group-hover:scale-150'></span>
+            <span className='z-10'>Now</span>
+          </div>
+        </button>
+      </>
+    );
+  };
+  const ButtonHoverRulebook= () => {
+    return (
+      <>
+        <button className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
+          <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
+      Rule book
+          </div>
+          <div className='absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-neutral-50 transition duration-500 group-hover:translate-y-0'>
+            <span className='absolute h-full w-full translate-y-full skew-y-10 scale-y-0 bg-[#EB1C2C] dark:bg-[#EB1C2C] transition duration-500 group-hover:translate-y-0 group-hover:scale-150'></span>
+            <span className='z-10'>Rule book</span>
+          </div>
+        </button>
+      </>
+    );
+  };
+export const Header = () => {
+  // State to store wave parameters
+  const [waveParams, setWaveParams] = useState({
+    height: 40,
+    amplitude: 20,
+    speed: 0.15,
+    points: 7
+  });
+
+  // State for mobile menu toggle
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  // Update wave parameters based on screen size
   useEffect(() => {
-    setIsMounted(true);
-    
     const handleResize = () => {
-      if (window.innerWidth >= 768 && isOpen) {
-        setIsOpen(false);
+      if (window.innerWidth < 640) { // sm breakpoint in Tailwind
+        setWaveParams({
+          height: 80, // smaller height for mobile
+          amplitude: 5, // smaller amplitude for mobile
+          speed: 0.15,
+          points: 3// fewer points for mobile (smoother)
+        });
+      } else if (window.innerWidth < 1024) { // md breakpoint
+        setWaveParams({
+          height: 25,
+          amplitude: 18,
+          speed: 0.15,
+          points: 5
+        });
+      } else { // large screens
+        setWaveParams({
+          height: 50,
+          amplitude: 20,
+          speed: 0.15,
+          points: 7
+        });
       }
     };
-    
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen]);
-  
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    if (!isOpen) return;
-    
-    const handleClickOutside = (e:any) => {
-      if (!e.target.closest('nav')) {
-        setIsOpen(false);
-      }
-    };
-    
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [isOpen]);
-  
-  // Navigation links
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/work", label: "Work" },
-    { href: "/about", label: "About" },
-    { href: "/rules", label: "Rules" },
-  ];
 
-  if (!isMounted) return null; // Prevent hydration issues
+    // Set initial parameters
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Close menu when resizing to desktop
+    const handleResizeForMenu = () => {
+      if (window.innerWidth >= 768) { // md breakpoint
+        setMenuOpen(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResizeForMenu);
+    
+    // Prevent scrolling when menu is open
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResizeForMenu);
+      document.body.style.overflow = 'auto';
+    };
+  }, [menuOpen]);
 
   return (
-    <header className="w-full fixed top-0 left-0 z-50">
-      <nav className="w-full bg-white/10 dark:bg-black/10 backdrop-blur-lg border-b border-white/10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo / Brand */}
-            <div className="flex-shrink-0">
-              <a href="/" className="text-xl sm:text-2xl font-serif text-white tracking-wider hover:text-gray-200 transition-colors">
-                Brand
-              </a>
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex md:items-center">
-              <div className="flex space-x-6 lg:space-x-8">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all hover:after:w-full"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-            
-            {/* Register Button */}
-            <div className="hidden md:block">
-              <a
-                href="/register"
-                className="inline-flex items-center justify-center px-4 py-2 border border-white/20 rounded-md text-sm font-medium text-white bg-white/5 hover:bg-white/15 backdrop-blur-lg transition-all shadow-sm"
-              >
-                Register
-              </a>
-            </div>
-            
-            {/* Mobile Menu Button */}
-            <div className="flex md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="text-white p-2 rounded-md hover:bg-white/10 transition-colors"
-                aria-expanded={isOpen}
-                aria-label="Toggle navigation"
-              >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
+    <header className="fixed top-0 w-full z-50">
+      <Wave
+        fill="url(#gradient)"
+        paused={false}
+        style={{ display: "flex", opacity: 0.5, transform: "rotate(180deg)" }}
+        options={{
+          height: waveParams.height,
+          amplitude: waveParams.amplitude,
+          speed: waveParams.speed,
+          points: waveParams.points,
+        }}
+      >
+        <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#8B0000" />
+              <stop offset="50%" stopColor="#000000" />
+            </linearGradient>
+        </defs>
+      </Wave>
+      
+      {/* Text container positioned above the wave */}
+      <div className="absolute inset-x-0 top-0 z-[60] flex flex-row justify-between items-center p-4 w-full">
+        {/* Logo and Name - positioned on the left */}
+        <div className="flex order-1">
+          <ul className="flex text-white items-center">
+            <li className={cn("tracking-widest", tiaraFont.className)}>
+              <span className="text-white transition-colors duration-500 hover:text-red-400">Ti</span>
+              <span className="text-red-500 transition-colors duration-500 hover:text-white">ar</span>
+              <span className="text-white transition-colors duration-500 hover:text-red-400">a</span>
+              <span className="text-red-500 transition-colors duration-500 hover:text-white">&apos;</span>
+              <span className="text-white transition-colors duration-500 hover:text-red-400">25</span>
+            </li>
+          </ul>
         </div>
 
-        {/* Mobile Menu - Using absolute positioning for better overlay */}
-        {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-gradient-to-b from-black/80 to-black/90 backdrop-blur-xl shadow-lg">
-            <div className="px-4 py-3 space-y-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block px-3 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-2 pb-3">
-                <a
-                  href="/register"
-                  className="block w-full text-center px-4 py-3 border border-white/20 rounded-md font-medium text-white bg-white/5 hover:bg-white/15 transition-all"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Register
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
+        {/* Desktop Navigation - Original layout for larger screens */}
+        <div className="hidden md:block order-2 ml-auto">
+          <ul className={cn("flex flex-wrap justify-end text-white items-center tracking-wider", tiaraFont.className)}>
+            <li className="mx-2 hover:text-red-600 text-sm relative group">
+              <a href="#Home" className="transition-colors duration-300 ease-in-out">home</a>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+            </li>
+            <li className="mx-2 hover:text-red-600 text-sm relative group">
+              <a href="#About" className="transition-colors duration-300 ease-in-out">about</a>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+            </li>
+            <li className="mx-2 hover:text-red-600 text-sm relative group">
+              <a href="#Events" className="transition-colors duration-300 ease-in-out">events</a>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+            </li>
+            <li className="mx-2 hover:text-red-600 text-sm relative group">
+              <a href="#Schedule" className="transition-colors duration-300 ease-in-out">team</a>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+            </li>
+            <li className="mx-2 text-sm">
+            <ButtonHoverRulebook/>
+            </li>
+            <li className="mx-2 text-sm">
+            <ButtonHoverRegister/>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Mobile Menu (animated slide-in) */}
+      <div 
+        className={`fixed inset-0 z-[65] bg-black bg-opacity-95 transform transition-transform duration-500 ease-in-out ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        style={{ top: '0', paddingTop: '4rem' }}
+      >
+        <ul className={cn("flex flex-col w-full h-full py-8 px-6 space-y-6 text-white overflow-auto tracking-wider", tiaraFont.className)}>
+          <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
+              style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "100ms" }}>
+            <a href="#Home" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
+          </li>
+          <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
+              style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "150ms" }}>
+            <a href="#About" onClick={toggleMenu} className="text-lg font-semibold block">about</a>
+          </li>
+          <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
+              style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "200ms" }}>
+            <a href="#Events" onClick={toggleMenu} className="text-lg font-semibold block">events</a>
+          </li>
+          <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
+              style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "250ms" }}>
+            <a href="#Schedule" onClick={toggleMenu} className="text-lg font-semibold block">team</a>
+          </li>
+          <li className="pt-4"
+              style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "300ms" }}>
+       <ButtonHoverRulebook/>
+          </li>
+          <li className=" pt-4"
+              style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "350ms" }}>
+<ButtonHoverRegister/>
+          </li>
+        </ul>
+      </div>
+
+      {/* Hamburger Menu Button - Moved outside previous containers to ensure it's always on top */}
+      <div className="fixed top-4 right-4 md:hidden z-[100]">
+        <button 
+          onClick={toggleMenu} 
+          className="text-white focus:outline-none transition-transform duration-300 ease-in-out hover:scale-110"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+        >
+          {menuOpen ? (
+            <X size={24} className="animate-spin-once" />
+          ) : (
+            <Menu size={24} className="transform transition-transform duration-300 hover:rotate-12" />
+          )}
+        </button>
+      </div>
     </header>
-  );
+  )
 }
+
+export default Header
