@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
       <span ref={tiRef} className="text-white">Ti</span>
       <span ref={arRef} style={{ color: "#EB1C2C" }}>ar</span>
       <span ref={aRef} className='text-white'>a{" "}</span>
-      <span ref={apostropheRef} style={{ color: "#EB1C2C" }}>'</span>
+      <span ref={apostropheRef} style={{ color: "#EB1C2C" }}>&apos;</span>
       <span ref={yearRef} className='text-white'>25{" "}</span>
     </div>
   );
