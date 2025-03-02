@@ -17,7 +17,7 @@ export default function Home() {
 <ShaderVisualization/>
 {/* <Hero/> */}
 <div >
-{/* <Marque/> */}
+<Marque/>
 </div>
 <div className="h-screen"></div>
 <Footer/>
