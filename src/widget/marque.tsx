@@ -38,11 +38,11 @@ const Marque = () => {
       <h1
         ref={experienceRef}
         className={cn(
-          "text-[30vw] p-[20px] text-white whitespace-nowrap",
+          "text-[90vw]  md:text-[30vw] p-[20px] text-white whitespace-nowrap",
           tiaraFont.className
         )}
       >
-        Experience The Reality
+        Experience The Show
       </h1>
     </div>
   );

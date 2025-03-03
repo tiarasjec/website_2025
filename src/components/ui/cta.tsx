@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { FlipWords } from "./flip-words";
 
 export default function CTA() {
-  const words = ["innovations", "ideas", "creativity", "opportunities", "growth", "knowledge", "skills", "experiences", "memories", "fun", "friendship", "collaboration", "learning", "development"];
+  const words = ["innovations","creativity", "opportunities", "knowledge","experiences","friendship", "collaboration", "learning", "development"];
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function CTA() {
       <div className="w-full">
         <p className={cn("flex flex-wrap items-center text-3xl sm:text-4xl md:text-5xl justify-center text-center sm:text-left", tiaraFont.className)}>
           Dive into exciting {" "}
-          {isClient && <FlipWords words={words} duration={2500} />}
+          {isClient && <FlipWords words={words} duration={4000} />}
         </p>
 
       </div>

@@ -8,7 +8,7 @@ import Footer from "@/widget/footer";
 import CTA from "@/components/ui/cta";
 import CTA2 from "@/components/ui/cta-2";
 import { Head } from "react-day-picker";
-
+import Events from "@/widget/events";
 export default function Home() {
   const lenis = useLenis(({ scroll }) => {
     // called every scroll
@@ -17,11 +17,11 @@ export default function Home() {
 <>
 <ReactLenis root>
 <Hero/>
+<CTA2/>
 <div >
 <Marque/>
-
+<Events/>
 </div>
-<div className="h-screen"></div>
 </ReactLenis>
 </>
   );
