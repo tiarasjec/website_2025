@@ -149,11 +149,11 @@ export const Header = () => {
         <div className="hidden md:block order-2 ml-auto">
           <ul className={cn("flex flex-wrap justify-end text-white items-center tracking-wider", tiaraFont.className)}>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
-              <a href="#Home" className="transition-colors duration-300 ease-in-out">home</a>
+              <a href="/home" className="transition-colors duration-300 ease-in-out">home</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
-              <a href="#About" className="transition-colors duration-300 ease-in-out">about</a>
+              <a href="/about" className="transition-colors duration-300 ease-in-out">about</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
@@ -184,7 +184,7 @@ export const Header = () => {
         <ul className={cn("flex flex-col w-full h-full py-8 px-6 space-y-6 text-white overflow-auto tracking-wider", tiaraFont.className)}>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "100ms" }}>
-            <a href="#Home" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
+            <a href="/home" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
           </li>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "150ms" }}>
