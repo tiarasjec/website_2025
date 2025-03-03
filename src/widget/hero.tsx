@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import CTA from "@/components/ui/cta";
 
 gsap.registerPlugin(useGSAP);
 
@@ -61,7 +62,7 @@ const Hero: React.FC = () => {
     <div
       ref={containerRef}
       className={cn(
-        "text-6xl md:text-9xl min-h-screen z-10 flex items-center justify-center",
+        "text-6xl md:text-9xl min-h-screen z-10 flex flex-col justify-center items-center",
         tiaraFont.className
       )}
     >
@@ -72,6 +73,7 @@ const Hero: React.FC = () => {
         <span style={{ color: "#EB1C2C" }}>&apos;</span>
         <span className='text-white'>25 </span>
       </div>
+      <CTA/>
     </div>
   );
 };
