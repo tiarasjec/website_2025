@@ -144,7 +144,7 @@ export default function AdminPage() {
                         {events.map((event) => (
                             <TableRow key={event.id}>
                                 <TableCell>
-                                    <Link href={`/admin/events/${event.id}`} className="hover:underline">
+                                    <Link href={`/admin/events/${event.name}`} className="hover:underline">
                                         {event.name}
                                     </Link>
                                 </TableCell>
