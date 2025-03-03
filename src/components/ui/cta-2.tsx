@@ -38,7 +38,7 @@ export default function CTA2() {
               containerWidth="260px"
               imageHeight="260px"
               imageWidth="260px"
-              rotateAmplitude={12}
+              rotateAmplitude={20}
               scaleOnHover={1.2}
               showMobileWarning={false}
               showTooltip={false}
@@ -56,7 +56,13 @@ export default function CTA2() {
           {/* Simple text section on the right */}
           <div className="w-full sm:w-1/2 max-w-xl flex flex-col justify-center p-4">
             <p className="text-white text-3xl font-semibold text-center sm:text-left">
-              Join us for an unforgettable journey through tech and tradition. Witness the magic of both worlds at Tiara on March 20 and 21.
+              <span>Join us for an unforgettable journey through tech and tradition. Witness the magic of both worlds at </span>
+              <span className={cn("text-white tracking-wider",tiaraFont.className)}>Ti</span>
+            <span className={cn("text-[#EB1C2C] tracking-wider",tiaraFont.className)}>ar</span>
+            <span className={cn("text-white tracking-wider",tiaraFont.className)}>a</span>
+            <span className={cn("text-[#EB1C2C] tracking-wider",tiaraFont.className)}>&apos;</span>
+            <span className={cn("text-white tracking-wider",tiaraFont.className)}>25 </span>
+              <span> on March 20 and 21.</span> 
             </p>
           </div>
         </div>
