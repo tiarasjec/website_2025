@@ -13,7 +13,7 @@ interface SendEmailProps {
 }
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_EMAIL = '"Tiara <no-reply@tiarasjec.in>"';
+const FROM_EMAIL = process.env.FROM_EMAIL!;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 export async function sendRegistrationEmail(data: SendEmailProps) {
@@ -51,6 +51,7 @@ export async function sendRegistrationEmail(data: SendEmailProps) {
                 }),
             }),
         ]);
+        console.log(userEmailResult, adminEmailResult);
 
         return {
             success: true,
