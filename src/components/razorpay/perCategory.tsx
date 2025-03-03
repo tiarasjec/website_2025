@@ -29,6 +29,12 @@ const Checkbox: React.FC<CheckboxProps> = ({ className, value, checked, onChange
     );
 };
 
+const OFFLINE_REGISTRATION_EVENTS = [
+    "Aim The Target",
+    "Buzz Wire",
+    // Add other offline-only events here
+];
+
 export function EventTabs({
     technical,
     nontechnical,
@@ -94,12 +100,20 @@ export function EventTabs({
                         <CardHeader>
                             <CardTitle>Choose a Non Technical Events</CardTitle>
                         </CardHeader>
-
                         <CardContent className="space-y-2">
                             {nontechnical.map((event) => (
                                 <div key={event.key} className="flex justify-between items-center p-4 mb-2">
-                                    <Label className="mr-2">{event.name}</Label>
-                                    {parseInt(event.key) < 14 ? (
+                                    <Label className="mr-2">
+                                        {event.name}
+                                        {event.team && (
+                                            <span className="text-xs text-muted-foreground ml-1">(Team)</span>
+                                        )}
+                                    </Label>
+                                    {OFFLINE_REGISTRATION_EVENTS.includes(event.name) ? (
+                                        <div className="flex items-center">
+                                            <Info info="Registration is only available offline during the event" />
+                                        </div>
+                                    ) : (
                                         <Checkbox
                                             className="w-6 h-6 mr-2"
                                             value={event.key}
@@ -108,14 +122,6 @@ export function EventTabs({
                                             )}
                                             onChange={(e) => handleCheckboxChange(e, "nontechnical")}
                                         />
-                                    ) : (
-                                        <div className="ml-36">
-                                            <Info
-                                                info={
-                                                    "Registration is not available online but will be available offline on the day of Tiara."
-                                                }
-                                            />
-                                        </div>
                                     )}
                                 </div>
                             ))}
