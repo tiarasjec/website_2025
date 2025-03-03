@@ -28,9 +28,9 @@ export default function EventsPage() {
           >
             Events categories
           </h1>
-          <EventWidget/>
         </div>
-      </Container>  
+            <EventWidget/>
+      </Container> 
     </>
   );
 }

@@ -61,6 +61,14 @@ const config: Config = {
                 },
             },
             keyframes: {
+                shine: {
+                    "0%":{
+                        backgroundPosition: "0% 0%",
+                    },
+                    "50%":{
+                        backgroundPosition: "100% 100%",
+                    }
+                },
                 marquee: {
                     'from': { transform: 'translateX(0%)' },
                     'to': { transform: 'translateX(-50%)' }
@@ -83,6 +91,7 @@ const config: Config = {
                 },
             },
             animation: {
+                shine: "sine var(--duration) linear infinite",
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
                 marquee: 'marquee 15s linear infinite'
@@ -92,6 +101,7 @@ const config: Config = {
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [require("tailwindcss-animate"), ],
 };
+
 export default config;

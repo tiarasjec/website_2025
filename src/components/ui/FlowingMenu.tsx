@@ -1,6 +1,7 @@
 import React from "react";
 import { gsap } from "gsap";
 import { tiaraFont } from "@/lib/fonts";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 interface MenuItemProps {
   link: string;
@@ -111,9 +112,10 @@ const MenuItem: React.FC<MenuItemProps & {paragraph?: string}> = ({ link, text, 
 
   return (
     <div
-      className="flex-1 relative overflow-hidden text-center shadow-[0_-1px_0_0_#fff]"
+      className="group flex-1 relative overflow-hidden text-center shadow-[0_-1px_0_0_#fff]"
       ref={itemRef}
     >
+      <ShineBorder />
       <a
         className={`${tiaraFont.className} flex items-center justify-center h-full relative cursor-pointer no-underline text-white text-[4vh] hover:text-[#060606] focus:text-white focus-visible:text-[#060606]`}
         href={link}
