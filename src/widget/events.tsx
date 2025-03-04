@@ -227,13 +227,10 @@ const Events: React.FC = () => {
                 frontSrc="/assets/tiaracard.png" 
                 frontAlt={`${item.text}`} 
                 backSrc={item.image}
+                link={item.link}
                 ref={(el) => { cardRef.current[index] = el; }} 
             />
             ))}
-          {/* {[...Array(4)].map((_, index) => (
-            <Card key={index} id={`card-${index + 1}`} frontSrc="/assets/tiaracard.png" frontAlt="Card Image" backSrc={eventItems[index]?.image || "/assets/default-back.png"}
-              ref={(el) => { cardRef.current[index] = el; }} />
-          ))} */}
         </section>
       </div>
     </ReactLenis>

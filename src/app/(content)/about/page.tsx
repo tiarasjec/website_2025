@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import Container from "@/components/shared/container";
 export default function AboutTiara() {
 
   return (
@@ -61,7 +62,7 @@ export default function AboutTiara() {
         </motion.div>
 
         {/* Content */}
-        <div className="relative mx-auto max-w-4xl">
+        <Container className="relative mx-auto max-w-4xl">
             {/* Paragraphs with staggered animation */}
             <motion.p
               className="mb-6 text-lg leading-relaxed text-white"
@@ -94,8 +95,8 @@ export default function AboutTiara() {
             >
               See you on 20th and 21th March 2025.
             </motion.p>
+            </Container>
         </div>
-      </div>
     </section>
   )
 }

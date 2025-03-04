@@ -1,14 +1,17 @@
 "use client"
 import Image from "next/image";
 import { forwardRef } from "react";
+import Link  from "next/link";
+
 interface CardProps {
     id: string;
     frontSrc: string;
     frontAlt: string;
     backSrc: string;
+    link: string;
 }
 
-const Card = forwardRef<HTMLDivElement, CardProps>(({ id, frontSrc, frontAlt, backSrc }, ref) => {
+const Card = forwardRef<HTMLDivElement, CardProps>(({ id, frontSrc, frontAlt, backSrc, link }, ref) => {
     return(
         <div className="card" id={id} ref={ref}>
             <div className="card-wrapper">
@@ -23,13 +26,15 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({ id, frontSrc, frontAlt, ba
                     />
                 </div>
                 <div className="flip-card-back">
-                <Image 
-                    priority
-                    src={backSrc}
-                    width={500}
-                    height={500}
-                    alt={frontAlt}
-                />
+                    <Link href={link}>
+                        <Image 
+                            priority
+                            src={backSrc}
+                            width={500}
+                            height={500}
+                            alt={frontAlt}
+                        />
+                    </Link>
                 </div>
                 </div>
             </div>
