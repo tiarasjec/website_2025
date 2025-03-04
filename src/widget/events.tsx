@@ -16,6 +16,12 @@ const Events: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const scrollTriggers = useRef<ScrollTrigger[]>([]);
 
+  // Initial card positions and rotations for desktop
+  const INITIAL_POSITIONS = [50, 50, 50, 50];
+  const SPREAD_POSITIONS = [14, 38, 62, 86];
+  const INITIAL_ROTATIONS = [0, 0, 0, 0];
+  const SPREAD_ROTATIONS = [-15, -7.5, 7.5, 15];
+
   useEffect(() => {
     const checkDeviceType = () => setIsMobile(window.innerWidth < 1024);
     checkDeviceType();
@@ -28,11 +34,12 @@ const Events: React.FC = () => {
       if (!containerRef.current) return;
       const cards = cardRef.current.filter(Boolean);
 
-      // Kill only relevant ScrollTriggers instead of all
+      // Kill existing scroll triggers
       scrollTriggers.current.forEach((trigger) => trigger.kill());
       scrollTriggers.current = [];
 
       if (isMobile) {
+        // Existing mobile logic remains unchanged
         const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
         cardsContainer.innerHTML = "";
         cardsContainer.style.height = `${cards.length * 80}vh`;
@@ -78,11 +85,12 @@ const Events: React.FC = () => {
         });
       } else {
         const totalScrollHeight = window.innerHeight * 3;
-        const position = [14, 38, 62, 86];
-        const rotation = [-15, -7.5, 7.5, 15];
+        const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
+        cardsContainer.style.height = "100vh";
 
+        // Pin trigger to keep cards in view
         const pinTrigger = ScrollTrigger.create({
-          trigger: containerRef.current.querySelector(".cards") as HTMLElement | null,
+          trigger: cardsContainer,
           start: "top top",
           end: `+=${totalScrollHeight}`,
           pin: true,
@@ -91,15 +99,9 @@ const Events: React.FC = () => {
         });
         scrollTriggers.current.push(pinTrigger);
 
-        const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
-        cardsContainer.style.height = "100vh";
-
+        // Reset initial card positions
         cards.forEach((card, index) => {
           if (!card) return;
-
-          if (card.parentElement?.classList.contains("card-section")) {
-            cardsContainer.appendChild(card);
-          }
 
           gsap.set(card, {
             position: "absolute",
@@ -107,25 +109,57 @@ const Events: React.FC = () => {
             left: "50%",
             xPercent: -50,
             yPercent: -50,
+            rotation: INITIAL_ROTATIONS[index],
           });
-
-          const moveTrigger = ScrollTrigger.create({
-            trigger: containerRef.current?.querySelector(".cards") as HTMLElement | null,
-            start: "top top",
-            end: `+=${window.innerHeight}`,
-            scrub: 0.5,
-            id: `spread-${index}`,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              gsap.to(card, { left: `${position[index]}%`, rotation: `${rotation[index]}` });
-            },
-          });
-          scrollTriggers.current.push(moveTrigger);
         });
 
-        const cardSections = cardsContainer.querySelectorAll(".card-section");
-        cardSections.forEach((section) => section.remove());
+        // Create scroll trigger for card spreading
+        const spreadTrigger = ScrollTrigger.create({
+          trigger: cardsContainer,
+          start: "top top",
+          end: `+=${window.innerHeight}`,
+          scrub: 0.5,
+          id: "card-spread",
+          onUpdate: (self) => {
+            const progress = self.progress;
+            cards.forEach((card, index) => {
+              if (!card) return;
 
+              // Interpolate position and rotation
+              const currentLeft = gsap.utils.interpolate(INITIAL_POSITIONS[index], SPREAD_POSITIONS[index], progress);
+              const currentRotation = gsap.utils.interpolate(INITIAL_ROTATIONS[index], SPREAD_ROTATIONS[index], progress);
+
+              gsap.to(card, { 
+                left: `${currentLeft}%`, 
+                rotation: currentRotation 
+              });
+            });
+          },
+          onLeave: () => {
+            // Ensure cards stay at spread positions when scrolling down
+            cards.forEach((card, index) => {
+              if (!card) return;
+              gsap.set(card, { 
+                left: `${SPREAD_POSITIONS[index]}%`, 
+                rotation: SPREAD_ROTATIONS[index] 
+              });
+            });
+          },
+          onEnterBack: () => {
+            // Reset cards to initial positions when scrolling back up
+            cards.forEach((card, index) => {
+              if (!card) return;
+              gsap.to(card, { 
+                left: `${INITIAL_POSITIONS[index]}%`, 
+                rotation: INITIAL_ROTATIONS[index],
+                duration: 0.5
+              });
+            });
+          }
+        });
+        scrollTriggers.current.push(spreadTrigger);
+
+        // Card flipping logic
         cards.forEach((card, index) => {
           if (!card) return;
 
@@ -139,7 +173,7 @@ const Events: React.FC = () => {
           const endOffset = 2 / 3 + staggerOffset;
 
           const flipTrigger = ScrollTrigger.create({
-            trigger: containerRef.current?.querySelector(".cards"),
+            trigger: cardsContainer,
             start: "top top",
             end: `+=${totalScrollHeight}`,
             scrub: 1,
@@ -150,7 +184,7 @@ const Events: React.FC = () => {
                 const animationProgress = (progress - startOffset) / (1 / 3);
                 const frontRotation = -180 * animationProgress;
                 const backRotation = 180 - 180 * animationProgress;
-                const cardRotation = rotation[index] * (1 - animationProgress);
+                const cardRotation = SPREAD_ROTATIONS[index] * (1 - animationProgress);
 
                 gsap.to(frontEl, { rotateY: frontRotation, ease: "power1.out", backfaceVisibility: "hidden" });
                 gsap.to(backEl, { rotateY: backRotation, ease: "power1.out", backfaceVisibility: "hidden" });
@@ -182,8 +216,8 @@ const Events: React.FC = () => {
       <div className={cn("flex flex-wrap items-center text-3xl sm:text-4xl md:text-5xl justify-center text-center sm:text-left", tiaraFont.className)}>
         Events Category
       </div>
-      <div className="container" ref={containerRef}>
-        <section className="cards sec">
+      <div className="container " ref={containerRef}>
+        <section className="cards sec ">
           {[...Array(4)].map((_, index) => (
             <Card key={index} id={`card-${index + 1}`} frontSrc="/assets/tiaracard.png" frontAlt="Card Image" backText="Your card here"
               ref={(el) => { cardRef.current[index] = el; }} />
