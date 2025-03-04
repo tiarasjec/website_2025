@@ -32,7 +32,7 @@ const InteractiveHoverButton: React.FC<InteractiveHoverButtonProps> = ({ classNa
   return (
     <button
       onClick={handleClick}
-      className={`group relative inline-flex h-20 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r dark:from-[#c95050] dark:to-[#eb1c2c] from-[#ff7b7b] to-[#ff1e1e] font-medium text-white border-2 border-[#e25656] transition-all duration-300 hover:w-32 shadow-xl +${className}`}
+      className={`group relative inline-flex h-20 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r dark:from-[#c95050] dark:to-[#eb1c2c] from-[#ff7b7b] to-[#ff1e1e] font-medium text-white border-2 border-[#e25656] transition-all duration-300 hover:w-32 shadow-xl ${className}`}
     >
       <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100">
         {children}
