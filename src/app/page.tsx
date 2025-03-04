@@ -9,6 +9,7 @@ import CTA from "@/components/ui/cta";
 import CTA2 from "@/components/ui/cta-2";
 import { Head } from "react-day-picker";
 import Events from "@/widget/events";
+import Container from "@/components/shared/container";
 export default function Home() {
   const lenis = useLenis(({ scroll }) => {
     // called every scroll
@@ -20,7 +21,9 @@ export default function Home() {
 <CTA2/>
 <div >
 <Marque/>
+<Container className="mx-auto pt-16">
 <Events/>
+</Container>
 </div>
 </ReactLenis>
 </>

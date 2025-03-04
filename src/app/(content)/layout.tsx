@@ -1,6 +1,5 @@
 "use client";
 
-import Footer from "@/widget/footer";
 import { Header } from "@/widget/header";
 import React from "react";
 import Background from "@/widget/background";
@@ -13,7 +12,6 @@ function ContentLayout({ children }: { children: React.ReactNode }) {
         <Header />
         {children}
       </div>
-      <Footer />
     </>
   );
 }

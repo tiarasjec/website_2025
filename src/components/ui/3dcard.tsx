@@ -5,10 +5,10 @@ interface CardProps {
     id: string;
     frontSrc: string;
     frontAlt: string;
-    backText: string;
+    backSrc: string;
 }
 
-const Card = forwardRef<HTMLDivElement, CardProps>(({ id, frontSrc, frontAlt, backText }, ref) => {
+const Card = forwardRef<HTMLDivElement, CardProps>(({ id, frontSrc, frontAlt, backSrc }, ref) => {
     return(
         <div className="card" id={id} ref={ref}>
             <div className="card-wrapper">
@@ -23,7 +23,13 @@ const Card = forwardRef<HTMLDivElement, CardProps>(({ id, frontSrc, frontAlt, ba
                     />
                 </div>
                 <div className="flip-card-back">
-                    <p>{backText}</p>
+                <Image 
+                    priority
+                    src={backSrc}
+                    width={500}
+                    height={500}
+                    alt={frontAlt}
+                />
                 </div>
                 </div>
             </div>

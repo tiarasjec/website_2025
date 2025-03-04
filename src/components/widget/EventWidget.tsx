@@ -1,7 +1,3 @@
-import FlowingMenu from "@/components/ui/FlowingMenu";
-import { MagicCard } from "@/components/ui/magic-card";
-import { ShineBorder } from "@/components/ui/shine-border"; 
-
 const demoItems = [
   {
     link: "events/technical",
@@ -29,12 +25,4 @@ const demoItems = [
   }
 ];
 
-export default function EventWidget() {
-  return (
-      <div style={{ height: "600px", position: "relative" }}>
-        {/* <MagicCard gradientFrom="hsl(var(--primary))" gradientTo="hsl(var(--secondary))"> */}
-          <FlowingMenu items={demoItems} />
-        {/* </MagicCard> */}
-      </div>
-  );
-}
+export const eventItems = demoItems;
