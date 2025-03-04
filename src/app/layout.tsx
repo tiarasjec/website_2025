@@ -3,12 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
+import ShaderVisualization from "@/widget/background";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DataTableStoreProvider } from "@/stores/dataTableStoreProvider";
 import Script from "next/script";
 import { TailwindIndicator } from "@/components/shared/tailwind";
 import { ThemeProvider } from "next-themes";
-
+import Header from "@/widget/header";
+import Footer from "@/widget/footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -27,12 +29,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${inter.className} bg-background text-foreground`}>
+            <body className={`${inter.className} overflow-x-hidden bg-background text-foreground`}>
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                     <SessionProvider>
                         <TooltipProvider>
                             <DataTableStoreProvider isSelecting={false}>
+                                  <Header/>
                                 {children}
+                                <ShaderVisualization/>
+                                <Footer/>
                                 <Toaster />
                             </DataTableStoreProvider>
                         </TooltipProvider>
