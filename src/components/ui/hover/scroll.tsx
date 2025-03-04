@@ -23,9 +23,12 @@ import Link from "next/link";
 
 export interface CardType {
   href: string;
-  thumbnail: string;
-  name: string;
   id: string;
+  name: string;
+  thumbnail: string;
+  description?: string;
+  costs: number;
+  teamEvent?: boolean;
 }
 
 export const Scroll = ({ cards }: { cards: CardType[] }) => {
