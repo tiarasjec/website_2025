@@ -53,7 +53,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="relative w-full">
+    <footer className="relative bottom-0 w-full">
       {/* Wave background */}
       <div className="relative w-full">
         <Wave

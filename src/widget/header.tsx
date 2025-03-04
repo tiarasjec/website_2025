@@ -184,7 +184,7 @@ export const Header = () => {
         <ul className={cn("flex flex-col w-full h-full py-8 px-6 space-y-6 text-white overflow-auto tracking-wider", tiaraFont.className)}>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "100ms" }}>
-            <a href="/" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
+            <a href="#Home" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
           </li>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "150ms" }}>
