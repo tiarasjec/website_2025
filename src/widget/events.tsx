@@ -8,7 +8,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Container from "@/components/shared/container";
-import { eventItems } from "@/components/widget/EventWidget";
+import { eventItems } from "@/components/data/EventItems";
 
 gsap.registerPlugin(ScrollTrigger);
 
