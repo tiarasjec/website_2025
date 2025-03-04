@@ -82,7 +82,7 @@ export default function AboutTiara() {
               transition={{ delay: 1.2, duration: 0.6 }}
             >
               Our event mainly aims to spread and teach the youth to explore new areas of Technology and Culture to
-              foster the nation's development. SJEC welcomes you all to Tiara-2025 To unleash your potential and unlock
+              foster the nation&apos;s development. SJEC welcomes you all to Tiara-2025 To unleash your potential and unlock
               your skills.
             </motion.p>
 

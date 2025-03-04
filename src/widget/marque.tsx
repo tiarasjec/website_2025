@@ -10,10 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Marque = () => {
   const experienceRef = useRef<HTMLHeadingElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRe = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
-    if (!experienceRef.current || !containerRef.current) return;
+    if (!experienceRef.current || !containerRe.current) return;
     const textWidth = experienceRef.current.offsetWidth;
     const windowWidth = window.innerWidth;
     const scrollDistance = textWidth - windowWidth + 40;
@@ -22,7 +22,8 @@ const Marque = () => {
       x: -scrollDistance,
       ease: "none",
       scrollTrigger: {
-        trigger: containerRef.current,
+        id: "marque-animation",
+        trigger: containerRe.current,
         scroller: "body",
         start: "top top",
         end: "+=200%",
@@ -34,7 +35,7 @@ const Marque = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="h-screen z-10 page overflow-x-hidden flex items-center">
+    <div ref={containerRe} className="h-screen z-10 page overflow-x-hidden flex items-center">
       <h1
         ref={experienceRef}
         className={cn(
