@@ -10,6 +10,55 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const cardData = [
+  {
+    id: "card-1",
+    frontSrc: "/assets/tiaracard.png",
+    backSrc: "/assets/technical.jpg",
+    frontAlt: "Technical",
+    title: "Technical",
+    backText:
+      "Compete and showcase your tech skills.",
+    buttonText: "Explore",
+    buttonUrl: "/technical",
+  },
+  {
+    id: "card-2",
+    frontSrc: "/assets/tiaracard.png",
+    backSrc: "/assets/nontechnical.jpg",
+    frontAlt: "Non Technical",
+    title: "NonTechnical",
+    backText:
+      "Engage in sports and exciting challenges.",
+    buttonText: "Explore",
+    buttonUrl: "/nontechnical",
+  },
+  {
+    id: "card-3",
+    frontSrc: "/assets/tiaracard.png",
+    backSrc: "/assets/cultural.jpg",
+    frontAlt: "Cultural",
+    title: "Cultural",
+    backText:
+      "Celebrating talent with music, dance, and art.",
+    buttonText: "Explore",
+    buttonUrl: "/cultural",
+  },
+  {
+    id: "card-4",
+    frontSrc: "/assets/tiaracard.png",
+    backSrc: "/assets/mega.jpg",
+    frontAlt: "Mega",
+    title: "Mega",
+    description: "Custom events for life's important moments, from anniversaries to graduations and more.",
+    backText:
+      " Experience the biggest and most spectacular events.",
+    buttonText: "Explore",
+    buttonUrl: "/special-events",
+  },
+]
+
+
 const Events: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -213,14 +262,26 @@ const Events: React.FC = () => {
 
   return (
     <ReactLenis root>
-      <div className={cn("flex flex-wrap items-center text-3xl sm:text-4xl md:text-5xl justify-center text-center sm:text-left", tiaraFont.className)}>
+      <div className={cn("flex flex-wrap items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
         Events Category
       </div>
-      <div className="container " ref={containerRef}>
-        <section className="cards sec ">
-          {[...Array(4)].map((_, index) => (
-            <Card key={index} id={`card-${index + 1}`} frontSrc="/assets/tiaracard.png" frontAlt="Card Image" backText="Your card here"
-              ref={(el) => { cardRef.current[index] = el; }} />
+      <div className="container" ref={containerRef}>
+         <section className="cards sec">
+          {cardData.map((card, index) => (
+            <Card
+              key={index}
+              id={card.id}
+              frontSrc={card.frontSrc}
+              frontAlt={card.frontAlt}
+              backText={card.backText}
+              title={card.title}
+              buttonText={card.buttonText}
+              buttonUrl={card.buttonUrl}
+              backSrc={card.backSrc}
+              ref={(el) => {
+                cardRef.current[index] = el
+              }}
+            />
           ))}
         </section>
       </div>
