@@ -20,7 +20,7 @@ const cardData = [
     backText:
       "Compete and showcase your tech skills.",
     buttonText: "Explore",
-    buttonUrl: "/technical",
+    buttonUrl: "/events/technical",
   },
   {
     id: "card-2",
@@ -31,7 +31,7 @@ const cardData = [
     backText:
       "Engage in sports and exciting challenges.",
     buttonText: "Explore",
-    buttonUrl: "/nontechnical",
+    buttonUrl: "/events/non_technical",
   },
   {
     id: "card-3",
@@ -42,7 +42,7 @@ const cardData = [
     backText:
       "Celebrating talent with music, dance, and art.",
     buttonText: "Explore",
-    buttonUrl: "/cultural",
+    buttonUrl: "/events/cultural",
   },
   {
     id: "card-4",
@@ -50,11 +50,10 @@ const cardData = [
     backSrc: "/assets/mega.jpg",
     frontAlt: "Mega",
     title: "Mega",
-    description: "Custom events for life's important moments, from anniversaries to graduations and more.",
     backText:
       " Experience the biggest and most spectacular events.",
     buttonText: "Explore",
-    buttonUrl: "/special-events",
+    buttonUrl: "/events/mega",
   },
 ]
 

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export function PageLoading() {
     return (
-        <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center bg-background">
+        <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center ">
             <div
                 className={cn(
                     "flex items-center text-4xl md:text-6xl animate-pulse duration-700",
@@ -11,9 +11,9 @@ export function PageLoading() {
                 )}
             >
                 <span>Ti</span>
-                <span className="text-tiara_red">ar</span>
+                <span className="text-[#eb1c2c]">ar</span>
                 <span>a</span>
-                <span className="text-tiara_red ml-2">{"'"}</span>
+                <span className="text-[#eb1c2c] ml-2">{"'"}</span>
                 <span>25</span>
             </div>
         </div>

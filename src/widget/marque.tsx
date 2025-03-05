@@ -43,7 +43,7 @@ const Marque = () => {
           tiaraFont.className
         )}
       >
-        Experience The Show
+        Tech, Talent and Triumph
       </h1>
     </div>
   );
