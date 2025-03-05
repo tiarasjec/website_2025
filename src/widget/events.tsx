@@ -90,14 +90,14 @@ const Events: React.FC = () => {
         // Existing mobile logic remains unchanged
         const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
         cardsContainer.innerHTML = "";
-        cardsContainer.style.height = `${cards.length * 80}vh`;
+        cardsContainer.style.height = `${cards.length * 70}vh`;
 
         cards.forEach((card, index) => {
           if (!card) return;
 
           const cardSection = document.createElement("div");
           cardSection.className = `card-section card-section-${index}`;
-          cardSection.style.height = "80vh";
+          cardSection.style.height = "70vh";
           cardSection.style.width = "100%";
           cardSection.style.position = "relative";
           cardsContainer.appendChild(cardSection);
@@ -118,8 +118,8 @@ const Events: React.FC = () => {
           if (frontEl && backEl) {
             const trigger = ScrollTrigger.create({
               trigger: cardSection,
-              start: "center 55%",
-              end: "center 45%",
+              start: "center 70%",
+              end: "center 90%",
               scrub: true,
               id: `flip-mobile-${index}`,
               onUpdate: (self) => {
