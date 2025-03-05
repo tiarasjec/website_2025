@@ -8,6 +8,9 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Header } from "@/widget/header"
+import Footer from "@/widget/footer";
+import ShaderVisualization from "@/widget/background";
 
 function toTitleCase(str: string) {
   return str.replace(/\w\S*/g, function (txt) {
@@ -45,6 +48,9 @@ export default function EventsPage() {
   }, [pathname]);
   
   return (
+    <>
+    <Header/>
+    <ShaderVisualization />
     <div className="h-fit">
       <div className="-ml-5 flex justify-center items-center pt-32 z-50">
         <div
@@ -99,5 +105,7 @@ export default function EventsPage() {
         </div>
       )}
     </div>
+      <Footer />
+    </>
   );
 }

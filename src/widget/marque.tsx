@@ -29,13 +29,13 @@ const Marque = () => {
         end: "+=200%",
         scrub: 1,
         pin: true,
-        markers: true,
+        markers: false,
       },
     });
   }, []);
 
   return (
-    <div ref={containerRe} className="h-screen z-10 page overflow-x-hidden flex items-center">
+    <div ref={containerRe} className="h-screen z-10 page overflow-x-hidden overflow-y-hidden flex items-center">
       <h1
         ref={experienceRef}
         className={cn(

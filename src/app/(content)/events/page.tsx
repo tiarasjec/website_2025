@@ -2,6 +2,9 @@
 import Container from "@/components/shared/container";
 import { LinkProps } from "@/components/ui/hover/link";
 import { useEffect, useState } from "react";
+import { Header } from "@/widget/header"
+import Footer from "@/widget/footer";
+import ShaderVisualization from "@/widget/background";
 import Events from "@/widget/events";
 // import { cn } from "@/lib/utils";
 // import { tiaraFont } from "@/lib/fonts";
@@ -20,7 +23,10 @@ export default function EventsPage() {
 
   return (
     <>
+    <Header/>
+    <ShaderVisualization />
         <Events/>
+          <Footer />
     </>
   );
 }

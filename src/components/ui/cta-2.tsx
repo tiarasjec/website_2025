@@ -71,7 +71,7 @@ export default function CTA2() {
 </div>
           {/* Simple text section on the right */}
           <div className="w-full sm:w-1/2 max-w-xl flex flex-col justify-center p-1">
-            <p className="text-white text-3xl font-semibold md:text-left text-justify sm:text-center">
+            <p className="text-white text-3xl font-semibold md:text-left  text-center">
               <span>Join us for an unforgettable journey through tech and tradition. Witness the magic of both worlds at </span>
               <span className={cn("text-white tracking-wider",tiaraFont.className)}>Ti</span>
             <span className={cn("text-[#EB1C2C] tracking-wider",tiaraFont.className)}>ar</span>

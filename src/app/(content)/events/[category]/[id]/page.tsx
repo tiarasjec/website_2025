@@ -9,6 +9,9 @@ import TiltedCard from "@/components/ui/Tilted-card"
 import { cn } from "@/lib/utils"
 import { tiaraFont } from "@/lib/fonts"
 import { Calendar, Clock, Users, Info, Award, Phone } from "lucide-react"
+import { Header } from "@/widget/header"
+import Footer from "@/widget/footer";
+import ShaderVisualization from "@/widget/background";
 import Loading from "@/app/loading"
 import { EncryptButton } from "@/components/ui/hover/button"
 
@@ -97,6 +100,9 @@ const Page = () => {
   if (loading) return <Loading />
 
   return (
+    <>
+    <Header/>
+    <ShaderVisualization />
     <div className="min-h-screen  pt-24 pb-16">
       <motion.div
         initial="hidden"
@@ -176,8 +182,8 @@ const Page = () => {
           {/* Prerequisites */}
           {eventInfo && eventInfo.prerequisites.length > 0 && (
             <motion.div
-              variants={fadeIn}
-              className=" backdrop-blur-sm p-8 rounded-xl shadow-2xl bg-white bg-opacity-10"
+            variants={fadeIn}
+            className=" backdrop-blur-sm p-8 rounded-xl shadow-2xl bg-white bg-opacity-10"
             >
               <div className="flex items-center gap-3 mb-6">
                 <Info className="h-6 w-6 text-tiara_red" />
@@ -225,10 +231,10 @@ const Page = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {eventInfo?.studentCoordinators.map((coordinator, index) => (
                 <motion.div
-                  key={index}
-                  variants={fadeIn}
-                  whileHover={{ scale: 1.03 }}
-                  className="bg-white p-4 rounded-lg bg-opacity-15"
+                key={index}
+                variants={fadeIn}
+                whileHover={{ scale: 1.03 }}
+                className="bg-white p-4 rounded-lg bg-opacity-15"
                 >
                   <h3 className="text-lg font-medium text-white mb-2">{coordinator.name}</h3>
                   <a
@@ -245,6 +251,8 @@ const Page = () => {
         </div>
       </motion.div>
     </div>
+  <Footer />
+    </>
   )
 }
 

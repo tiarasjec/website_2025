@@ -10,11 +10,11 @@ const ButtonHoverRegister = () => {
       <>
         <button className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
           <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
-        Register
+        register
           </div>
           <div className='absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-neutral-50 transition duration-500 group-hover:translate-y-0'>
             <span className='absolute h-full w-full translate-y-full skew-y-10 scale-y-0 bg-[#EB1C2C] dark:bg-[#EB1C2C] transition duration-500 group-hover:translate-y-0 group-hover:scale-150'></span>
-            <span className='z-10'>Now</span>
+            <span className='z-10'>now</span>
           </div>
         </button>
       </>
@@ -25,11 +25,11 @@ const ButtonHoverRegister = () => {
       <>
         <button className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
           <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
-      Rule book
+      rule book
           </div>
           <div className='absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-neutral-50 transition duration-500 group-hover:translate-y-0'>
             <span className='absolute h-full w-full translate-y-full skew-y-10 scale-y-0 bg-[#EB1C2C] dark:bg-[#EB1C2C] transition duration-500 group-hover:translate-y-0 group-hover:scale-150'></span>
-            <span className='z-10'>Rule book</span>
+            <span className='z-10'>rule book</span>
           </div>
         </button>
       </>
@@ -135,11 +135,11 @@ export const Header = () => {
         {/* Logo and Name - positioned on the left */}
         <div className="flex order-1">
           <ul className="flex text-white items-center">
-            <li className={cn("tracking-widest", tiaraFont.className)}>
+            <li className={cn("tracking-widest text-xl", tiaraFont.className)}>
               <span className="text-white transition-colors duration-500 hover:text-red-400">Ti</span>
-              <span className="text-red-500 transition-colors duration-500 hover:text-white">ar</span>
+              <span className="text-[#eb1c2c] transition-colors duration-500 hover:text-white">ar</span>
               <span className="text-white transition-colors duration-500 hover:text-red-400">a</span>
-              <span className="text-red-500 transition-colors duration-500 hover:text-white">&apos;</span>
+              <span className="text-[#eb1c2c] transition-colors duration-500 hover:text-white">&apos;</span>
               <span className="text-white transition-colors duration-500 hover:text-red-400">25</span>
             </li>
           </ul>

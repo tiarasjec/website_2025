@@ -2,9 +2,17 @@
 import { motion } from "framer-motion"
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { Header } from "@/widget/header"
+import Footer from "@/widget/footer";
+import ShaderVisualization from "@/widget/background";
+
+
 export default function AboutTiara() {
 
   return (
+    <>
+    <Header/>
+    <ShaderVisualization />
     <section
       className="relative min-h-screen mt-10 w-full flex justify-center items-center"
     >
@@ -97,6 +105,8 @@ export default function AboutTiara() {
         </div>
       </div>
     </section>
+      <Footer />
+    </>
   )
 }
 
