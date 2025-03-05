@@ -39,7 +39,7 @@ const Marque = () => {
       <h1
         ref={experienceRef}
         className={cn(
-          "text-[90vw]  md:text-[30vw] p-[20px] text-white whitespace-nowrap",
+          "text-[90vw]  md:text-[25vw] p-[20px] text-white whitespace-nowrap",
           tiaraFont.className
         )}
       >

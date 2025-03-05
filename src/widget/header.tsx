@@ -1,14 +1,17 @@
-"use client"
+"use client";
 
+import { useRouter } from "next/navigation";
 import Wave from "react-wavify"
 import { tiaraFont } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
+
 const ButtonHoverRegister = () => {
+  const router = useRouter();
     return (
       <>
-        <button className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
+        <button onClick={() => router.push("/register")} className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium' >
           <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
         register
           </div>
@@ -21,9 +24,10 @@ const ButtonHoverRegister = () => {
     );
   };
   const ButtonHoverRulebook= () => {
+    const router = useRouter();
     return (
       <>
-        <button className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
+        <button onClick={() => router.push("/rulebook")}  className='group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium'>
           <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
       rule book
           </div>
@@ -134,7 +138,7 @@ export const Header = () => {
       <div className="absolute inset-x-0 top-0 z-[60] flex flex-row justify-between items-center p-4 w-full">
         {/* Logo and Name - positioned on the left */}
         <div className="flex order-1">
-          <ul className="flex text-white items-center">
+          <ul className="flex text-white cursor-crosshair items-center">
             <li className={cn("tracking-widest text-xl", tiaraFont.className)}>
               <span className="text-white transition-colors duration-500 hover:text-red-400">Ti</span>
               <span className="text-[#eb1c2c] transition-colors duration-500 hover:text-white">ar</span>
@@ -149,7 +153,7 @@ export const Header = () => {
         <div className="hidden md:block order-2 ml-auto">
           <ul className={cn("flex flex-wrap justify-end text-white items-center tracking-wider", tiaraFont.className)}>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
-              <a href="/home" className="transition-colors duration-300 ease-in-out">home</a>
+              <a href="/" className="transition-colors duration-300 ease-in-out">home</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
@@ -157,11 +161,11 @@ export const Header = () => {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
-              <a href="#Events" className="transition-colors duration-300 ease-in-out">events</a>
+              <a href="/events" className="transition-colors duration-300 ease-in-out">events</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="mx-2 hover:text-red-600 text-sm relative group">
-              <a href="#Schedule" className="transition-colors duration-300 ease-in-out">team</a>
+              <a href="/team" className="transition-colors duration-300 ease-in-out">team</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="mx-2 text-sm">
@@ -184,19 +188,19 @@ export const Header = () => {
         <ul className={cn("flex flex-col w-full h-full py-8 px-6 space-y-6 text-white overflow-auto tracking-wider", tiaraFont.className)}>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "100ms" }}>
-            <a href="/home" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
+            <a href="/" onClick={toggleMenu} className="text-lg font-semibold block">home</a>
           </li>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "150ms" }}>
-            <a href="#About" onClick={toggleMenu} className="text-lg font-semibold block">about</a>
+            <a href="/about" onClick={toggleMenu} className="text-lg font-semibold block">about</a>
           </li>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "200ms" }}>
-            <a href="#Events" onClick={toggleMenu} className="text-lg font-semibold block">events</a>
+            <a href="/events" onClick={toggleMenu} className="text-lg font-semibold block">events</a>
           </li>
           <li className="transform transition-all duration-500 ease-in-out hover:translate-x-2 hover:text-red-500"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "250ms" }}>
-            <a href="#Schedule" onClick={toggleMenu} className="text-lg font-semibold block">team</a>
+            <a href="/team" onClick={toggleMenu} className="text-lg font-semibold block">team</a>
           </li>
           <li className="pt-4"
               style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "300ms" }}>
@@ -219,7 +223,7 @@ export const Header = () => {
           {menuOpen ? (
             <X size={24} className="animate-spin-once" />
           ) : (
-            <Menu size={24} className="transform transition-transform duration-300 hover:rotate-12" />
+            <Menu size={24} className="" />
           )}
         </button>
       </div>
