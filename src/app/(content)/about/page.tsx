@@ -21,7 +21,7 @@ export default function AboutTiara() {
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-40 w-40 rounded-full bg-white"
+            className="absolute h-40 w-40 rounded-full"
             initial={{
               x: Math.random() * 100 - 50 + "%",
               y: Math.random() * 100 - 50 + "%",
