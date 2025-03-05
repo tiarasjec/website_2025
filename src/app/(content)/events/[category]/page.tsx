@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation"; 
 import { CardType } from "@/components/ui/hover/scroll";
 import Image from "next/image";
+import Loading  from "@/app/loading";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -58,7 +59,7 @@ export default function EventsPage() {
       
       {loading ? (
         <div className="flex justify-center items-center min-h-[300px]">
-          <p>Loading events...</p>
+          <Loading />
         </div>
       ) : (
         <div className="w-full flex justify-center">

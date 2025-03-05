@@ -20,18 +20,19 @@ export interface Event {
     thumbnail: string;
     startTime: string;
     endTime: string | undefined;
-    // costs: string;
     facultyCoordinators: FacultyCoordinator[];
     studentCoordinators: StudentCoordinator[];
 }
 
 export interface FacultyCoordinator {
     name: string;
+    email: string;
     phone: string;
 }
 
 export interface StudentCoordinator {
     name: string;
+    email: string;
     phone: string;
 }
 
@@ -43,14 +44,24 @@ const Page = () => {
     useEffect(() => {
         setLoading(true);
         const [, , category, path] = pathname.split("/");
-        fetch(`/api/events/${category}/${path}`)
-            .then((response) => response.json())
-            .then((dataList) => {
-                setEventInfo(dataList);
+        fetch(`/api/events/active/${category}/${path}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("Received event data:", data); 
+                setEventInfo(data.event); 
                 setLoading(false);
             })
-            .catch((error) => console.error("Error fetching events:", error));
+            .catch((error) => {
+                console.error("Error fetching events:", error);
+                setLoading(false);
+            });
     }, [pathname]);
+
     const startTime = eventInfo?.startTime ? new Date(eventInfo.startTime) : null;
     const endTime = eventInfo?.endTime ? new Date(eventInfo.endTime) : null;
     const formattedStartDate = startTime ? startTime.getDate() : "";
