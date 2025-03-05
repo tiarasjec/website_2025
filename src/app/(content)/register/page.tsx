@@ -199,7 +199,6 @@ const Register: React.FC = () => {
 
     return (
         <>
-        <Header/>
     
 
         <div className="w-full gap-4 p-2 pt-36 md:px-20 lg:px-28 xl:px-40 mx-auto duration-500">
@@ -262,7 +261,7 @@ const Register: React.FC = () => {
                 </div>
             </Card>
         </div>
-        <Footer />
+    
         </>
     );
 };
