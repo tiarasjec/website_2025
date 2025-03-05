@@ -87,7 +87,6 @@
     }
 }
 
-
 html.lenis,
 html.lenis body {
   height: auto !important;
@@ -286,6 +285,10 @@ img {
 
 #card-4 .card-wrapper {
   animation-delay: 0.6s;
+}
+/* Hide horizontal scrollbar in WebKit browsers without disabling scrolling */
+body::-webkit-scrollbar {
+  height: 0px; 
 }
 
 .flip-card-inner {
