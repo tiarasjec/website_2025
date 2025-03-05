@@ -69,7 +69,7 @@ export default function AboutTiara() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.6 }}
             >
-              St Joseph Engineering College has come together to host a national level techno-cultural fest, Tiara 2025.
+              St. Joseph Engineering College has come together to host a national level techno-cultural fest, Tiara 2025.
               Tiara is a National-level Techno-Cultural fest, conducted for young minds aspiring to be extraordinary,
               that is open to all students of undergraduate level and above to come and showcase their talents and
               represent their respective institutions on the grand stage of Tiara.
@@ -81,8 +81,8 @@ export default function AboutTiara() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
             >
-              Our event mainly aims to spread and teach the youth to explore new areas of Technology and Culture to
-              foster the nation&apos;s development. SJEC welcomes you all to Tiara-2025 To unleash your potential and unlock
+              Our event mainly aims to teach the youth to explore new areas of Technology and Culture to
+              foster the nation&apos;s development. SJEC welcomes you all to Tiara 2025 to unleash your potential and unlock
               your skills.
             </motion.p>
 
@@ -92,7 +92,7 @@ export default function AboutTiara() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4, duration: 0.6 }}
             >
-              See you on 20th and 21th March 2025.
+              See you on 20th and 21st March 2025.
             </motion.p>
         </div>
       </div>

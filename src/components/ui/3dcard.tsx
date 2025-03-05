@@ -99,7 +99,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
                 alt={frontAlt}
                 className="w-full h-38 object-cover rounded-md"
                 />
-            {backText && <p className="text-[#eb1c2c] text-center">{backText}</p>}
+            {backText && <p className="text-[#eb1c2c] text-center text-xl">{backText}</p>}
               {buttonText && buttonUrl && (
                 <InteractiveHoverButton className="self-center"  href={buttonUrl}>
                   {buttonText}

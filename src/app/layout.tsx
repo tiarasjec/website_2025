@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Goldman } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
@@ -11,7 +11,7 @@ import { TailwindIndicator } from "@/components/shared/tailwind";
 import { ThemeProvider } from "next-themes";
 import Header from "@/widget/header";
 import Footer from "@/widget/footer";
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Goldman({ subsets: ["latin"], variable: "--font-sans" ,weight:"400"});
 
 export const metadata: Metadata = {
     title: "Tiara 2025",

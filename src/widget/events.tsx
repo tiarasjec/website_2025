@@ -263,7 +263,7 @@ const Events: React.FC = () => {
   return (
     <ReactLenis root>
       <div className={cn("flex flex-wrap items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
-        Events Category
+        Event Categories
       </div>
       <div className="container" ref={containerRef}>
          <section className="cards sec">
