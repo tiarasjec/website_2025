@@ -87,7 +87,6 @@
     }
 }
 
-
 html.lenis,
 html.lenis body {
   height: auto !important;
@@ -259,21 +258,16 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 240px;
-  height: 360px;
+  width: 280px;
+  height: 420px;
   perspective: 1000px;
 }
 
 .card p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
 }
-
 .card-wrapper {
   position: absolute;
   top: 50%;
@@ -298,6 +292,10 @@ img {
 
 #card-4 .card-wrapper {
   animation-delay: 0.6s;
+}
+/* Hide horizontal scrollbar in WebKit browsers without disabling scrolling */
+body::-webkit-scrollbar {
+  height: 0px; 
 }
 
 .flip-card-inner {
@@ -354,4 +352,8 @@ img {
     overflow-y: auto;
     overflow-x: hidden;
   }
+}
+
+body::-webkit-scrollbar {
+  height: 0px;
 }

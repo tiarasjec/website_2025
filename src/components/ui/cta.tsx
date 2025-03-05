@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { FlipWords } from "./flip-words";
 
 export default function CTA() {
-  const words = ["innovations","creativity", "opportunities", "knowledge","experiences","friendship", "collaboration", "learning", "development"];
+  const words = ["innovations","creativity", "opportunities", "knowledge","experiences", "collaboration", "learning", "development"];
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

@@ -23,8 +23,9 @@ const ShaderVisualization: React.FC<BackgroundShaderProps> = ({ className }) => 
     const updateSize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      const scale = width > 1024 ? 0.75 : 1.0;
+      renderer.setSize(width * scale, height * scale, false);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.0));
       return { width, height };
     };
     
@@ -185,9 +186,6 @@ const ShaderVisualization: React.FC<BackgroundShaderProps> = ({ className }) => 
     const animate = () => {
       const elapsedTime = (Date.now() - startTime) / 1000;
       shaderMaterial.uniforms.iTime.value = elapsedTime;
-      
-
-      
       renderer.render(scene, camera);
       animationRef.current = requestAnimationFrame(animate);
     };
