@@ -157,7 +157,7 @@ export const makePayment = async ({
     const options: RazorpayOptions = {
         key: key!,
         name: productName,
-        image: "https://www.tiara.app/logo.png",
+        image: `${tiaraAssetsPrefix}/tiaratextlogo.png`,
         currency: "INR",
         amount: amount,
         order_id: orderId,
