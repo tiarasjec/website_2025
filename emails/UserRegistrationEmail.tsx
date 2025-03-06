@@ -1,3 +1,4 @@
+import { tiaraAssetsPrefix } from "@/lib/utils";
 import {
     Body,
     Button,
@@ -31,7 +32,7 @@ export const UserRegistrationEmail = ({ events, name, registrationLink }: UserRe
                     <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[32px] max-w-[465px]">
                         <Section className="text-center">
                             <Img
-                                src={`https://raw.githubusercontent.com/tiarasjec/assets_2025/main/full_logo.png`}
+                                src={`${tiaraAssetsPrefix}/full_logo.png`}
                                 width={250}
                                 alt="Tiara Logo"
                                 className="mx-auto"
