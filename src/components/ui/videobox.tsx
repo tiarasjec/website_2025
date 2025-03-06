@@ -75,11 +75,11 @@ export default function VideoBackground() {
   return (
     <div
       ref={wrapperRef}
-      className="relative flex flex-col md:flex-row items-center justify-center h-[90vh] p-6 perspective-1000"
+      className="relative flex flex-col lg:flex-row items-center justify-center h-[100vh] p-6 perspective-1000"
     >
       <div
         className={cn(
-          "flex items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center md:text-left mb-6 md:mb-0 md:mr-8 transition hover:scale-110 ease-out duration-300 md:w-1/3",
+          "flex items-center text-3xl  sm:text-5xl md:text-7xl justify-center text-center md:text-left mb-10 md:mb-0 md:mr-8 transition hover:scale-110 ease-out duration-300 md:w-1/3",
           tiaraFont.className,
         )}
       >
@@ -89,7 +89,7 @@ export default function VideoBackground() {
         {/* SVG Background with the new path you provided */}
         <motion.svg
           className="absolute top-0 left-0 w-full h-full pointer-events-none"
-          viewBox="0 0 4437 2113"
+          viewBox="0 0 4437 2300"
           preserveAspectRatio="none"
           style={{ opacity: pathOpacity }}
         >
@@ -267,7 +267,6 @@ export default function VideoBackground() {
           </motion.div>
         </AnimatePresence>
       </div>
-      {/* Global styles for animations */}
       <style jsx global>{`
         @keyframes gradient-shift {
           0% { background-position: 0% 50%; }

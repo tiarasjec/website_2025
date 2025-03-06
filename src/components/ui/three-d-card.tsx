@@ -169,27 +169,23 @@ export function ThreeDCard({
       {imageUrl && (
         <div className="relative h-full w-full">
           <Image
-  src={imageUrl}
-  alt={title || "Card image"}
-  fill
-  unoptimized
-  className={cn(
-    "relative z-10 object-contain drop-shadow-2xl",
-    disabled && "brightness-75 grayscale",
-  )}
-  style={{
-    transform: `
-      translateZ(${isHovered ? 120 : 75}px)
-      translateX(${position.x * -2}px)
-      translateY(${position.y * -2}px)
-      scale(${isHovered && !disabled ? 2.0 : 1.9})
-    `,
-    imageRendering: "auto",
-    backfaceVisibility: "hidden",
-    transition: transitionSettings,
-    willChange: "transform",
-  }}
-/>
+            src={imageUrl}
+            alt={title || "Card image"}
+            fill
+            className={cn(
+              "relative z-10 object-contain",
+            )}
+            style={{
+              transform: `
+                translateZ(${isHovered ? 120 : 75}px)
+                translateX(${position.x * -2}px)
+                translateY(${position.y * -2}px)
+                scale(${isHovered && !disabled ? 2 : 1.8})
+              `,
+              transition: transitionSettings,
+              willChange: "transform",
+            }}
+          />
         </div>
       )}
 
