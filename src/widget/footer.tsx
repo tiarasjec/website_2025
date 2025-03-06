@@ -88,14 +88,14 @@ export const Footer = () => {
             <span className="text-white">25</span>
           </li>
           <li className="mx-2 sm:mx-4 text-xl sm:text-2xl">|</li>
-          <li className="text-sm sm:text-base">© Developed by Google DG SJEC</li>
+          <li className="text-sm sm:text-base">© Developed by <a className="hover:text-[#EB1C2C] cursor-pointer" href="https://gdg.community.dev/gdg-on-campus-st-joseph-engineering-college-mangaluru-india/">Google DG SJEC</a></li>
         </ul>
 
         {/* For desktop: Original layout */}
         <ul className="hidden sm:flex flex-wrap justify-end text-white items-center">
           <li className="mx-2 sm:mx-4">
             <a
-              href="#instagram"
+              href="https://www.instagram.com/tiarasjec/"
               className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
               aria-label="Instagram"
             >
@@ -104,7 +104,7 @@ export const Footer = () => {
           </li>
           <li className="mx-2 sm:mx-4">
             <a
-              href="#website"
+              href="https://sjec.ac.in/"
               className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
               aria-label="Website"
             >
@@ -113,7 +113,7 @@ export const Footer = () => {
           </li>
           <li className="mx-2 sm:mx-4">
             <a
-              href="mailto:contact@example.com"
+              href="mailto:tiarasjec@sjec.ac.in"
               className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
               aria-label="Email"
             >
@@ -122,7 +122,7 @@ export const Footer = () => {
           </li>
           <li className="mx-2 sm:mx-4">
             <a
-              href="tel:+1234567890"
+              href="tel:+91 8867656481 "
               className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
               aria-label="Phone"
             >
@@ -131,13 +131,13 @@ export const Footer = () => {
           </li>
           <li className="mx-2 text-xl sm:text-2xl">|</li>
           <li className="mx-2 hover:text-[#EB1C2C] text-sm sm:text-base">
-            <a href="#About">Privacy Policy</a>
+            <a href="/privacy">Privacy Policy</a>
           </li>
           <li className="mx-2 hover:text-[#EB1C2C] text-sm sm:text-base">
-            <a href="#Support">Terms & Conditions</a>
+            <a href="/tc">Terms & Conditions</a>
           </li>
           <li className="mx-2 hover:text-[#EB1C2C] text-sm sm:text-base">
-            <a href="#PrivacyPolicy">Refund</a>
+            <a href="/refund">Refund</a>
           </li>
         </ul>
 
@@ -147,7 +147,7 @@ export const Footer = () => {
           <ul className="flex justify-center gap-5 mb-3">
             <li>
               <a
-                href="#instagram"
+                href="https://www.instagram.com/tiarasjec/"
                 className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
                 aria-label="Instagram"
               >
@@ -156,7 +156,7 @@ export const Footer = () => {
             </li>
             <li>
               <a
-                href="#website"
+                href="https://sjec.ac.in/"
                 className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
                 aria-label="Website"
               >
@@ -165,7 +165,7 @@ export const Footer = () => {
             </li>
             <li>
               <a
-                href="mailto:contact@example.com"
+                href="mailto:tiarasjec@sjec.ac.in"
                 className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
                 aria-label="Email"
               >
@@ -174,7 +174,7 @@ export const Footer = () => {
             </li>
             <li>
               <a
-                href="tel:+1234567890"
+                href="tel:+91 8867656481"
                 className="text-white hover:text-[#EB1C2C] transition-all duration-200 transform hover:scale-110 inline-block"
                 aria-label="Phone"
               >
@@ -186,13 +186,13 @@ export const Footer = () => {
           {/* Policy Links Row */}
           <ul className="flex justify-center gap-3 text-sm">
             <li className="hover:text-[#EB1C2C]">
-              <a href="#About">Privacy Policy</a>
+              <a href="/privacy">Privacy Policy</a>
             </li>
             <li className="hover:text-[#EB1C2C]">
-              <a href="#Support">Terms & Conditions</a>
+              <a href="/tc">Terms & Conditions</a>
             </li>
             <li className="hover:text-[#EB1C2C]">
-              <a href="#PrivacyPolicy">Refund</a>
+              <a href="/refund">Refund</a>
             </li>
           </ul>
         </div>

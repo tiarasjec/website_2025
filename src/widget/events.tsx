@@ -20,7 +20,7 @@ const cardData = [
     backText:
       "Compete and showcase your tech skills.",
     buttonText: "Explore",
-    buttonUrl: "/technical",
+    buttonUrl: "/events/technical",
   },
   {
     id: "card-2",
@@ -31,7 +31,7 @@ const cardData = [
     backText:
       "Engage in sports and exciting challenges.",
     buttonText: "Explore",
-    buttonUrl: "/nontechnical",
+    buttonUrl: "/events/non_technical",
   },
   {
     id: "card-3",
@@ -42,7 +42,7 @@ const cardData = [
     backText:
       "Celebrating talent with music, dance, and art.",
     buttonText: "Explore",
-    buttonUrl: "/cultural",
+    buttonUrl: "/events/cultural",
   },
   {
     id: "card-4",
@@ -50,11 +50,10 @@ const cardData = [
     backSrc: "/assets/mega.jpg",
     frontAlt: "Mega",
     title: "Mega",
-    description: "Custom events for life's important moments, from anniversaries to graduations and more.",
     backText:
       " Experience the biggest and most spectacular events.",
     buttonText: "Explore",
-    buttonUrl: "/special-events",
+    buttonUrl: "/events/mega",
   },
 ]
 
@@ -91,14 +90,14 @@ const Events: React.FC = () => {
         // Existing mobile logic remains unchanged
         const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
         cardsContainer.innerHTML = "";
-        cardsContainer.style.height = `${cards.length * 80}vh`;
+        cardsContainer.style.height = `${cards.length * 70}vh`;
 
         cards.forEach((card, index) => {
           if (!card) return;
 
           const cardSection = document.createElement("div");
           cardSection.className = `card-section card-section-${index}`;
-          cardSection.style.height = "80vh";
+          cardSection.style.height = "70vh";
           cardSection.style.width = "100%";
           cardSection.style.position = "relative";
           cardsContainer.appendChild(cardSection);
@@ -119,8 +118,8 @@ const Events: React.FC = () => {
           if (frontEl && backEl) {
             const trigger = ScrollTrigger.create({
               trigger: cardSection,
-              start: "center 55%",
-              end: "center 45%",
+              start: "center 70%",
+              end: "center 90%",
               scrub: true,
               id: `flip-mobile-${index}`,
               onUpdate: (self) => {
@@ -262,29 +261,31 @@ const Events: React.FC = () => {
 
   return (
     <ReactLenis root>
-      <div className={cn("flex flex-wrap items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
-        Events Category
-      </div>
-      <div className="container" ref={containerRef}>
-         <section className="cards sec">
-          {cardData.map((card, index) => (
-            <Card
-              key={index}
-              id={card.id}
-              frontSrc={card.frontSrc}
-              frontAlt={card.frontAlt}
-              backText={card.backText}
-              title={card.title}
-              buttonText={card.buttonText}
-              buttonUrl={card.buttonUrl}
-              backSrc={card.backSrc}
-              ref={(el) => {
-                cardRef.current[index] = el
-              }}
-            />
-          ))}
-        </section>
-      </div>
+        <div className="mt-28">
+        <div className={cn("flex flex-wrap items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
+          Event Categories
+        </div>
+        <div className="container" ref={containerRef}>
+          <section className="cards sec">
+            {cardData.map((card, index) => (
+              <Card
+                key={index}
+                id={card.id}
+                frontSrc={card.frontSrc}
+                frontAlt={card.frontAlt}
+                backText={card.backText}
+                title={card.title}
+                buttonText={card.buttonText}
+                buttonUrl={card.buttonUrl}
+                backSrc={card.backSrc}
+                ref={(el) => {
+                  cardRef.current[index] = el
+                }}
+              />
+            ))}
+          </section>
+        </div>
+        </div>
     </ReactLenis>
   );
 };

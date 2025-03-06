@@ -23,8 +23,18 @@ const ShaderVisualization: React.FC<BackgroundShaderProps> = ({ className }) => 
     const updateSize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
+      
+      // Detect device type
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      // Set pixel ratio based on device
+      const pixelRatio = isMobile 
+        ? Math.min(window.devicePixelRatio, 0.77)  // Lower for mobile
+        : Math.min(window.devicePixelRatio, 1.5);   // Higher for laptop/desktop
+      
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setPixelRatio(pixelRatio);
+      
       return { width, height };
     };
     
@@ -76,7 +86,7 @@ const ShaderVisualization: React.FC<BackgroundShaderProps> = ({ className }) => 
         }
         
         float drawLine(vec2 uv, vec2 a, vec2 b) {
-          float line = smoothstep(0.014, 0.01, distLine(uv, a, b));
+          float line = smoothstep(0.014, 0.0001, distLine(uv, a, b));
           float dist = length(b-a);
           return line * (smoothstep(1.3, 0.8, dist) * 0.5 + smoothstep(0.04, 0.03, abs(dist - 0.75)));
         }
@@ -132,9 +142,9 @@ const ShaderVisualization: React.FC<BackgroundShaderProps> = ({ className }) => 
           vec2 uv = (fragCoord - 0.5 * iResolution) / iResolution.y;
           
           // Red color scheme
-          vec3 baseColor = vec3(0.9, 0.1, 0.1); // Strong red
-          vec3 accentColor = vec3(1.0, 0.3, 0.3); // Lighter red
-          vec3 darkColor = vec3(0.5, 0.0, 0.0); // Dark red
+          vec3 baseColor = vec3(0.4, 0.0, 0.0); // Strong red
+          vec3 accentColor = vec3(0.1, 0.0, 0.0); // Lighter red
+          vec3 darkColor = vec3(0.0, 0.0, 0.0); // Dark red
           
           // Mix colors based on time
           vec3 c = mix(darkColor, accentColor, sin(iTime * 0.5) * 0.5 + 0.5);
