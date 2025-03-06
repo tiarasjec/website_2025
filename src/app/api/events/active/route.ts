@@ -12,40 +12,34 @@ export async function GET() {
             select: {
                 id: true,
                 name: true,
-                category: true,
+                thumbnail: true,
+                description: true,
                 costs: true,
                 teamEvent: true,
-            },
-            orderBy: {
-                category: "asc",
+                category: true, 
             },
         });
 
-        // Transform events into the required format
-        const categorizedEvents = events.reduce(
-            (acc, event) => {
-                const category = event.category.toLowerCase().replace(" ", "_");
-                if (!acc[category]) {
-                    acc[category] = {
-                        events: [{}],
-                    };
-                }
+        console.log(`Found ${events.length} active events`);
+        
+        const eventsByCategory: Record<string, any[]> = {};
+        
+        events.forEach(event => {
+            const category = event.category;
+            if (!eventsByCategory[category]) {
+                eventsByCategory[category] = [];
+            }
+            eventsByCategory[category].push({
+                id: event.id,
+                name: event.name,
+                thumbnail: event.thumbnail || "/images/default-event.jpg",
+                description: event.description || "",
+                costs: event.costs,
+                teamEvent: event.teamEvent || false,
+            });
+        });
 
-                acc[category].events[0][event.id] = {
-                    name: event.name,
-                    costs: event.costs,
-                    team: event.teamEvent,
-                };
-
-                return acc;
-            },
-            {} as Record<
-                string,
-                { events: Array<Record<string, { name: string; costs: number; team: boolean }>> }
-            >
-        );
-
-        return NextResponse.json(categorizedEvents);
+        return NextResponse.json(eventsByCategory);
     } catch (error) {
         console.error("Error fetching active events:", error);
         return new NextResponse("Internal Server Error", { status: 500 });

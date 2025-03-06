@@ -14,6 +14,8 @@ import React, { useEffect, useState } from "react";
 import { PageLoading } from "@/components/ui/page-loading";
 import { DataLoading } from "@/components/ui/page-loading";
 import { RestrictedAccess } from "@/components/ui/restricted-access";
+import { Header } from "@/widget/header"
+import Footer from "@/widget/footer";
 
 // export const maxDuration = 300;
 
@@ -196,7 +198,10 @@ const Register: React.FC = () => {
     }
 
     return (
-        <div className="w-full gap-4 p-2 pt-36 md:px-20 lg:px-28 xl:px-40 mx-auto duration-500">
+        <>
+    
+
+        <div className="w-full gap-4 p-2 md:px-20 lg:px-28 xl:px-40 mx-auto duration-500">
             <Card className="w-full">
                 <CardHeader className="flex flex-row items-start bg-muted/50">
                     <div className="grid gap-0.5">
@@ -256,6 +261,8 @@ const Register: React.FC = () => {
                 </div>
             </Card>
         </div>
+    
+        </>
     );
 };
 

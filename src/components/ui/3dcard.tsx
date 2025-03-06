@@ -20,6 +20,7 @@ interface InteractiveHoverButtonProps {
   children?: React.ReactNode;
 }
 
+
 const InteractiveHoverButton: React.FC<InteractiveHoverButtonProps> = ({ className, href, children }) => {
   const router = useRouter();
 
@@ -32,9 +33,9 @@ const InteractiveHoverButton: React.FC<InteractiveHoverButtonProps> = ({ classNa
   return (
     <button
       onClick={handleClick}
-      className={`group relative inline-flex h-20 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r dark:from-[#c95050] dark:to-[#eb1c2c] from-[#ff7b7b] to-[#ff1e1e] font-medium text-white border-2 border-[#e25656] transition-all duration-300 hover:w-32 shadow-xl ${className}`}
+      className={`group relative inline-flex h-20 w-32 sm:w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r dark:from-[#c95050] dark:to-[#eb1c2c] from-[#ff7b7b] to-[#ff1e1e] font-medium text-white border-2 border-[#e25656] transition-all duration-300 sm:hover:w-32 shadow-xl ${className}`}
     >
-      <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100">
+      <div className="inline-flex whitespace-nowrap opacity-100 sm:opacity-0 transition-all duration-200 sm:group-hover:-translate-x-3 sm:group-hover:opacity-100">
         {children}
       </div>
       <div className="absolute right-3.5">
@@ -57,6 +58,8 @@ const InteractiveHoverButton: React.FC<InteractiveHoverButtonProps> = ({ classNa
     </button>
   );
 };
+
+
 
 
 
@@ -99,7 +102,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
                 alt={frontAlt}
                 className="w-full h-38 object-cover rounded-md"
                 />
-            {backText && <p className="text-[#eb1c2c] text-center">{backText}</p>}
+            {backText && <p className="text-[#eb1c2c] text-center text-xl">{backText}</p>}
               {buttonText && buttonUrl && (
                 <InteractiveHoverButton className="self-center"  href={buttonUrl}>
                   {buttonText}
