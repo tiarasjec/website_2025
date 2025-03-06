@@ -1,15 +1,29 @@
 "use client"
-
+import { cn } from "@/lib/utils"
+import { tiaraFont } from "@/lib/fonts"
 import { useEffect, useRef, useState } from "react"
-import { motion, AnimatePresence, useAnimationControls } from "framer-motion"
+import { motion, AnimatePresence, useAnimationControls, useScroll, useTransform } from "framer-motion"
 
 export default function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const particlesControls = useAnimationControls()
+
+  // Scroll animation setup with modified offset for slower animation
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start end", "end start"]
+  })
+  
+  // Modify the scroll mapping to make the animation slower and more gradual
+  const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1])
+  
+  // Adjust the opacity transition to match the slower animation
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 0.8, 0.8, 0])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,7 +72,29 @@ export default function VideoBackground() {
   }))
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 perspective-1000">
+    <div 
+      ref={wrapperRef} 
+      className="relative flex items-center justify-center h-[90vh] p-6 perspective-1000"
+    >
+       <div className={cn("flex flex-wrap flex-col items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
+              Glimps of Tiara 2024
+              </div>
+      {/* SVG Background with the new path you provided */}
+      <motion.svg 
+        className="absolute top-0 left-0 w-full h-full pointer-events-none" 
+        viewBox="0 0 4437 2113" 
+        preserveAspectRatio="none"
+        style={{ opacity: pathOpacity }}
+      >
+        <motion.path 
+          d="M1 1C1766.5 275 1484 1311.23 1133 1001.73C782 692.227 555.5 2073.73 1707 1272C2858.5 470.274 4228.5 -40.5001 3171.5 1264C2114.5 2568.5 3752 1956 4436.5 2040.5" 
+          stroke="white" 
+          strokeWidth={30}
+          fill="none"
+          style={{ pathLength }}
+        />
+      </motion.svg>
+      
       <AnimatePresence>
         <motion.div
           ref={containerRef}
@@ -111,9 +147,6 @@ export default function VideoBackground() {
 
           {/* Video container with padding for border effect */}
           <div className="p-1 rounded-xl overflow-hidden relative">
-            {/* Loading indicator */}
-
-
             {/* Video element */}
             <motion.video
               ref={videoRef}
@@ -225,8 +258,6 @@ export default function VideoBackground() {
               }}
               transition={{ duration: 0.6, delay: 0.3 }}
             />
-
-         
           </div>
         </motion.div>
       </AnimatePresence>
@@ -250,4 +281,3 @@ export default function VideoBackground() {
     </div>
   )
 }
-
