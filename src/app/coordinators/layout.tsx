@@ -16,13 +16,14 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { UserRole } from "@prisma/client";
+import { RestrictedAccess } from "@/components/ui/restricted-access";
 
 export default function AdminDashboard({ children }: { children: React.ReactNode }) {
     const { data: session } = useSession({
         required: true,
     });
     if (!session) {
-        return <div>Unauthorized</div>;
+        return <RestrictedAccess message="Please sign in to access the coordinator dashboard" />;
     }
 
     function isAllowedRole(role: UserRole): role is "COORDINATOR" | "ADMIN" | "SUPER_ADMIN" {
@@ -30,7 +31,7 @@ export default function AdminDashboard({ children }: { children: React.ReactNode
     }
 
     if (!isAllowedRole(session.user.role)) {
-        return <div>Forbidden</div>;
+        return <RestrictedAccess message="You are not authorized to access the coordinator dashboard" />;
     }
     return (
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
