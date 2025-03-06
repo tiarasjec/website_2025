@@ -38,7 +38,7 @@ export default function AdminDashboard({ children }: { children: React.ReactNode
                 <div className="flex h-full max-h-screen flex-col gap-2">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
-                            <span className="">Tiara 2024</span>
+                            <span className="">Tiara 2025</span>
                         </Link>
                     </div>
                     <div className="flex-1">
@@ -66,7 +66,7 @@ export default function AdminDashboard({ children }: { children: React.ReactNode
                         <SheetContent side="left" className="flex flex-col">
                             <nav className="grid gap-2 text-lg font-medium">
                                 <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-                                    <span className="sr-only">Tiara 2024</span>
+                                    <span className="sr-only">Tiara 2025</span>
                                 </Link>
                                 <Link
                                     href="/coordinators"
