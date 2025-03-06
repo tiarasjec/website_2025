@@ -211,3 +211,5 @@ export const makePayment = async ({
     });
     paymentObject.open();
 };
+
+export const tiaraAssetsPrefix = "https://raw.githubusercontent.com/tiarasjec/assets_2025/main";
