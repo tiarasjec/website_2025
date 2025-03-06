@@ -10,6 +10,7 @@ import Events from "@/widget/events";
 import { Header } from "@/widget/header"
 import Footer from "@/widget/footer";
 import ShaderVisualization from "@/widget/background";
+import Video from "@/components/ui/videobox";
 export default function Home() {
   const lenis = useLenis(({ scroll }) => {
     // called every scroll
@@ -24,6 +25,7 @@ export default function Home() {
 <div >
 <Marque/>
 <Events/>
+<Video/>
 </div>
 </ReactLenis>
   <Footer />

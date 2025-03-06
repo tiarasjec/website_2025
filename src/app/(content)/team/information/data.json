@@ -1,0 +1,171 @@
+{
+    "teamMembers": [
+      {
+        "id": "1",
+        "name": "Uthpal",
+        "role": "Student Convenor",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Uthpal.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "2",
+        "name": "Diya Gopal",
+        "role": "Student Convenor",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Diya Gopal.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "3",
+        "name": "Suhas Karinja",
+        "role": "Technical Event Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Suhas Karinja.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "4",
+        "name": "Ashton Dsouza",
+        "role": "Technical Event Head",
+        "imageUrl":"https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Ashton Dsouza.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "5",
+        "name": "Pritham Akash Dsouza",
+        "role": "Non Technical Event Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Pritham Akash Dsouza.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "6",
+        "name": "Dayal Palaksha",
+        "role": "Non Technical Event Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Dayal Palaksha.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "7",
+        "name": "Sumanth K",
+        "role": "Cultural Events Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Sumanth K.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "8",
+        "name": "Adithya C S",
+        "role": "Discipline Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Adithya%20C%20S.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "9",
+        "name": "Thejas B Shetty",
+        "role": "Discipline Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Thejas B Shetty.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "10",
+        "name": "Vyshnav K",
+        "role": "Website Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Vyshnav K.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id":"11",
+        "name": "Joshua Albuquerque",
+        "role": "Website Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Joshua Quinthino Albuquerque.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "12",
+        "name": "Rishanth Fernandes",
+        "role": "Logistics Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Rishanth Keith Fernandes.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "13",
+        "name": "Akshay Bangera",
+        "role": "Logistics Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Akshay%20Bangera.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "14",
+        "name": "Olin",
+        "role": "Registration Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Olin.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "15",
+        "name": "Lisha D S",
+        "role": "Registration Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Lisha D S.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "16",
+        "name": "Jayarama P D",
+        "role": "Stage & Decoration Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Jayarama P D.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },{
+        "id": "17",
+        "name": "Arush Patrao",
+        "role": "Prize & Award Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Arush Patrao.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "18",
+        "name": "Mohammed Luqman",
+        "role": "Event Scheduling Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Mohammed Luqman.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "19",
+        "name": "Dhanush Gowda",
+        "role": "Sponsorship Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Dhanush Gowda.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "20",
+        "name": "Ashlin Johnson",
+        "role": "Sponsorship Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Aashlin%20Johnson.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "21",
+        "name": "Priyana Meloni Dsouza",
+        "role": "Publicity Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Priyana Meloni Dsouza.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "22",
+        "name": "Vishak Kumble",
+        "role": "Media Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Vishak Kumble.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "23",
+        "name": "Dhanush D",
+        "role": "Design Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Dhanush D.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      },
+      {
+        "id": "24",
+        "name": "Alston",
+        "role": "Design Head",
+        "imageUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/Alston.png.webp",
+        "backgroundUrl": "https://raw.githubusercontent.com/roche-jeethan/assets_2025/refs/heads/main/team_webp/template-background.png.avif"
+      }  
+    ]
+  }
