@@ -172,10 +172,8 @@ export default function VideoBackground() {
                 muted
                 playsInline
               >
-                <source
-                  src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-                  type="video/mp4"
-                />
+       <source src="/assets/tiarafinalpromo.mp4" type="video/mp4" />
+
                 Your browser does not support the video tag.
               </motion.video>
 
