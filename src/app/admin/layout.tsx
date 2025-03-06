@@ -94,7 +94,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
                             <SheetContent side="left" className="flex flex-col">
                                 <nav className="grid gap-2 text-lg font-medium">
                                     <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-                                        <span className="sr-only">Tiara 2024</span>
+                                        <span className="sr-only">Tiara 2025</span>
                                     </Link>
                                     <Link
                                         href="/admin"
