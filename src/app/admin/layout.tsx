@@ -40,7 +40,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
 
     return (
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-            <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] bg-background">
+            <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
                 <div className="hidden border-r bg-card md:block">
                     <div className="flex h-full max-h-screen flex-col gap-2">
                         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
@@ -82,8 +82,8 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col">
-                    <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6">
+                <div className="flex flex-col h-screen overflow-hidden">
+                    <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6 shrink-0">
                         <Sheet>
                             <SheetTrigger asChild>
                                 <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -162,8 +162,8 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </header>
-                    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background">
-                        {children}
+                    <main className="flex-1 overflow-auto p-4 lg:p-6">
+                        <div className="h-full">{children}</div>
                     </main>
                 </div>
             </div>
