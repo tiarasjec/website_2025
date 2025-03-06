@@ -19,7 +19,7 @@ export default function CTA2() {
             {words.map((word, index) => (
               <span 
                 key={index} 
-                className="inline-block mr-2 transition-transform duration-300 ease-out hover:scale-110 origin-bottom"
+                className="inline-block mr-2 cursor-crosshair transition-transform duration-300 ease-out hover:scale-110 origin-bottom"
               >
                 {word}
               </span>
@@ -30,7 +30,7 @@ export default function CTA2() {
         {/* Card and text section */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-6 mt-6">
           {/* TiltedCard on the left */}
-          <div className="flex justify-center items-center  mb-6 sm:mb-0">
+          <div className="flex justify-center items-center cursor-crosshair  mb-6 sm:mb-0">
             <TiltedCard
               imageSrc="/assets/favicon_white.png"
               altText="Tiara25"
@@ -72,7 +72,7 @@ export default function CTA2() {
           {/* Simple text section on the right */}
           <div className="w-full sm:w-1/2 max-w-xl flex flex-col justify-center p-1">
             <p className="text-white text-3xl font-semibold md:text-left  text-center">
-              <span>Join us for an unforgettable journey through tech and tradition. Witness the magic of both worlds at </span>
+              <span className="">Join us for an unforgettable journey through tech and tradition. Witness the magic of both worlds at </span>
               <span className={cn("text-white tracking-wider",tiaraFont.className)}>Ti</span>
             <span className={cn("text-[#EB1C2C] tracking-wider",tiaraFont.className)}>ar</span>
             <span className={cn("text-white tracking-wider",tiaraFont.className)}>a</span>

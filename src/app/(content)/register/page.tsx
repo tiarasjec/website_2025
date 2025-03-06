@@ -201,7 +201,7 @@ const Register: React.FC = () => {
         <>
     
 
-        <div className="w-full gap-4 p-2 pt-36 md:px-20 lg:px-28 xl:px-40 mx-auto duration-500">
+        <div className="w-full gap-4 p-2 md:px-20 lg:px-28 xl:px-40 mx-auto duration-500">
             <Card className="w-full">
                 <CardHeader className="flex flex-row items-start bg-muted/50">
                     <div className="grid gap-0.5">

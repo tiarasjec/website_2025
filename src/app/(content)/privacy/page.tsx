@@ -6,7 +6,19 @@ import { Header } from "@/widget/header"
 import Footer from "@/widget/footer";
 import ShaderVisualization from "@/widget/background";
 
-const privacyPolicy= [
+// Define the section interface for clarity
+interface Section {
+  title: string;
+  description: string;
+}
+
+// Single interface for page props
+interface PageProps {
+  params?: any;
+  searchParams?: any;
+}
+
+const privacyPolicy: Section[] = [
     {
         title: "Consent",
         description: `By registering and submitting your personal information, you are indicating your consent to the
@@ -53,7 +65,7 @@ const privacyPolicy= [
         you proceed with a transaction that involves a third-party service provider, your information may be
         subject to the laws of the jurisdiction(s) in which the provider or its facilities are located.
         Please be aware that once you leave our website or are redirected to a third-party website or
-        application, this Privacy Policy and our website${"'"}s Terms of Service no longer apply.`,
+        application, this Privacy Policy and our website's Terms of Service no longer apply.`,
     },
     {
         title: "Your Control Over Information",
@@ -89,7 +101,7 @@ const privacyPolicy= [
         description: `We offer multiple modes of payment on our website, including debit card, UPI ID, and other digital
         payment options. All payment details provided by you are encrypted and processed securely
         through our payment gateway partner, Razorpay. As mentioned earlier, your card data is not stored
-        on our or Razorpay${"'"}s servers, and all purchase transaction data is only used to complete your
+        on our or Razorpay's servers, and all purchase transaction data is only used to complete your
         purchase and will not be saved.
         Our payment gateway follows the PCI-DSS standards set by the PCI Security Standards Council,
         which includes leading credit and debit card brands like Visa, Mastercard, American Express, and
@@ -124,9 +136,11 @@ const privacyPolicy= [
     },
 ];
 
+// Define the default function that follows Next.js App Router conventions
+export default function Page(_props: PageProps) {
+  const title = "Privacy Policy";
+  const sections = privacyPolicy;
 
-// Define the component with props
-export default function AboutTiara({ title = "Privacy Policy", sections = privacyPolicy }) {
   return (
     <>
       <Header/>
@@ -196,16 +210,8 @@ export default function AboutTiara({ title = "Privacy Policy", sections = privac
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0 + (index * 0.2), duration: 0.6 }}
               >
-                {section.title && <h1 className="text-2xl">{section.title}</h1>}
-                <p
-  dangerouslySetInnerHTML={{
-    __html: section.description.replace(
-      /<a /g,
-      '<a style="color: #3b82f6; text-decoration: underline;" '
-    ),
-  }}
-/>
-
+                {section.title && <h1 className="text-3xl mb-3 md:text-4xl">{section.title}</h1>}
+                <p className="" dangerouslySetInnerHTML={{ __html: section.description.replace(/<a /g, `<a style="color: #3b82f6; text-decoration: underline;"`) }} />
               </motion.div>
             ))}
           </div>

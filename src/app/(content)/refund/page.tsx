@@ -6,6 +6,17 @@ import { Header } from "@/widget/header"
 import Footer from "@/widget/footer";
 import ShaderVisualization from "@/widget/background";
 
+interface Section {
+  title: string;
+  description: string;
+}
+
+// Single interface for page props
+interface PageProps {
+  params?: any;
+  searchParams?: any;
+}
+
 const Refund= [
     {
         title: "Introduction",
@@ -36,7 +47,10 @@ const Refund= [
 
 
 // Define the component with props
-export default function AboutTiara({ title = "Refund", sections = Refund }) {
+export default function Page(_props: PageProps) {
+  const title = "Refund Policy";
+  const sections = Refund;
+
   return (
     <>
       <Header/>
@@ -106,16 +120,8 @@ export default function AboutTiara({ title = "Refund", sections = Refund }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0 + (index * 0.2), duration: 0.6 }}
               >
-                {section.title && <h1 className="text-2xl">{section.title}</h1>}
-                <p
-  dangerouslySetInnerHTML={{
-    __html: section.description.replace(
-      /<a /g,
-      '<a style="color: #3b82f6; text-decoration: underline;" '
-    ),
-  }}
-/>
-
+                {section.title && <h1 className="text-3xl mb-3 md:text-4xl">{section.title}</h1>}
+                <p dangerouslySetInnerHTML={{ __html: section.description.replace(/<a /g, `<a style="color: #3b82f6; text-decoration: underline;"`) }} />
               </motion.div>
             ))}
           </div>
