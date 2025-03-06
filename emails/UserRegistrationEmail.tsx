@@ -28,58 +28,97 @@ export const UserRegistrationEmail = ({ events, name, registrationLink }: UserRe
             <Preview>{previewText}</Preview>
             <Tailwind>
                 <Body className="bg-white my-auto mx-auto font-sans px-2">
-                    <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
-                        <Img
-                            src={`https://github.com/tiarasjec/assets/full_logo.png`}
-                            width={250}
-                            alt="Tiara Logo"
-                        />
-                        <Section className="mt-[32px] items-center">
-                            <h1>Tiara 2025 Registration</h1>
+                    <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[32px] max-w-[465px]">
+                        <Section className="text-center">
+                            <Img
+                                src={`https://raw.githubusercontent.com/tiarasjec/assets_2025/main/full_logo.png`}
+                                width={250}
+                                alt="Tiara Logo"
+                                className="mx-auto"
+                            />
                         </Section>
-                        <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
-                            <strong>You{"'"}re successfully Registered for Tiara 2025!</strong>
+
+                        <Heading className="text-black text-[28px] font-bold text-center p-0 my-[30px] mx-0">
+                            Tiara 2025 Registration
                         </Heading>
+
+                        <Heading className="text-black text-[20px] font-semibold text-center p-0 mb-[30px] mx-0">
+                            You{"'"}re successfully Registered!
+                        </Heading>
+
                         <Text className="text-black text-[14px] leading-[24px]">Hello {name ?? "User"},</Text>
+
                         <Text className="text-black text-[14px] leading-[24px]">
-                            Congratulations! You have successfully completed registration for Tiara 2025.{" "}
-                            <br />
-                            <br />
-                            Please find below the list of events you have registered for:
-                            {events?.map((event) => <li key={event}>{event}</li>)}
+                            Congratulations! You have successfully completed registration for Tiara 2025.
                         </Text>
-                        <Section className="text-center mt-[32px] mb-[32px]">
+
+                        <Text className="text-black text-[14px] leading-[24px] mt-4">
+                            Please find below the list of events you have registered for:
+                            <ul className="list-disc pl-6 mt-2">
+                                {events?.map((event) => <li key={event}>{event}</li>)}
+                            </ul>
+                        </Text>
+
+                        <Section className="text-center my-[32px]">
                             <Button
-                                className="bg-[#EB1C2C] rounded text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
+                                className="bg-[#EB1C2C] rounded text-white text-[14px] font-semibold no-underline text-center px-6 py-3"
                                 href={`https://github.com/tiarasjec/assets/rulebook.pdf`}
                             >
                                 Download Rulebook
                             </Button>
                         </Section>
-                        <Text className="text-center">
+
+                        <Text className="text-center text-[14px] leading-[24px] mb-4">
                             Please find below the QR code for your registration and make sure to keep it handy
                             for the event day.
                         </Text>
-                        <Img
-                            className="mx-auto flex items-center justify-center py-4"
-                            src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${registrationLink}`}
-                            alt="Registration QR"
-                        />
-                        <Text className="text-black text-[14px] leading-[24px]">
-                            We look forward to seeing you at the event. <br />
+
+                        <Section className="text-center">
+                            <Img
+                                src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${registrationLink}`}
+                                width={200}
+                                height={200}
+                                alt="Registration QR"
+                                className="mx-auto"
+                            />
+                        </Section>
+
+                        <Text className="text-black text-[14px] leading-[24px] mt-4">
+                            We look forward to seeing you at the event.
                         </Text>
+
                         <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
+
                         <Text className="text-[#666666] text-[12px] leading-[24px]">
-                            Thanks & Regards, <br /> Team Tiara <br />
+                            Thanks & Regards, <br />
+                            Team Tiara <br />
                             For any queries and concerns, feel free to contact us at: tiara@sjec.ac.in
                         </Text>
-                        <div className="flex flex-col items-center justify-center text-[12px] space-x-4">
-                            <Button href="https://tiarasjec.in/privacy">Privacy Policy</Button>
-                            &nbsp;|&nbsp;
-                            <Button href="https://tiarasjec.in/refund">Refund Policy</Button>
-                            &nbsp;|&nbsp;
-                            <Button href="https://tiarasjec.in/terms">Terms and Conditions</Button>
-                        </div>
+
+                        <Section className="text-center mt-6">
+                            <div className="inline-flex items-center justify-center text-[12px] space-x-2">
+                                <Button
+                                    href="https://tiarasjec.in/privacy"
+                                    className="text-[#666666] hover:text-[#EB1C2C]"
+                                >
+                                    Privacy Policy
+                                </Button>
+                                <span className="text-[#666666]">|</span>
+                                <Button
+                                    href="https://tiarasjec.in/refund"
+                                    className="text-[#666666] hover:text-[#EB1C2C]"
+                                >
+                                    Refund Policy
+                                </Button>
+                                <span className="text-[#666666]">|</span>
+                                <Button
+                                    href="https://tiarasjec.in/terms"
+                                    className="text-[#666666] hover:text-[#EB1C2C]"
+                                >
+                                    Terms and Conditions
+                                </Button>
+                            </div>
+                        </Section>
                     </Container>
                 </Body>
             </Tailwind>
