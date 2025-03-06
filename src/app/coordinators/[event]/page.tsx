@@ -8,7 +8,8 @@ import { Payment } from "@prisma/client";
 
 async function getData(event: string) {
     const response = await fetch(`/api/coordinators/${event}`);
-    return response.json();
+    const data = await response.json();
+    return data.users;
 }
 
 export default function IndividualEventPage({ params }: { params: { event: string } }) {
