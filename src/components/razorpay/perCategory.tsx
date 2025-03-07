@@ -118,17 +118,10 @@ export function EventTabs({
                         />
                     )}
                 </div>
-                {event.name === "SPIN THE DISC" && registrationCounts[event.name] && (
-                    <Alert variant={isDisabled ? "default" : "destructive"} className="mx-4">
+                {event.name === "SPIN THE DISC" && registrationCounts[event.name] && isDisabled && (
+                    <Alert variant="default" className="mx-4">
                         <AlertCircle className="h-4 w-4" />
-                        <AlertDescription>
-                            {isDisabled
-                                ? "Registration closed. Maximum limit reached."
-                                : `Slots remaining: ${
-                                      registrationCounts[event.name].maxLimit! -
-                                      registrationCounts[event.name].currentCount
-                                  }`}
-                        </AlertDescription>
+                        <AlertDescription>Registration closed. Maximum limit reached.</AlertDescription>
                     </Alert>
                 )}
             </div>
