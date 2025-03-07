@@ -152,7 +152,7 @@ const Register: React.FC = () => {
         }
     };
 
-    const [itemswith250, setItemswith250] = React.useState<CheckedItem[]>([]);
+    const [itemswith300, setItemswith300] = React.useState<CheckedItem[]>([]);
 
     useEffect(() => {
         const allItems: CheckedItem[] = [
@@ -162,8 +162,8 @@ const Register: React.FC = () => {
             ...megaCheckedItems,
         ];
 
-        const itemsWithAmount250 = allItems.filter((item) => item.amount === 250);
-        setItemswith250(itemsWithAmount250);
+        const itemsWithAmount300 = allItems.filter((item) => item.amount === 293);
+        setItemswith300(itemsWithAmount300);
     }, [technicalCheckedItems, nontechnicalCheckedItems, culturalCheckedItems, megaCheckedItems]);
 
     const getSumofCheckedItems = () => {
@@ -176,14 +176,14 @@ const Register: React.FC = () => {
         let totalSum = 0;
         for (const category of categories) {
             totalSum += category.reduce((acc, item) => {
-                if (item.checked && item.amount !== 250) {
+                if (item.checked && item.amount !== 293) {
                     return acc + item.amount;
                 }
                 return acc;
             }, 0);
         }
-        if (itemswith250.length > 0) {
-            totalSum += Math.ceil(itemswith250.length / 4) * 250;
+        if (itemswith300.length > 0) {
+            totalSum += Math.ceil(itemswith300.length / 4) * 293;
         }
         return totalSum;
     };
@@ -250,7 +250,7 @@ const Register: React.FC = () => {
                         nontechnicalCheckedItems={nontechnicalCheckedItems}
                         culturalCheckedItems={culturalCheckedItems}
                         megaCheckedItems={megaCheckedItems}
-                        itemsWith250={itemswith250}
+                        itemsWith300={itemswith300}
                         sumOfCheckedItemsAmount={getSumofCheckedItems}
                         selectedEvents={selectedEventNames}
                     />
