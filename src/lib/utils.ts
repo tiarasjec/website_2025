@@ -203,6 +203,15 @@ export const makePayment = async ({
                 toast.error("Payment Failed , Contact support for help. " + res.error);
             }
         },
+        modal: {
+            backdropclose: true,
+            escape: true,
+            handleback: true,
+            confirm_close: true,
+            ondismiss: () => {
+                toast.error("Payment Failed , Contact support for help. ");
+            },
+        },
     };
 
     const paymentObject = new window.Razorpay(options);
