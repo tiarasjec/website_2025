@@ -125,6 +125,17 @@ model Event {
   @@map("events")
 }
 
+model EventRegistrationCount {
+  id           String   @id @default(cuid())
+  eventName    String   @unique
+  currentCount Int      @default(0)
+  maxLimit     Int?
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  @@map("event_registration_counts")
+}
+
 enum PaymentStatus {
   PENDING
   SUCCESS
