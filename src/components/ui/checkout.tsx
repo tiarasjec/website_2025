@@ -20,14 +20,14 @@ export default function Checkout({
     culturalCheckedItems,
     megaCheckedItems,
     sumOfCheckedItemsAmount,
-    itemsWith250,
+    itemsWith300,
     selectedEvents,
 }: {
     technicalCheckedItems: CheckedItem[];
     nontechnicalCheckedItems: CheckedItem[];
     culturalCheckedItems: CheckedItem[];
     megaCheckedItems: CheckedItem[];
-    itemsWith250: CheckedItem[];
+    itemsWith300: CheckedItem[];
     selectedEvents: string[];
     sumOfCheckedItemsAmount: () => number;
 }) {
@@ -41,11 +41,11 @@ export default function Checkout({
         setTotal(total);
     }, [sumOfCheckedItemsAmount]);
 
-    let countOf250 =
-        technicalCheckedItems.filter((item) => item.amount === 250).length +
-        nontechnicalCheckedItems.filter((item) => item.amount === 250).length +
-        culturalCheckedItems.filter((item) => item.amount === 250).length +
-        megaCheckedItems.filter((item) => item.amount === 250).length;
+    let countOf300 =
+        technicalCheckedItems.filter((item) => item.amount === 293).length +
+        nontechnicalCheckedItems.filter((item) => item.amount === 293).length +
+        culturalCheckedItems.filter((item) => item.amount === 293).length +
+        megaCheckedItems.filter((item) => item.amount === 293).length;
     const [teamCount, setTeamCount] = useState<Teams[]>([]);
     const [teamNames, setTeamNames] = useState<string[]>([]);
     const [college, setCollege] = React.useState<string>("");
@@ -66,7 +66,7 @@ export default function Checkout({
             <CardContent className="p-6 text-sm">
                 <div className="grid gap-3">
                     <h1 className="text-lg font-semibold">Events summary</h1>
-                    {itemsWith250.length > 0 && (
+                    {itemsWith300.length > 0 && (
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="item-1">
                                 <AccordionTrigger className="no-underline">
@@ -74,17 +74,18 @@ export default function Checkout({
                                     <span className="ml-2">
                                         <Info
                                             info={
-                                                "Events priced at 250 rupees are per person for up to every 4 events"
+                                                "Events priced at 300 rupees are per person for up to every 4 events"
                                             }
                                         />
                                     </span>
                                     <span className="ml-auto">
-                                        {Math.ceil(itemsWith250.length / 4) + `x  ${"\u20B9"}250/person`}
+                                        {Math.ceil(itemsWith300.length / 4) +
+                                            `x  ${"\u20B9"}300/person (Including GST)`}
                                     </span>
                                 </AccordionTrigger>
                                 <AccordionContent>
                                     <ul className="grid gap-3">
-                                        {itemsWith250.map((item) => (
+                                        {itemsWith300.map((item) => (
                                             <li className="flex items-center justify-between" key={item.key}>
                                                 <span className="text-muted-foreground">{item.name}</span>
                                                 <span className="text-muted-foreground">1 x</span>
@@ -96,15 +97,15 @@ export default function Checkout({
                         </Accordion>
                     )}
 
-                    {RenderCheckedItemsList(technicalCheckedItems, "technical", countOf250)}
+                    {RenderCheckedItemsList(technicalCheckedItems, "technical", countOf300)}
                     {RenderCheckedItemsList(
                         nontechnicalCheckedItems,
                         "nontechnical",
-                        countOf250,
+                        countOf300,
                         setTeamCount
                     )}
-                    {RenderCheckedItemsList(culturalCheckedItems, "cultural", countOf250)}
-                    {RenderCheckedItemsList(megaCheckedItems, "mega", countOf250)}
+                    {RenderCheckedItemsList(culturalCheckedItems, "cultural", countOf300)}
+                    {RenderCheckedItemsList(megaCheckedItems, "mega", countOf300)}
                     <Separator className="my-2" />
                     <ul className="grid gap-3">
                         <Label htmlFor="text">College</Label>
