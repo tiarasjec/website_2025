@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
             await sendRegistrationEmail({
                 amount,
                 email: session.user.email!,
-                teamName: data.teams.map((team) => team.name),
+                teamName: data.teams.map((team) => `${team.event}: ${team.name}`),
                 contactNumber: data.phone,
                 name: session.user.name!,
                 events: data.events,
