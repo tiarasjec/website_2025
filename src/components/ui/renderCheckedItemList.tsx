@@ -5,7 +5,7 @@ import { Teams } from "@/lib/interfaces";
 const RenderCheckedItemsList = (
     checkedItems: CheckedItem[],
     category: string,
-    countOf250: number,
+    countOf300: number,
     setTeamCount?: (object: Teams[]) => void
 ) => {
     useEffect(() => {
@@ -22,13 +22,13 @@ const RenderCheckedItemsList = (
         <ul className="grid gap-3">
             {checkedItems.map((item, index) => {
                 return (
-                    item.amount !== 250 && (
+                    item.amount !== 293 && (
                         <li className="flex items-center justify-between" key={item.key}>
                             <span className="text-muted-foreground">{item.name}</span>
                             <span>
                                 {"\u20B9"}
                                 {item.amount}
-                                {item.team ? "/team" : "/person"}
+                                {item.team ? "/team (Not Including GST)" : "/person (Not Including GST)"}
                             </span>
                         </li>
                     )
