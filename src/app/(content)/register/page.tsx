@@ -162,29 +162,49 @@ const Register: React.FC = () => {
             ...megaCheckedItems,
         ];
 
-        const itemsWithAmount300 = allItems.filter((item) => item.amount === 293);
+        const itemsWithAmount300 = allItems.filter((item) => item.amount === 300);
         setItemswith300(itemsWithAmount300);
     }, [technicalCheckedItems, nontechnicalCheckedItems, culturalCheckedItems, megaCheckedItems]);
 
     const getSumofCheckedItems = () => {
-        const categories = [
-            technicalCheckedItems,
-            nontechnicalCheckedItems,
-            culturalCheckedItems,
-            megaCheckedItems,
+        // Separate team events and individual events
+        const allItems = [
+            ...technicalCheckedItems,
+            ...nontechnicalCheckedItems,
+            ...culturalCheckedItems,
+            ...megaCheckedItems,
         ];
+
+        const teamEvents = allItems.filter((item) => item.team);
+        const individualEvents = allItems.filter((item) => !item.team);
+
         let totalSum = 0;
-        for (const category of categories) {
-            totalSum += category.reduce((acc, item) => {
-                if (item.checked && item.amount !== 293) {
-                    return acc + item.amount;
+
+        // Calculate team events total (each team event is charged separately)
+        totalSum += teamEvents.reduce((acc, item) => acc + item.amount, 0);
+
+        // Handle individual events
+        if (individualEvents.length > 0) {
+            const hasMegaEvent = megaCheckedItems.some((item) => !item.team);
+
+            if (hasMegaEvent) {
+                // If mega event is selected, only charge the highest amount among selected events
+                const highestAmount = Math.max(...individualEvents.map((item) => item.amount));
+                totalSum += highestAmount;
+            } else {
+                // Original logic: group events in sets of 4 for ₹300
+                const eventsFor300 = individualEvents.filter((item) => item.amount === 300);
+                const otherEvents = individualEvents.filter((item) => item.amount !== 300);
+
+                if (eventsFor300.length > 0) {
+                    totalSum += Math.ceil(eventsFor300.length / 4) * 300;
                 }
-                return acc;
-            }, 0);
+
+                // Add cost of other events
+                totalSum += otherEvents.reduce((acc, item) => acc + item.amount, 0);
+            }
         }
-        if (itemswith300.length > 0) {
-            totalSum += Math.ceil(itemswith300.length / 4) * 293;
-        }
+
         return totalSum;
     };
 
