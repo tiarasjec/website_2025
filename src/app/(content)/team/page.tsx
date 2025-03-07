@@ -1,7 +1,7 @@
 "use client";
 
 import { ThreeDCard } from "@/components/ui/three-d-card";
-import {teamData} from "./information/data";
+import { teamData} from "./information/data";
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { Header } from "@/widget/header";
