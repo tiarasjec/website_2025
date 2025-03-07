@@ -11,10 +11,19 @@ import { Header } from "@/widget/header"
 import Footer from "@/widget/footer";
 import ShaderVisualization from "@/widget/background";
 import Video from "@/components/ui/videobox";
+import { useEffect } from "react";
+import React, { useState } from "react";
+
+import EventCTA from "@/widget/final_CTA";
+ 
 export default function Home() {
+ 
   const lenis = useLenis(({ scroll }) => {
     // called every scroll
   })
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
 <>
     <Header/>
@@ -26,7 +35,7 @@ export default function Home() {
 <Marque/>
 <Events/>
 <Video/>
-<div className="h-screen"></div>
+<EventCTA/>
 </div>
 </ReactLenis>
   <Footer />

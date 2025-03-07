@@ -35,6 +35,7 @@ export async function GET(_request: Request, { params }: { params: { category: s
                 costs: true,
                 facultyCoordinators: true,
                 studentCoordinators: true,
+                teamEvent: true,
             },
         });
 
