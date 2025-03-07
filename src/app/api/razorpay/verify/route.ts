@@ -92,7 +92,13 @@ export async function POST(request: NextRequest) {
                 include: { teams: true },
             });
 
-            const mergedEvents = Array.from(new Set([...(existingUser?.events || []), ...data.events]));
+            // Get all team event names
+            const teamEventNames = data.teams.map((team) => team.event);
+            // Combine individual events and team events
+            const allEvents = [...data.events, ...teamEventNames];
+            // Merge with existing events if any
+            const mergedEvents = Array.from(new Set([...(existingUser?.events || []), ...allEvents]));
+
             await prisma.user.update({
                 where: { email: session.user.email! },
                 data: {
