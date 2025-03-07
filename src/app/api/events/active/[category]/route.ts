@@ -4,15 +4,12 @@ import { NextResponse } from "next/server";
 export async function GET(_request: Request, { params }: { params: { category: string } }) {
     try {
         const { category } = params;
-        console.log("Fetching events for category:", category); // Debug log
-        
+
         const formattedCategory = category
             .split("_")
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
             .join(" ");
-            
-        console.log("Searching for category:", formattedCategory);
-        
+
         const events = await prisma.event.findMany({
             where: {
                 category: {
@@ -30,12 +27,12 @@ export async function GET(_request: Request, { params }: { params: { category: s
             },
         });
 
-        console.log(`Found ${events.length} events for category ${category}`); 
+       
         if (events.length > 0) {
             console.log("First event:", events[0]);
         }
-        
-        const cardData = events.map(event => ({
+
+        const cardData = events.map((event) => ({
             id: event.id,
             name: event.name,
             thumbnail: event.thumbnail || "/images/default-event.jpg",

@@ -29,7 +29,6 @@ export default function EventCategoryPage() {
     useEffect(() => {
         setLoading(true);
         const path = pathname.split("/")[2];
-        console.log("Fetching events for path:", path);
 
         fetch(`/api/events/active/${path}`)
             .then((response) => {
@@ -40,7 +39,6 @@ export default function EventCategoryPage() {
                 return response.json();
             })
             .then((dataList) => {
-                console.log("Received data:", dataList);
                 setCards(dataList);
                 setLoading(false);
             })
