@@ -1,7 +1,7 @@
 "use client";
 
 import { ThreeDCard } from "@/components/ui/three-d-card";
-import teamData from "./information/data.json";
+import {teamData} from "./information/data";
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { Header } from "@/widget/header";
@@ -29,7 +29,6 @@ export default function Team() {
                                 <ThreeDCard
                                     title={member.name}
                                     imageUrl={member.imageUrl}
-                                    backgroundUrl={member.backgroundUrl}
                                     className="w-[300px] h-[400px] sm:w-[350px] sm:h-[450px]"
                                     variant="border"
                                 >
@@ -52,7 +51,6 @@ export default function Team() {
                                 <ThreeDCard
                                     title={member.name}
                                     imageUrl={member.imageUrl}
-                                    backgroundUrl={member.backgroundUrl}
                                     className="w-[300px] h-[400px] sm:w-[350px] sm:h-[450px]"
                                     variant="border"
                                 >
