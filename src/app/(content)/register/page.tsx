@@ -32,6 +32,7 @@ function processEvents(
             key: key,
             amount: event.costs,
             team: event.team,
+            isDisabled: true,
         });
     });
 
