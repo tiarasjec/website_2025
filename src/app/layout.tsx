@@ -8,7 +8,6 @@ import { DataTableStoreProvider } from "@/stores/dataTableStoreProvider";
 import Script from "next/script";
 import { TailwindIndicator } from "@/components/shared/tailwind";
 import { ThemeProvider } from "next-themes";
-import { ArtisticCursorEffects } from "@/components/ui/artistic-cursor-effects";
 import { ReactLenis, useLenis } from "lenis/react";
 const goldman = Goldman({ subsets: ["latin"], weight: "400" });
 
