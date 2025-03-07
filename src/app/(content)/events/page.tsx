@@ -12,14 +12,14 @@ import Events from "@/widget/events";
 export default function EventsPage() {
   const [categories, setCategories] = useState<LinkProps[]>([]);
 
-  useEffect(() => {
-    fetch("/api/events")
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((error) => console.error("Error fetching events:", error));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api/events")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setCategories(data);
+  //     })
+  //     .catch((error) => console.error("Error fetching events:", error));
+  // }, []);
 
   return (
     <>

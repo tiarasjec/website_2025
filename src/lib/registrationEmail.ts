@@ -51,8 +51,6 @@ export async function sendRegistrationEmail(data: SendEmailProps) {
                 }),
             }),
         ]);
-        console.log(userEmailResult, adminEmailResult);
-
         return {
             success: true,
             message: "Registration emails sent successfully",
