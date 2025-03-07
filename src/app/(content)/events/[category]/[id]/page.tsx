@@ -28,6 +28,7 @@ export interface Event {
   endTime: string | undefined
   facultyCoordinators: FacultyCoordinator[]
   studentCoordinators: StudentCoordinator[]
+  teamEvent: boolean
 }
 
 export interface FacultyCoordinator {
@@ -150,12 +151,31 @@ const Page = () => {
               </span>
             </motion.div>
 
+                      <motion.div
+            variants={fadeIn}
+            className="flex items-center space-x-4 text-gray-300"
+          >
+            {eventInfo?.teamEvent ? (
+              <div className="flex items-center space-x-2">
+                <Users className="h-5 w-5 text-tiara_red" />
+                <span className={cn("tracking-wide text-lg", tiaraFont.className)}>Team-Based Event</span>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <Users className="h-5 w-5 text-tiara_red" />
+                <span className={cn("tracking-wide text-lg", tiaraFont.className)}>Individual Event</span>
+              </div>
+            )}
+          </motion.div>
+
             <motion.div variants={fadeIn}  whileTap={{ scale: 0.95 }} className="pt-4">
               <Link href="/register">
                 <EncryptButton targetText="register now"/>
               </Link>
             </motion.div>
           </motion.div>
+
+
 
           <motion.div
             variants={fadeIn}

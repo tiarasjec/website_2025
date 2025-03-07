@@ -79,7 +79,7 @@ export default function VideoBackground() {
     >
       <div
         className={cn(
-          "flex items-center text-3xl  sm:text-5xl md:text-7xl justify-center text-center md:text-left mb-10 md:mb-0 md:mr-8 transition hover:scale-110 ease-out duration-300 md:w-1/3",
+          "flex items-center hover:cursor-crosshair  text-3xl  sm:text-5xl md:text-7xl justify-center text-center md:text-left mb-10 md:mb-0 md:mr-8 transition hover:scale-110 ease-out duration-300 md:w-1/3",
           tiaraFont.className,
         )}
       >

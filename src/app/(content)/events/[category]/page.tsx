@@ -89,7 +89,7 @@ export default function EventCategoryPage() {
                                                     <CardItem translateZ="100" className="w-full mt-4">
                                                         <Image
                                                             src={card.thumbnail}
-                                                            className="shadow-2xl"
+                                                            className="shadow-2xl rounded-2xl "
                                                             alt={`${card.name} thumbnail`}
                                                             width={1200}
                                                             height={800}

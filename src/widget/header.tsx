@@ -1,12 +1,12 @@
 "use client";
-
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Wave from "react-wavify"
 import { tiaraFont } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
-
+import logo from "../../public/assets/sjeclogo.png"
 const ButtonHoverRegister = () => {
   const router = useRouter();
     return (
@@ -135,36 +135,38 @@ export const Header = () => {
       </Wave>
       
       {/* Text container positioned above the wave */}
-      <div className="absolute inset-x-0 top-0 z-[60] flex flex-row justify-between items-center p-4 w-full">
+      <div className="absolute md:px-10  inset-x-0 top-0 z-[60] flex flex-row justify-between items-center p-4 w-full">
         {/* Logo and Name - positioned on the left */}
         <div className="flex order-1">
-          <ul className="flex text-white cursor-crosshair items-center">
-            <li className={cn("tracking-widest text-xl", tiaraFont.className)}>
-              <span className="text-white transition-colors duration-500 hover:text-red-400">Ti</span>
-              <span className="text-[#eb1c2c] transition-colors duration-500 hover:text-white">ar</span>
-              <span className="text-white transition-colors duration-500 hover:text-red-400">a</span>
-              <span className="text-[#eb1c2c] transition-colors duration-500 hover:text-white">&apos;</span>
-              <span className="text-white transition-colors duration-500 hover:text-red-400">25</span>
-            </li>
-          </ul>
-        </div>
+      <ul className="flex items-center">
+        <li>
+          <Image
+            src={logo}
+            alt="Tiara'25 Logo"
+            width={60} // Adjust width as needed
+            height={60} // Adjust height as needed
+            className="cursor-crosshair"
+          />
+        </li>
+      </ul>
+    </div>
 
         {/* Desktop Navigation - Original layout for larger screens */}
         <div className="hidden md:block order-2 ml-auto">
           <ul className={cn("flex flex-wrap justify-end text-white items-center tracking-wider", tiaraFont.className)}>
-            <li className="mx-2 hover:text-red-600 text-sm relative group">
+            <li className="mx-2 hover:text-red-600 text-sm mt-1 relative group">
               <a href="/" className="transition-colors duration-300 ease-in-out">home</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
-            <li className="mx-2 hover:text-red-600 text-sm relative group">
+            <li className="mx-2 hover:text-red-600 text-sm relative mt-1 group">
               <a href="/about" className="transition-colors duration-300 ease-in-out">about</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
-            <li className="mx-2 hover:text-red-600 text-sm relative group">
+            <li className="mx-2 hover:text-red-600 text-sm relative mt-1 group">
               <a href="/events" className="transition-colors duration-300 ease-in-out">events</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
-            <li className="mx-2 hover:text-red-600 text-sm relative group">
+            <li className="mx-2 hover:text-red-600 text-sm relative mt-1 group">
               <a href="/team" className="transition-colors duration-300 ease-in-out">team</a>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
             </li>
@@ -221,9 +223,9 @@ export const Header = () => {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
           {menuOpen ? (
-            <X size={24} className="animate-spin-once" />
+            <X size={24} className="animate-spin-once mt-2" />
           ) : (
-            <Menu size={24} className="" />
+            <Menu size={24} className="mt-2" />
           )}
         </button>
       </div>
