@@ -173,11 +173,7 @@ export function ThreeDCard({
             alt={title || "Card image"}
             fill
             className={cn(
-              "relative z-10 object-contain drop-shadow-2xl",
-              disabled && "brightness-75 grayscale",
-              isHovered &&
-                !disabled &&
-                "drop-shadow-[0_20px_30px_rgba(0,0,0,0.3)]",
+              "relative z-10 object-contain",
             )}
             style={{
               transform: `

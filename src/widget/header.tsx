@@ -15,7 +15,7 @@ const ButtonHoverRegister = () => {
           <div className='inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]'>
         register
           </div>
-          <div className='absolute inline-flex h-10 w-full translate-y-[100%] items-center justify-center text-neutral-50 transition duration-500 group-hover:translate-y-0'>
+          <div className='absolute inline-flex h-10  w-full translate-y-[100%] items-center justify-center text-neutral-50 transition duration-500 group-hover:translate-y-0'>
             <span className='absolute h-full w-full translate-y-full skew-y-10 scale-y-0 bg-[#EB1C2C] dark:bg-[#EB1C2C] transition duration-500 group-hover:translate-y-0 group-hover:scale-150'></span>
             <span className='z-10'>now</span>
           </div>

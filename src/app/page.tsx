@@ -25,8 +25,8 @@ export default function Home() {
 <div >
 <Marque/>
 <Events/>
-{/* <Video/>
-<div className="h-screen"></div> */}
+<Video/>
+<div className="h-screen"></div>
 </div>
 </ReactLenis>
   <Footer />
