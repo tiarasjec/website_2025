@@ -16,13 +16,14 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { UserRole } from "@prisma/client";
+import { RestrictedAccess } from "@/components/ui/restricted-access";
 
 export default function AdminDashboard({ children }: { children: React.ReactNode }) {
     const { data: session } = useSession({
         required: true,
     });
     if (!session) {
-        return <div>Unauthorized</div>;
+        return <RestrictedAccess message="Please sign in to access the coordinator dashboard" />;
     }
 
     function isAllowedRole(role: UserRole): role is "COORDINATOR" | "ADMIN" | "SUPER_ADMIN" {
@@ -30,7 +31,7 @@ export default function AdminDashboard({ children }: { children: React.ReactNode
     }
 
     if (!isAllowedRole(session.user.role)) {
-        return <div>Forbidden</div>;
+        return <RestrictedAccess message="You are not authorized to access the coordinator dashboard" />;
     }
     return (
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -38,7 +39,7 @@ export default function AdminDashboard({ children }: { children: React.ReactNode
                 <div className="flex h-full max-h-screen flex-col gap-2">
                     <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
                         <Link href="/" className="flex items-center gap-2 font-semibold">
-                            <span className="">Tiara 2024</span>
+                            <span className="">Tiara 2025</span>
                         </Link>
                     </div>
                     <div className="flex-1">
@@ -66,7 +67,7 @@ export default function AdminDashboard({ children }: { children: React.ReactNode
                         <SheetContent side="left" className="flex flex-col">
                             <nav className="grid gap-2 text-lg font-medium">
                                 <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
-                                    <span className="sr-only">Tiara 2024</span>
+                                    <span className="sr-only">Tiara 2025</span>
                                 </Link>
                                 <Link
                                     href="/coordinators"
