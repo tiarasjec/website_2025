@@ -2,6 +2,8 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+export const revalidate = 0;
+
 export async function POST(req: Request) {
     try {
         const session = await auth();
@@ -28,7 +30,13 @@ export async function POST(req: Request) {
             },
         });
 
-        return NextResponse.json(event);
+        return NextResponse.json(event, {
+            headers: {
+                "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+                Pragma: "no-cache",
+                Expires: "0",
+            },
+        });
     } catch (error) {
         console.error("Error creating event:", error);
         return new NextResponse("Internal Server Error", { status: 500 });
