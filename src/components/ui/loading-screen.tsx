@@ -11,10 +11,9 @@ export function LoadingScreen({ onLoadingComplete, imagesToPreload = [] }: Loadi
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        const startTime = Date.now();
-        const duration = 2000; // 2 seconds duration
         let loadedImages = 0;
         const totalImages = imagesToPreload.length;
+        let timeoutId: NodeJS.Timeout;
 
         // Preload images
         const preloadImages = () => {
@@ -29,30 +28,36 @@ export function LoadingScreen({ onLoadingComplete, imagesToPreload = [] }: Loadi
             });
         };
 
-        const updateProgress = () => {
-            const elapsed = Date.now() - startTime;
-            const timeProgress = Math.min(elapsed / duration, 1);
-            const imageProgress = totalImages > 0 ? loadedImages / totalImages : 1;
+        // Simple increment function
+        const incrementProgress = () => {
+            setProgress((prevProgress) => {
+                if (prevProgress >= 100) {
+                    if (totalImages === 0 || loadedImages === totalImages) {
+                        setTimeout(() => {
+                            onLoadingComplete?.();
+                        }, 200);
+                        return 100;
+                    }
+                    return 100;
+                }
 
-            // Combine time and image loading progress
-            const combinedProgress = Math.min(
-                Math.floor((timeProgress * 0.5 + imageProgress * 0.5) * 100),
-                100
-            );
+                // Slow down near the end
+                const increment = prevProgress > 80 ? 1 : 2;
+                const nextProgress = Math.min(prevProgress + increment, 100);
 
-            if (combinedProgress < 100) {
-                setProgress(combinedProgress);
-                requestAnimationFrame(updateProgress);
-            } else {
-                setProgress(100);
-                setTimeout(() => {
-                    onLoadingComplete?.();
-                }, 200);
-            }
+                timeoutId = setTimeout(incrementProgress, 50);
+                return nextProgress;
+            });
         };
 
         preloadImages();
-        requestAnimationFrame(updateProgress);
+        timeoutId = setTimeout(incrementProgress, 50);
+
+        return () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        };
     }, [onLoadingComplete, imagesToPreload]);
 
     return (
