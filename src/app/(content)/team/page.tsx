@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ThreeDCard } from "@/components/ui/three-d-card";
-import teamData from "./information/data.json";
+import { teamData } from "./information/data";
 import { tiaraFont } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { Header } from "@/widget/header";
@@ -9,6 +10,38 @@ import Footer from "@/widget/footer";
 import ShaderVisualization from "@/widget/background";
 
 export default function Team() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const startTime = Date.now();
+        const duration = 2000; // 2 seconds duration
+
+        const updateProgress = () => {
+            const elapsed = Date.now() - startTime;
+            const newProgress = Math.min(Math.floor((elapsed / duration) * 100), 100);
+
+            if (newProgress < 100) {
+                setProgress(newProgress);
+                requestAnimationFrame(updateProgress);
+            } else {
+                setProgress(100);
+                setTimeout(() => setIsLoading(false), 200); // Small delay at 100%
+            }
+        };
+
+        requestAnimationFrame(updateProgress);
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-black">
+                <div className="w-16 h-16 border-4 border-t-[#eb1c2c] border-b-[#eb1c2c] rounded-full animate-spin"></div>
+                <p className={cn("mt-4 text-white/80 text-xl", tiaraFont.className)}>Loading {progress}%</p>
+            </div>
+        );
+    }
+
     return (
         <>
             <Header />
@@ -29,7 +62,6 @@ export default function Team() {
                                 <ThreeDCard
                                     title={member.name}
                                     imageUrl={member.imageUrl}
-                                    backgroundUrl={member.backgroundUrl}
                                     className="w-[300px] h-[400px] sm:w-[350px] sm:h-[450px]"
                                     variant="border"
                                 >
@@ -52,7 +84,6 @@ export default function Team() {
                                 <ThreeDCard
                                     title={member.name}
                                     imageUrl={member.imageUrl}
-                                    backgroundUrl={member.backgroundUrl}
                                     className="w-[300px] h-[400px] sm:w-[350px] sm:h-[450px]"
                                     variant="border"
                                 >

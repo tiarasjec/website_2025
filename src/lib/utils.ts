@@ -172,10 +172,11 @@ export const makePayment = async ({
             customerEmail: prefilledData.email,
             customerContact: prefilledData.contact,
             college: prefilledData.college,
-            events: prefilledData.events.join(", "),
+            events: [...prefilledData.events, ...prefilledData.teams.map((team) => team.event)].join(", "),
         },
 
         handler: async function (response) {
+            const allEvents = [...prefilledData.events, ...prefilledData.teams.map((team) => team.event)];
             const data = {
                 amount: amount,
                 orderCreationId: orderId,
@@ -183,7 +184,7 @@ export const makePayment = async ({
                 razorpayOrderId: response.razorpay_order_id,
                 razorpaySignature: response.razorpay_signature,
                 college: prefilledData.college,
-                events: prefilledData.events,
+                events: allEvents,
                 teams: prefilledData.teams,
                 phone: prefilledData.contact,
             };
@@ -202,6 +203,15 @@ export const makePayment = async ({
             } else {
                 toast.error("Payment Failed , Contact support for help. " + res.error);
             }
+        },
+        modal: {
+            backdropclose: true,
+            escape: true,
+            handleback: true,
+            confirm_close: true,
+            ondismiss: () => {
+                toast.error("Payment Failed , Contact support for help. ");
+            },
         },
     };
 

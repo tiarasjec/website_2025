@@ -3,6 +3,7 @@ interface Event {
     key: string;
     amount: number;
     team: boolean;
+    isDisabled: boolean;
 }
 
 interface CheckedItem extends Event {

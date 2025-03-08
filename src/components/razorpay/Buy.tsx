@@ -39,7 +39,7 @@ const Buy = (userData: {
                 userData.amount === 0 ||
                 userData.college.length === 0 ||
                 userData.contact.length < 10 ||
-                userData.events.length === 0 ||
+                (userData.events.length === 0 && userData.teams.length === 0) ||
                 (userData.teams.length > 0 && userData.teams.some((team) => team.name.length === 0)) ||
                 isLoading
                     ? true

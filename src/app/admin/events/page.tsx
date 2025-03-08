@@ -34,7 +34,6 @@ export default function AdminPage() {
         try {
             const res = await fetch("/api/events");
             const data = await res.json();
-            console.log(data);
             setEvents(data.events);
         } catch (error) {
             console.error("Failed to fetch events:", error);

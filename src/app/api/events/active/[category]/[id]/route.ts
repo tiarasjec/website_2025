@@ -1,16 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(_request: Request, { params }: { params: { category: string, id: string } }) {
+export async function GET(_request: Request, { params }: { params: { category: string; id: string } }) {
     try {
         const { category, id } = params;
-        console.log("Fetching event details for:", { category, id }); 
 
         const formattedCategory = category
             .split("_")
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
             .join(" ");
-            
+
         console.log("Searching for category and id:", { formattedCategory, id });
 
         const event = await prisma.event.findFirst({
@@ -56,19 +55,20 @@ export async function GET(_request: Request, { params }: { params: { category: s
                 facultyCoordinators: event.facultyCoordinators,
                 studentCoordinators: event.studentCoordinators,
                 thumbnail: event.thumbnail,
-                teamEvent: event.teamEvent,
             });
         }
 
-        const cardData = event ? {
-            ...event,
-            thumbnail: event.thumbnail || "/images/default-event.jpg",
-            rules: event.rules || [],
-            prerequisites: event.prerequisites || [],
-            general_rules: event.general_rules || [],
-            facultyCoordinators: event.facultyCoordinators || [],
-            studentCoordinators: event.studentCoordinators || [],
-        } : null;
+        const cardData = event
+            ? {
+                  ...event,
+                  thumbnail: event.thumbnail || "/images/default-event.jpg",
+                  rules: event.rules || [],
+                  prerequisites: event.prerequisites || [],
+                  general_rules: event.general_rules || [],
+                  facultyCoordinators: event.facultyCoordinators || [],
+                  studentCoordinators: event.studentCoordinators || [],
+              }
+            : null;
 
         if (!cardData) {
             console.log("No event found with id:", id);
@@ -77,7 +77,10 @@ export async function GET(_request: Request, { params }: { params: { category: s
 
         return NextResponse.json({ event: cardData });
     } catch (error) {
-        console.error(`Error fetching event details for category ${params.category}, id ${params.id}:`, error);
+        console.error(
+            `Error fetching event details for category ${params.category}, id ${params.id}:`,
+            error
+        );
         return new NextResponse("Internal Server Error", { status: 500 });
     }
 }

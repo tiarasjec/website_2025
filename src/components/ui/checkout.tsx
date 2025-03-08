@@ -20,14 +20,14 @@ export default function Checkout({
     culturalCheckedItems,
     megaCheckedItems,
     sumOfCheckedItemsAmount,
-    itemsWith250,
+    itemsWith300,
     selectedEvents,
 }: {
     technicalCheckedItems: CheckedItem[];
     nontechnicalCheckedItems: CheckedItem[];
     culturalCheckedItems: CheckedItem[];
     megaCheckedItems: CheckedItem[];
-    itemsWith250: CheckedItem[];
+    itemsWith300: CheckedItem[];
     selectedEvents: string[];
     sumOfCheckedItemsAmount: () => number;
 }) {
@@ -41,14 +41,33 @@ export default function Checkout({
         setTotal(total);
     }, [sumOfCheckedItemsAmount]);
 
-    let countOf250 =
-        technicalCheckedItems.filter((item) => item.amount === 250).length +
-        nontechnicalCheckedItems.filter((item) => item.amount === 250).length +
-        culturalCheckedItems.filter((item) => item.amount === 250).length +
-        megaCheckedItems.filter((item) => item.amount === 250).length;
+    let countOf300 =
+        technicalCheckedItems.filter((item) => item.amount === 300).length +
+        nontechnicalCheckedItems.filter((item) => item.amount === 300).length +
+        culturalCheckedItems.filter((item) => item.amount === 300).length +
+        megaCheckedItems.filter((item) => item.amount === 300).length;
     const [teamCount, setTeamCount] = useState<Teams[]>([]);
     const [teamNames, setTeamNames] = useState<string[]>([]);
     const [college, setCollege] = React.useState<string>("");
+
+    // Add effect to update team count when events change
+    useEffect(() => {
+        const allItems = [
+            ...technicalCheckedItems,
+            ...nontechnicalCheckedItems,
+            ...culturalCheckedItems,
+            ...megaCheckedItems,
+        ];
+        const teamEvents = allItems.filter((item) => item.team);
+
+        // Update teamCount with new team events
+        setTeamCount(
+            teamEvents.map((event) => ({
+                event: event.name,
+                name: "",
+            }))
+        );
+    }, [technicalCheckedItems, nontechnicalCheckedItems, culturalCheckedItems, megaCheckedItems]);
 
     const handleTeamNameChange = (id: number, newName: string, event: string) => {
         setTeamCount((teamCount) =>
@@ -66,45 +85,102 @@ export default function Checkout({
             <CardContent className="p-6 text-sm">
                 <div className="grid gap-3">
                     <h1 className="text-lg font-semibold">Events summary</h1>
-                    {itemsWith250.length > 0 && (
-                        <Accordion type="single" collapsible className="w-full">
-                            <AccordionItem value="item-1">
-                                <AccordionTrigger className="no-underline">
-                                    Event Pass{" "}
-                                    <span className="ml-2">
-                                        <Info
-                                            info={
-                                                "Events priced at 250 rupees are per person for up to every 4 events"
-                                            }
-                                        />
-                                    </span>
-                                    <span className="ml-auto">
-                                        {Math.ceil(itemsWith250.length / 4) + `x  ${"\u20B9"}250/person`}
-                                    </span>
-                                </AccordionTrigger>
-                                <AccordionContent>
-                                    <ul className="grid gap-3">
-                                        {itemsWith250.map((item) => (
-                                            <li className="flex items-center justify-between" key={item.key}>
-                                                <span className="text-muted-foreground">{item.name}</span>
-                                                <span className="text-muted-foreground">1 x</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                    )}
 
-                    {RenderCheckedItemsList(technicalCheckedItems, "technical", countOf250)}
-                    {RenderCheckedItemsList(
-                        nontechnicalCheckedItems,
-                        "nontechnical",
-                        countOf250,
-                        setTeamCount
-                    )}
-                    {RenderCheckedItemsList(culturalCheckedItems, "cultural", countOf250)}
-                    {RenderCheckedItemsList(megaCheckedItems, "mega", countOf250)}
+                    {/* Individual Events Section */}
+                    {(() => {
+                        const allItems = [
+                            ...technicalCheckedItems,
+                            ...nontechnicalCheckedItems,
+                            ...culturalCheckedItems,
+                            ...megaCheckedItems,
+                        ];
+                        const individualEvents = allItems.filter((item) => !item.team);
+                        const hasMegaEvent = megaCheckedItems.some((item) => !item.team);
+
+                        if (individualEvents.length > 0) {
+                            return (
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="individual-events">
+                                        <AccordionTrigger className="no-underline">
+                                            Individual Events
+                                            {hasMegaEvent ? (
+                                                <span className="ml-2">
+                                                    <Info info="With a mega event selected, you only pay the highest amount among your selected events" />
+                                                </span>
+                                            ) : itemsWith300.length > 0 ? (
+                                                <span className="ml-2">
+                                                    <Info info="Events priced at 300 rupees are grouped in sets of 4" />
+                                                </span>
+                                            ) : null}
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <ul className="grid gap-3">
+                                                {individualEvents.map((item) => (
+                                                    <li
+                                                        className="flex items-center justify-between"
+                                                        key={item.key}
+                                                    >
+                                                        <span className="text-muted-foreground">
+                                                            {item.name}
+                                                        </span>
+                                                        <span className="text-muted-foreground">
+                                                            ₹{item.amount}
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            );
+                        }
+                        return null;
+                    })()}
+
+                    {/* Team Events Section */}
+                    {(() => {
+                        const allItems = [
+                            ...technicalCheckedItems,
+                            ...nontechnicalCheckedItems,
+                            ...culturalCheckedItems,
+                            ...megaCheckedItems,
+                        ];
+                        const teamEvents = allItems.filter((item) => item.team);
+
+                        if (teamEvents.length > 0) {
+                            return (
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="team-events">
+                                        <AccordionTrigger className="no-underline">
+                                            Team Events
+                                            <span className="ml-2">
+                                                <Info info="Team events are charged separately per team" />
+                                            </span>
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <ul className="grid gap-3">
+                                                {teamEvents.map((item) => (
+                                                    <li
+                                                        className="flex items-center justify-between"
+                                                        key={item.key}
+                                                    >
+                                                        <span className="text-muted-foreground">
+                                                            {item.name}
+                                                        </span>
+                                                        <span className="text-muted-foreground">
+                                                            ₹{item.amount}
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            );
+                        }
+                        return null;
+                    })()}
+
                     <Separator className="my-2" />
                     <ul className="grid gap-3">
                         <Label htmlFor="text">College</Label>
@@ -172,7 +248,16 @@ export default function Checkout({
                     <Suspense fallback={<Loading />}>
                         <Buy
                             teams={teamCount}
-                            events={selectedEvents}
+                            events={selectedEvents.filter((eventName) => {
+                                const allItems = [
+                                    ...technicalCheckedItems,
+                                    ...nontechnicalCheckedItems,
+                                    ...culturalCheckedItems,
+                                    ...megaCheckedItems,
+                                ];
+                                const event = allItems.find((item) => item.name === eventName);
+                                return !event?.team;
+                            })}
                             name={session.data?.user?.name!}
                             email={session.data?.user?.email!}
                             contact={phoneNumber}

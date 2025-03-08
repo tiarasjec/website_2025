@@ -46,11 +46,7 @@ export const RegistrationEmail = ({
                         </Heading>
                         <Text className="text-black text-[14px] leading-[24px]">
                             Please find below the list of events {name} has registered for:
-                            <ul>
-                                {events?.map((event) => (
-                                    <li key={event}>{event}</li>
-                                ))}
-                            </ul>
+                            <ul>{events?.map((event) => <li key={event}>{event}</li>)}</ul>
                         </Text>
                         <Hr />
                         <Text className="mt-2 text-black text-[14px] leading-[24px]">

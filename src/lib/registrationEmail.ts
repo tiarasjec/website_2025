@@ -35,6 +35,7 @@ export async function sendRegistrationEmail(data: SendEmailProps) {
                     events,
                     name,
                     registrationLink,
+                    teamNames: teamName,
                 }),
             }),
             resend.emails.send({

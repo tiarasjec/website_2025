@@ -18,9 +18,15 @@ interface UserRegistrationEmailProps {
     events: string[];
     name?: string;
     registrationLink?: string;
+    teamNames?: string[];
 }
 
-export const UserRegistrationEmail = ({ events, name, registrationLink }: UserRegistrationEmailProps) => {
+export const UserRegistrationEmail = ({
+    events,
+    name,
+    registrationLink,
+    teamNames,
+}: UserRegistrationEmailProps) => {
     const previewText = `Registration Successful for Tiara 2025!`;
 
     return (
@@ -59,6 +65,17 @@ export const UserRegistrationEmail = ({ events, name, registrationLink }: UserRe
                                 {events?.map((event) => <li key={event}>{event}</li>)}
                             </ul>
                         </Text>
+
+                        {teamNames && teamNames.length > 0 && (
+                            <Text className="text-black text-[14px] leading-[24px] mt-4">
+                                <strong>Team Events:</strong>
+                                <ul className="list-disc pl-6 mt-2">
+                                    {teamNames.map((team) => (
+                                        <li key={team}>{team}</li>
+                                    ))}
+                                </ul>
+                            </Text>
+                        )}
 
                         <Section className="text-center my-[32px]">
                             <Button
