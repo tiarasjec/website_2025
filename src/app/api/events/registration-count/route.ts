@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
             create: {
                 eventName,
                 currentCount: 1,
-                maxLimit: eventName === "SPIN THE DISC" ? 2 : null,
+                maxLimit: eventName === "SPIN THE DISC" ? 10 : null,
             },
         });
 
