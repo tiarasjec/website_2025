@@ -109,8 +109,8 @@ model Event {
   description         String
   category            String
   rules               String[]
-  prerequisites       String[]
-  general_rules       String[]
+  prerequisites       String[]  @default([])
+  general_rules       String[]  @default([])
   thumbnail           String
   startTime           DateTime
   endTime             DateTime?

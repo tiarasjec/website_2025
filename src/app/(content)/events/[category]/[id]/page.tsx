@@ -65,10 +65,10 @@ const staggerContainer = {
 const Page = () => {
     const [eventInfo, setEventInfo] = useState<Event>();
     const pathname = usePathname();
-    const [loading, setLoading] = useState<boolean>(true);
+    // const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        setLoading(true);
+        // setLoading(true);
         const [, , category, path] = pathname.split("/");
         fetch(`/api/events/active/${category}/${path}`)
             .then((response) => {
@@ -79,11 +79,11 @@ const Page = () => {
             })
             .then((data) => {
                 setEventInfo(data.event);
-                setLoading(false);
+                // setLoading(false);
             })
             .catch((error) => {
                 console.error("Error fetching events:", error);
-                setLoading(false);
+                // setLoading(false);
             });
     }, [pathname]);
 
@@ -106,7 +106,7 @@ const Page = () => {
               .toLowerCase()
         : "";
 
-    if (loading) return <Loading />;
+    // if (loading) return <Loading />;
 
     return (
         <>
