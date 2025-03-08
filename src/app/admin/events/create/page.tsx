@@ -91,335 +91,431 @@ export default function CreateEventPage() {
     }
 
     return (
-        <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-                <CardTitle>Create New Event</CardTitle>
-                <CardDescription>Add a new event to Tiara 2025</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Event Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Enter event name" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+        <div className="max-w-5xl mx-auto">
+            <Card className="shadow-lg border-2">
+                <CardHeader className="space-y-1 bg-muted/50 border-b px-6 py-4">
+                    <CardTitle className="text-2xl font-bold">Create New Event</CardTitle>
+                    <CardDescription>Add a new event to Tiara 2025</CardDescription>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                            <div className="space-y-6">
+                                <div className="grid gap-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="name"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-base">Event Name</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        className="h-11"
+                                                        placeholder="Enter event name"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
 
-                        <FormField
-                            control={form.control}
-                            name="description"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Description</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="Event description" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                    <FormField
+                                        control={form.control}
+                                        name="description"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-base">Description</FormLabel>
+                                                <FormControl>
+                                                    <Textarea
+                                                        className="min-h-[120px] resize-y"
+                                                        placeholder="Event description"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
 
-                        <FormField
-                            control={form.control}
-                            name="category"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Category</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Event category" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                                <div className="grid gap-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="category"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-base">Category</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        className="h-11"
+                                                        placeholder="Event category"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
 
-                        <FormField
-                            control={form.control}
-                            name="rules"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Rules</FormLabel>
-                                    <FormControl>
-                                        <Textarea placeholder="Enter rules (one per line)" {...field} />
-                                    </FormControl>
-                                    <FormDescription>Enter each rule on a new line</FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="prerequisites"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Prerequisites</FormLabel>
-                                    <FormControl>
-                                        <Textarea
-                                            placeholder="Enter prerequisites (one per line)"
-                                            {...field}
+                                    <div className="grid gap-6 md:grid-cols-2">
+                                        <FormField
+                                            control={form.control}
+                                            name="startTime"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel className="text-base">Start Time</FormLabel>
+                                                    <FormControl>
+                                                        <Input
+                                                            className="h-11"
+                                                            type="datetime-local"
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
                                         />
-                                    </FormControl>
-                                    <FormDescription>Enter each prerequisite on a new line</FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
 
-                        <FormField
-                            control={form.control}
-                            name="general_rules"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>General Rules</FormLabel>
-                                    <FormControl>
-                                        <Textarea
-                                            placeholder="Enter general rules (one per line)"
-                                            {...field}
+                                        <FormField
+                                            control={form.control}
+                                            name="endTime"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel className="text-base">End Time</FormLabel>
+                                                    <FormControl>
+                                                        <Input
+                                                            className="h-11"
+                                                            type="datetime-local"
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
                                         />
-                                    </FormControl>
-                                    <FormDescription>Enter each general rule on a new line</FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="thumbnail"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Thumbnail URL</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Image URL" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="startTime"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Start Time</FormLabel>
-                                        <FormControl>
-                                            <Input type="datetime-local" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name="endTime"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>End Time</FormLabel>
-                                        <FormControl>
-                                            <Input type="datetime-local" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-
-                        <FormField
-                            control={form.control}
-                            name="costs"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Cost (in INR)</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            type="number"
-                                            min="0"
-                                            step="1"
-                                            {...field}
-                                            onChange={(e) => field.onChange(e.target.value)}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="teamEvent"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                                    <div className="space-y-0.5">
-                                        <FormLabel className="text-base">Team Event</FormLabel>
-                                        <FormDescription>Is this a team event?</FormDescription>
                                     </div>
-                                    <FormControl>
-                                        <Switch checked={field.value} onCheckedChange={field.onChange} />
-                                    </FormControl>
-                                </FormItem>
-                            )}
-                        />
-
-                        <div>
-                            <FormLabel>Faculty Coordinators</FormLabel>
-                            {form.watch("facultyCoordinators").map((_, index) => (
-                                <div key={index} className="flex gap-2 mb-4">
-                                    <FormField
-                                        control={form.control}
-                                        name={`facultyCoordinators.${index}.name`}
-                                        render={({ field }) => (
-                                            <FormItem className="flex-1">
-                                                <FormControl>
-                                                    <Input placeholder="Name" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name={`facultyCoordinators.${index}.phone`}
-                                        render={({ field }) => (
-                                            <FormItem className="flex-1">
-                                                <FormControl>
-                                                    <Input placeholder="Phone" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name={`facultyCoordinators.${index}.email`}
-                                        render={({ field }) => (
-                                            <FormItem className="flex-1">
-                                                <FormControl>
-                                                    <Input placeholder="Email" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <Button
-                                        type="button"
-                                        variant="destructive"
-                                        onClick={() => {
-                                            const current = form.getValues("facultyCoordinators");
-                                            if (current.length > 1) {
-                                                form.setValue(
-                                                    "facultyCoordinators",
-                                                    current.filter((_, i) => i !== index)
-                                                );
-                                            }
-                                        }}
-                                    >
-                                        Remove
-                                    </Button>
                                 </div>
-                            ))}
-                            <Button
-                                type="button"
-                                variant="outline"
-                                onClick={() => {
-                                    const current = form.getValues("facultyCoordinators");
-                                    form.setValue("facultyCoordinators", [
-                                        ...current,
-                                        { name: "", phone: "", email: "" },
-                                    ]);
-                                }}
-                            >
-                                Add Faculty Coordinator
-                            </Button>
-                        </div>
 
-                        <div>
-                            <FormLabel>Student Coordinators</FormLabel>
-                            {form.watch("studentCoordinators").map((_, index) => (
-                                <div key={index} className="flex gap-2 mb-4">
+                                <div className="grid gap-6">
                                     <FormField
                                         control={form.control}
-                                        name={`studentCoordinators.${index}.name`}
+                                        name="rules"
                                         render={({ field }) => (
-                                            <FormItem className="flex-1">
+                                            <FormItem>
+                                                <FormLabel className="text-base">Rules</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="Name" {...field} />
+                                                    <Textarea
+                                                        className="min-h-[150px] resize-y"
+                                                        placeholder="Enter rules (one per line)"
+                                                        {...field}
+                                                    />
                                                 </FormControl>
+                                                <FormDescription>
+                                                    Enter each rule on a new line
+                                                </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
+
                                     <FormField
                                         control={form.control}
-                                        name={`studentCoordinators.${index}.phone`}
+                                        name="prerequisites"
                                         render={({ field }) => (
-                                            <FormItem className="flex-1">
+                                            <FormItem>
+                                                <FormLabel className="text-base">Prerequisites</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="Phone" {...field} />
+                                                    <Textarea
+                                                        className="min-h-[150px] resize-y"
+                                                        placeholder="Enter prerequisites (one per line)"
+                                                        {...field}
+                                                    />
                                                 </FormControl>
+                                                <FormDescription>
+                                                    Enter each prerequisite on a new line
+                                                </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
+
                                     <FormField
                                         control={form.control}
-                                        name={`studentCoordinators.${index}.email`}
+                                        name="general_rules"
                                         render={({ field }) => (
-                                            <FormItem className="flex-1">
+                                            <FormItem>
+                                                <FormLabel className="text-base">General Rules</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder="Email" {...field} />
+                                                    <Textarea
+                                                        className="min-h-[150px] resize-y"
+                                                        placeholder="Enter general rules (one per line)"
+                                                        {...field}
+                                                    />
                                                 </FormControl>
+                                                <FormDescription>
+                                                    Enter each general rule on a new line
+                                                </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
                                     />
-                                    <Button
-                                        type="button"
-                                        variant="destructive"
-                                        onClick={() => {
-                                            const current = form.getValues("studentCoordinators");
-                                            if (current.length > 1) {
-                                                form.setValue(
-                                                    "studentCoordinators",
-                                                    current.filter((_, i) => i !== index)
-                                                );
-                                            }
-                                        }}
-                                    >
-                                        Remove
-                                    </Button>
                                 </div>
-                            ))}
-                            <Button
-                                type="button"
-                                variant="outline"
-                                onClick={() => {
-                                    const current = form.getValues("studentCoordinators");
-                                    form.setValue("studentCoordinators", [
-                                        ...current,
-                                        { name: "", phone: "", email: "" },
-                                    ]);
-                                }}
-                            >
-                                Add Student Coordinator
-                            </Button>
-                        </div>
 
-                        <Button type="submit">Create Event</Button>
-                    </form>
-                </Form>
-            </CardContent>
-        </Card>
+                                <div className="grid gap-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="thumbnail"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-base">Thumbnail URL</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        className="h-11"
+                                                        placeholder="Image URL"
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    <FormField
+                                        control={form.control}
+                                        name="costs"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="text-base">Cost (in INR)</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        className="h-11"
+                                                        type="number"
+                                                        min="0"
+                                                        step="1"
+                                                        {...field}
+                                                        onChange={(e) => field.onChange(e.target.value)}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    <FormField
+                                        control={form.control}
+                                        name="teamEvent"
+                                        render={({ field }) => (
+                                            <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 shadow-sm">
+                                                <div className="space-y-0.5">
+                                                    <FormLabel className="text-base">Team Event</FormLabel>
+                                                    <FormDescription>Is this a team event?</FormDescription>
+                                                </div>
+                                                <FormControl>
+                                                    <Switch
+                                                        checked={field.value}
+                                                        onCheckedChange={field.onChange}
+                                                    />
+                                                </FormControl>
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div>
+                                        <h3 className="text-lg font-medium mb-4">Faculty Coordinators</h3>
+                                        <div className="space-y-4">
+                                            {form.watch("facultyCoordinators").map((_, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="grid md:grid-cols-4 gap-4 items-start p-4 border rounded-lg bg-muted/50"
+                                                >
+                                                    <FormField
+                                                        control={form.control}
+                                                        name={`facultyCoordinators.${index}.name`}
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="h-11"
+                                                                        placeholder="Name"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        control={form.control}
+                                                        name={`facultyCoordinators.${index}.phone`}
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="h-11"
+                                                                        placeholder="Phone"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        control={form.control}
+                                                        name={`facultyCoordinators.${index}.email`}
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="h-11"
+                                                                        placeholder="Email"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <Button
+                                                        type="button"
+                                                        variant="destructive"
+                                                        className="mt-0"
+                                                        onClick={() => {
+                                                            const current =
+                                                                form.getValues("facultyCoordinators");
+                                                            if (current.length > 1) {
+                                                                form.setValue(
+                                                                    "facultyCoordinators",
+                                                                    current.filter((_, i) => i !== index)
+                                                                );
+                                                            }
+                                                        }}
+                                                    >
+                                                        Remove
+                                                    </Button>
+                                                </div>
+                                            ))}
+                                            <Button
+                                                type="button"
+                                                variant="outline"
+                                                onClick={() => {
+                                                    const current = form.getValues("facultyCoordinators");
+                                                    form.setValue("facultyCoordinators", [
+                                                        ...current,
+                                                        { name: "", phone: "", email: "" },
+                                                    ]);
+                                                }}
+                                            >
+                                                Add Faculty Coordinator
+                                            </Button>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-lg font-medium mb-4">Student Coordinators</h3>
+                                        <div className="space-y-4">
+                                            {form.watch("studentCoordinators").map((_, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="grid md:grid-cols-4 gap-4 items-start p-4 border rounded-lg bg-muted/50"
+                                                >
+                                                    <FormField
+                                                        control={form.control}
+                                                        name={`studentCoordinators.${index}.name`}
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="h-11"
+                                                                        placeholder="Name"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        control={form.control}
+                                                        name={`studentCoordinators.${index}.phone`}
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="h-11"
+                                                                        placeholder="Phone"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <FormField
+                                                        control={form.control}
+                                                        name={`studentCoordinators.${index}.email`}
+                                                        render={({ field }) => (
+                                                            <FormItem>
+                                                                <FormControl>
+                                                                    <Input
+                                                                        className="h-11"
+                                                                        placeholder="Email"
+                                                                        {...field}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                    <Button
+                                                        type="button"
+                                                        variant="destructive"
+                                                        className="mt-0"
+                                                        onClick={() => {
+                                                            const current =
+                                                                form.getValues("studentCoordinators");
+                                                            if (current.length > 1) {
+                                                                form.setValue(
+                                                                    "studentCoordinators",
+                                                                    current.filter((_, i) => i !== index)
+                                                                );
+                                                            }
+                                                        }}
+                                                    >
+                                                        Remove
+                                                    </Button>
+                                                </div>
+                                            ))}
+                                            <Button
+                                                type="button"
+                                                variant="outline"
+                                                onClick={() => {
+                                                    const current = form.getValues("studentCoordinators");
+                                                    form.setValue("studentCoordinators", [
+                                                        ...current,
+                                                        { name: "", phone: "", email: "" },
+                                                    ]);
+                                                }}
+                                            >
+                                                Add Student Coordinator
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-end pt-6 border-t">
+                                <Button type="submit" size="lg">
+                                    Create Event
+                                </Button>
+                            </div>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
+        </div>
     );
 }
