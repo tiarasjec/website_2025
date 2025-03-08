@@ -162,7 +162,7 @@ const Page = () => {
                             >
                                 <Users className="h-5 w-5 text-tiara_red" />
                                 <span className={cn("tracking-wide text-lg", tiaraFont.className)}>
-                                    ₹{eventInfo?.costs}/{eventInfo?.team ? "team" : "person"}
+                                    ₹{eventInfo?.costs}/{eventInfo?.teamEvent ? "team" : "person"}
                                 </span>
                             </motion.div>
 
