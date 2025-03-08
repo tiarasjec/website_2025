@@ -68,12 +68,12 @@ export function RegisterHeader() {
                             </Link>
                         </li>
                         <li>
-                            <a
+                            <Link
                                 href={`${tiaraAssetsPrefix}/rulebook.pdf`}
                                 className="group relative inline-flex h-10 overflow-hidden rounded-md border-2 border-[#ca4a4a] px-6 items-center font-medium hover:bg-[#EB1C2C] transition-colors duration-300"
                             >
                                 rulebook
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>
