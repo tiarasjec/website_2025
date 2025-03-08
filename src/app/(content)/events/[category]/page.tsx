@@ -32,7 +32,7 @@ export default function EventCategoryPage() {
         setLoading(true);
         const path = pathname.split("/")[2];
 
-        fetch(`/api/events/active/${path}`)
+        fetch(`/api/events/all/${path}`)
             .then((response) => {
                 if (!response.ok) {
                     console.error("API response not OK:", response.status, response.statusText);

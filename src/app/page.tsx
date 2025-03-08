@@ -17,23 +17,9 @@ import EventCTA from "@/widget/final_CTA";
 import { LoadingScreen } from "@/components/ui/loading-screen";
 
 export default function Home() {
-    const [isLoading, setIsLoading] = useState(true);
     const lenis = useLenis(({ scroll }) => {
         // called every scroll
     });
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        // Set a timeout to match the loading screen duration
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2200); // 2.2s to account for the loading animation and delay
-        return () => clearTimeout(timer);
-    }, []);
-
-    if (isLoading) {
-        return <LoadingScreen />;
-    }
 
     return (
         <>

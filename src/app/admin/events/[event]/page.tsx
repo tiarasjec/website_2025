@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { AdvancedDataTable } from "@/components/datatable";
 import { DataTableCheckBox } from "@/components/datatable/data-table-checkbox";
 import { Payment } from "@prisma/client";
-import { LoadingScreen } from "@/components/ui/loading-screen";
+import { Card } from "@/components/ui/card";
 
 async function getData(event: string) {
     const response = await fetch(`/api/coordinators/${event}`);
@@ -19,16 +19,18 @@ export default function IndividualEventPage({ params }: { params: { event: strin
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const loadData = async () => {
-            await getData(params.event).then(setData);
-            // Add a minimum loading time of 2.2s
-            setTimeout(() => setIsLoading(false), 2200);
-        };
-        loadData();
+        getData(params.event).then((data) => {
+            setData(data);
+            setIsLoading(false);
+        });
     }, [params.event]);
 
     if (isLoading) {
-        return <LoadingScreen />;
+        return (
+            <Card className="p-8">
+                <div className="flex items-center justify-center">Loading event data...</div>
+            </Card>
+        );
     }
 
     const columns: ColumnDef<Payment>[] = [

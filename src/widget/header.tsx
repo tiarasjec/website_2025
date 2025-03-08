@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import Wave from "react-wavify";
 import { tiaraFont } from "@/lib/fonts";
 import { cn, tiaraAssetsPrefix } from "@/lib/utils";
@@ -26,7 +25,7 @@ const ButtonHoverRegister = () => {
     );
 };
 const ButtonHoverRulebook = () => {
-    const router = useRouter();
+   
     return (
         <>
             <a href={`${tiaraAssetsPrefix}/rulebook.pdf`}>

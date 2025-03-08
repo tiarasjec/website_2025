@@ -27,6 +27,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <Script
+                defer
+                src={process.env.NEXT_PUBLIC_WEBSITE_SRC}
+                data-website-id={process.env.NEXT_PUBLIC_WEBSITE_ID}
+            ></Script>
             <body className={`${goldman.className} overflow-x-hidden bg-background text-foreground`}>
                 <ReactLenis root>
                     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
