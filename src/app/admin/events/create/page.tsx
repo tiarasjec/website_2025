@@ -37,8 +37,14 @@ const eventFormSchema = z.object({
     description: z.string().min(10, "Description must be at least 10 characters"),
     category: z.string().min(2, "Category must be at least 2 characters"),
     rules: z.string().transform((val) => val.split("\n").filter((rule) => rule.trim() !== "")),
-    prerequisites: z.string().transform((val) => val.split("\n").filter((prereq) => prereq.trim() !== "")),
-    general_rules: z.string().transform((val) => val.split("\n").filter((rule) => rule.trim() !== "")),
+    prerequisites: z
+        .string()
+        .optional()
+        .transform((val) => (val ? val.split("\n").filter((prereq) => prereq.trim() !== "") : [])),
+    general_rules: z
+        .string()
+        .optional()
+        .transform((val) => (val ? val.split("\n").filter((rule) => rule.trim() !== "") : [])),
     thumbnail: z.string().url("Must be a valid URL"),
     startTime: z.string(),
     endTime: z.string().optional(),
@@ -51,7 +57,15 @@ const eventFormSchema = z.object({
         .pipe(z.number().min(0, "Cost must be a positive number")),
     teamEvent: z.boolean().default(false),
     facultyCoordinators: z.array(coordinatorSchema).min(1, "At least one faculty coordinator is required"),
-    studentCoordinators: z.array(coordinatorSchema).min(1, "At least one student coordinator is required"),
+    studentCoordinators: z
+        .array(
+            z.object({
+                name: z.string().min(2, "Name must be at least 2 characters"),
+                phone: z.string().min(10, "Phone must be at least 10 characters"),
+                email: z.string().email("Invalid email").optional().or(z.literal("")),
+            })
+        )
+        .min(1, "At least one student coordinator is required"),
 });
 
 export default function CreateEventPage() {
@@ -224,16 +238,18 @@ export default function CreateEventPage() {
                                         name="prerequisites"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="text-base">Prerequisites</FormLabel>
+                                                <FormLabel className="text-base">
+                                                    Prerequisites (Optional)
+                                                </FormLabel>
                                                 <FormControl>
                                                     <Textarea
                                                         className="min-h-[150px] resize-y"
-                                                        placeholder="Enter prerequisites (one per line)"
+                                                        placeholder="Enter prerequisites (one per line) - Optional"
                                                         {...field}
                                                     />
                                                 </FormControl>
                                                 <FormDescription>
-                                                    Enter each prerequisite on a new line
+                                                    Enter each prerequisite on a new line (if any)
                                                 </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
@@ -245,16 +261,18 @@ export default function CreateEventPage() {
                                         name="general_rules"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel className="text-base">General Rules</FormLabel>
+                                                <FormLabel className="text-base">
+                                                    General Rules (Optional)
+                                                </FormLabel>
                                                 <FormControl>
                                                     <Textarea
                                                         className="min-h-[150px] resize-y"
-                                                        placeholder="Enter general rules (one per line)"
+                                                        placeholder="Enter general rules (one per line) - Optional"
                                                         {...field}
                                                     />
                                                 </FormControl>
                                                 <FormDescription>
-                                                    Enter each general rule on a new line
+                                                    Enter each general rule on a new line (if any)
                                                 </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
