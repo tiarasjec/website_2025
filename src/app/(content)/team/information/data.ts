@@ -29,7 +29,7 @@ export const teamData = {
             imageUrl: `${tiaraAssetsPrefix}/team_webp/Diya Gopal.webp`,
         },
         {
-            name: "Suhas Karinja",
+            name: "Suhas L Karinja",
             role: "Technical Event Head",
             imageUrl: `${tiaraAssetsPrefix}/team_webp/Suhas Karinja.webp`,
         },
