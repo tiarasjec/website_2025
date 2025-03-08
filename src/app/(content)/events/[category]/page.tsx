@@ -23,13 +23,13 @@ const formatCategoryForDisplay = (category: string) => {
 
 export default function EventCategoryPage() {
     const [cards, setCards] = useState<CardType[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     const [imagesToPreload, setImagesToPreload] = useState<string[]>([]);
     const pathname = usePathname();
     const category = decodeURIComponent(pathname.split("/")[2]);
 
     useEffect(() => {
-        setLoading(true);
+        // setLoading(true);
         const path = pathname.split("/")[2];
 
         fetch(`/api/events/all/${path}`)
@@ -50,7 +50,7 @@ export default function EventCategoryPage() {
             })
             .catch((error) => {
                 console.error("Error fetching events:", error);
-                setLoading(false);
+                // setLoading(false);
             });
     }, [pathname]);
 
@@ -58,12 +58,12 @@ export default function EventCategoryPage() {
         <>
             <Header />
             <ShaderVisualization />
-            {loading ? (
+            {/* {loading ? (
                 <LoadingScreen
                     imagesToPreload={imagesToPreload}
-                    onLoadingComplete={() => setLoading(false)}
+                    // onLoadingComplete={() => setLoading(false)}
                 />
-            ) : (
+            ) : ( */}
                 <div className="h-fit">
                     <div className="-ml-5 flex justify-center items-center pt-32 z-50">
                         <div
@@ -115,7 +115,7 @@ export default function EventCategoryPage() {
                         </div>
                     </div>
                 </div>
-            )}
+            {/* )} */}
             <Footer />
         </>
     );
