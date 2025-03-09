@@ -27,7 +27,7 @@ export function RegisterHeader() {
     }, [menuOpen]);
 
     return (
-        <header className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <header className="fixed top-0 w-full z-50 md:bg-black/80 bg-black backdrop-blur-sm border-b border-white/10">
             <div className="md:px-10 flex flex-row justify-between items-center p-4 w-full">
                 {/* Logo and Name */}
                 <div className="flex">
@@ -81,12 +81,12 @@ export function RegisterHeader() {
 
             {/* Mobile Menu */}
             <div
-                className={`fixed inset-0 z-50 bg-black/95 transform transition-transform duration-300 ${
+                className={`fixed inset-0 z-50 h-screen bg-black/95 transform transition-transform duration-300 ${
                     menuOpen ? "translate-x-0" : "translate-x-full"
                 }`}
                 style={{ top: "0", paddingTop: "4rem" }}
             >
-                <ul className={cn("flex flex-col space-y-6 p-6 text-white", tiaraFont.className)}>
+                <ul className={cn("flex flex-col space-y-6 p-6 text-white bg-black", tiaraFont.className)}>
                     <li>
                         <Link
                             href="/"
