@@ -1,11 +1,13 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import Info from "../ui/hover/info";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 interface Event {
     name: string;
@@ -108,10 +110,10 @@ export function EventTabs({
         return (
             <div key={event.key} className="flex flex-col gap-2">
                 <div className="flex justify-between items-center p-4">
-                    <Label className="mr-2">{event.name}</Label>
+                    <Label className="mr-2 text-sm sm:text-base">{event.name}</Label>
                     {!isDisabled && (
                         <Checkbox
-                            className="w-6 h-6 mr-2"
+                            className="w-5 h-5 sm:w-6 sm:h-6 mr-2"
                             value={event.key}
                             checked={checkedItems.some((item) => item.key === event.key)}
                             onChange={(e) => handleCheckboxChange(e, category)}
@@ -129,28 +131,50 @@ export function EventTabs({
     };
 
     return (
-        <Tabs defaultValue="technical" className="border-hidden  pl-2 overflow-y-auto w-[1000px]">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 h-auto border-hidden overflow-y-auto ">
-                <TabsTrigger value="technical">
-                    <span className="flex flex-wrap border">Technical</span>
+        <Tabs defaultValue="technical" className="border-hidden p-2 overflow">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 h-auto overflow-x-auto">
+                <TabsTrigger value="technical" className="text-xs sm:text-sm md:text-base">
+                    <span className="whitespace-nowrap">Technical</span>
                 </TabsTrigger>
-                <TabsTrigger value="nontechnical">
-                    <span className="flex flex-wrap">Non Technical</span>
+                <TabsTrigger value="nontechnical" className="text-xs sm:text-sm md:text-base">
+                    <span className="whitespace-nowrap">Non Technical</span>
                 </TabsTrigger>
-                <TabsTrigger value="cultural">
-                    <span className="flex flex-wrap">Cultural</span>
+                <TabsTrigger value="cultural" className="text-xs sm:text-sm md:text-base">
+                    <span className="whitespace-nowrap">Cultural</span>
                 </TabsTrigger>
-                <TabsTrigger value="mega">
-                    <span className="flex flex-wrap">Mega</span>
+                <TabsTrigger value="mega" className="text-xs sm:text-sm md:text-base">
+                    <span className="whitespace-nowrap">Mega</span>
                 </TabsTrigger>
             </TabsList>
-            <div className="h-[850px] overflow-y-auto border-hidden">
+            <div
+                className="h-[400px] sm:h-[500px] md:h-[600px] lg:h-[650px] overflow-y-auto border-hidden"
+                ref={(el) => {
+                    if (el) {
+                        el.addEventListener(
+                            "wheel",
+                            (e) => {
+                                if (
+                                    (e.deltaY < 0 && el.scrollTop === 0) ||
+                                    (e.deltaY > 0 && el.scrollHeight - el.clientHeight - el.scrollTop <= 1)
+                                ) {
+                                    // At the top or bottom of scroll area
+                                    // Don't prevent default in these cases to allow parent scrolling
+                                } else {
+                                    // In the middle of scrolling content
+                                    e.stopPropagation();
+                                }
+                            },
+                            { passive: false }
+                        );
+                    }
+                }}
+            >
                 <TabsContent value="technical">
                     <Card>
-                        <CardHeader>
-                            <CardTitle>Choose a Technical Events</CardTitle>
+                        <CardHeader className="p-3 sm:p-4">
+                            <CardTitle className="text-base sm:text-lg">Technical Events</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-2 border-hidden">
+                        <CardContent className="space-y-2 border-hidden p-2 sm:p-4">
                             {technical.map((event) =>
                                 renderEventItem(event, "technical", technicalCheckedItems)
                             )}
@@ -160,10 +184,10 @@ export function EventTabs({
 
                 <TabsContent value="nontechnical">
                     <Card>
-                        <CardHeader>
-                            <CardTitle>Choose a Non Technical Events</CardTitle>
+                        <CardHeader className="p-3 sm:p-4">
+                            <CardTitle className="text-base sm:text-lg">Non Technical Events</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 p-2 sm:p-4">
                             {nontechnical.map((event) =>
                                 renderEventItem(event, "nontechnical", nontechnicalCheckedItems)
                             )}
@@ -173,10 +197,10 @@ export function EventTabs({
 
                 <TabsContent value="cultural">
                     <Card>
-                        <CardHeader>
-                            <CardTitle>Choose a Cultural Events</CardTitle>
+                        <CardHeader className="p-3 sm:p-4">
+                            <CardTitle className="text-base sm:text-lg">Cultural Events</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 p-2 sm:p-4">
                             {cultural.map((event) =>
                                 renderEventItem(event, "cultural", culturalCheckedItems)
                             )}
@@ -186,10 +210,10 @@ export function EventTabs({
 
                 <TabsContent value="mega">
                     <Card>
-                        <CardHeader>
-                            <CardTitle>Choose a Mega Events</CardTitle>
+                        <CardHeader className="p-3 sm:p-4">
+                            <CardTitle className="text-base sm:text-lg">Mega Events</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 p-2 sm:p-4">
                             {mega.map((event) => renderEventItem(event, "mega", megaCheckedItems))}
                         </CardContent>
                     </Card>

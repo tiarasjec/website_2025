@@ -25,6 +25,10 @@ export function RegisterFooter() {
                                 className="hover:text-[#EB1C2C]"
                             >
                                 Google DG SJEC
+                            </a>{" "}
+                            &{" "}
+                            <a href="https://sceptix.in" className="hover:text-[#EB1C2C]">
+                                The Sceptix Club
                             </a>
                         </span>
                     </div>
@@ -90,6 +94,10 @@ export function RegisterFooter() {
                                 className="hover:text-[#EB1C2C]"
                             >
                                 Google DG SJEC
+                            </a>{" "}
+                            &{" "}
+                            <a href="https://sceptix.in" className="hover:text-[#EB1C2C]">
+                                The Sceptix Club
                             </a>
                         </span>
                     </div>
