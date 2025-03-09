@@ -230,63 +230,69 @@ const Register: React.FC = () => {
     }
 
     return (
-        <div className="w-full gap-4 p-2 pt-36 md:px-20 lg:px-28 xl:px-40 mx-auto duration-500">
+        <div className="w-full p-2 pt-20 sm:pt-28 md:pt-36 md:px-4 lg:px-8 xl:px-12 mx-auto duration-500">
             <Card className="w-full">
-                <CardHeader className="flex flex-row items-start bg-muted/50">
-                    <div className="grid gap-0.5">
+                <CardHeader className="flex flex-col md:flex-row items-start bg-muted/50 p-4">
+                    <div className="grid gap-0.5 w-full">
                         <CardTitle className="group flex items-center gap-2 text-lg">
                             <span className={cn("tracking-widest", tiaraFont.className)}>
                                 Ti<span className="text-red-500">ar</span>a {"'"}25
                             </span>{" "}
                             Event Registration
                         </CardTitle>
-                        <CardDescription>
+                        <CardDescription className="text-sm">
                             Your name and email are pre-filled from your Google account.
                             <br /> Select the events you want to participate in and complete the payment.
                         </CardDescription>
                     </div>
                 </CardHeader>
-                <div className="md:flex md:items-center p-4 gap-4">
-                    <Label htmlFor="name">Name</Label>
-                    <Input
-                        type="text"
-                        id="name"
-                        aria-label="Name"
-                        placeholder="Name"
-                        value={session?.user?.name!}
-                        disabled
-                    />
-                    <br />
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                        type="email"
-                        id="email"
-                        aria-label="Email"
-                        placeholder="Email"
-                        value={session?.user?.email!}
-                        disabled
-                    />
-                    <br />
+                <div className="flex flex-col sm:grid sm:grid-cols-2 md:flex md:flex-row md:items-center p-4 gap-4">
+                    <div className="flex flex-col w-full md:w-1/2 gap-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                            type="text"
+                            id="name"
+                            aria-label="Name"
+                            placeholder="Name"
+                            value={session?.user?.name!}
+                            disabled
+                        />
+                    </div>
+                    <div className="flex flex-col w-full md:w-1/2 gap-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                            type="email"
+                            id="email"
+                            aria-label="Email"
+                            placeholder="Email"
+                            value={session?.user?.email!}
+                            disabled
+                        />
+                    </div>
                 </div>
                 <Separator className="my-2" />
-                <div className="flex justify-between flex-col lg:flex-row">
-                    <EventTabs
-                        {...{ technical, nontechnical, cultural, mega }}
-                        technicalCheckedItems={technicalCheckedItems}
-                        nontechnicalCheckedItems={nontechnicalCheckedItems}
-                        culturalCheckedItems={culturalCheckedItems}
-                        megaCheckedItems={megaCheckedItems}
-                        handleCheckboxChange={handleCheckboxChange}
-                    />
-                    <Checkout
-                        technicalCheckedItems={technicalCheckedItems}
-                        nontechnicalCheckedItems={nontechnicalCheckedItems}
-                        culturalCheckedItems={culturalCheckedItems}
-                        megaCheckedItems={megaCheckedItems}
-                        itemsWith300={itemswith300}
-                        sumOfCheckedItemsAmount={getSumofCheckedItems}
-                        selectedEvents={selectedEventNames}
-                    />
+                <div className="flex flex-col lg:flex-row">
+                    <div className="w-full lg:w-3/5 xl:w-2/3 overflow-auto">
+                        <EventTabs
+                            {...{ technical, nontechnical, cultural, mega }}
+                            technicalCheckedItems={technicalCheckedItems}
+                            nontechnicalCheckedItems={nontechnicalCheckedItems}
+                            culturalCheckedItems={culturalCheckedItems}
+                            megaCheckedItems={megaCheckedItems}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                    </div>
+                    <div className="w-full lg:w-2/5 xl:w-1/3">
+                        <Checkout
+                            technicalCheckedItems={technicalCheckedItems}
+                            nontechnicalCheckedItems={nontechnicalCheckedItems}
+                            culturalCheckedItems={culturalCheckedItems}
+                            megaCheckedItems={megaCheckedItems}
+                            itemsWith300={itemswith300}
+                            sumOfCheckedItemsAmount={getSumofCheckedItems}
+                            selectedEvents={selectedEventNames}
+                        />
+                    </div>
                 </div>
             </Card>
         </div>
