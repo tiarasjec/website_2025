@@ -24,7 +24,7 @@ export function RegisterFooter() {
                                 href="https://gdg.community.dev/gdg-on-campus-st-joseph-engineering-college-mangaluru-india/"
                                 className="hover:text-[#EB1C2C]"
                             >
-                                Google DG SJEC
+                                GDG SJEC
                             </a>{" "}
                             &{" "}
                             <a href="https://sceptix.in" className="hover:text-[#EB1C2C]">
@@ -93,7 +93,7 @@ export function RegisterFooter() {
                                 href="https://gdg.community.dev/gdg-on-campus-st-joseph-engineering-college-mangaluru-india/"
                                 className="hover:text-[#EB1C2C]"
                             >
-                                Google DG SJEC
+                                GDG SJEC
                             </a>{" "}
                             &{" "}
                             <a href="https://sceptix.in" className="hover:text-[#EB1C2C]">
