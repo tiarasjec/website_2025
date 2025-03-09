@@ -93,8 +93,15 @@ export const Footer = () => {
                     <li className="mx-2 sm:mx-4 text-xl sm:text-2xl">|</li>
                     <li className="text-sm sm:text-base">
                         © Developed by{" "}
-                        <a className="hover:text-[#EB1C2C] cursor-pointer" href="https://sceptix.in">
-                            The Sceptix club
+                        <a
+                            href="https://gdg.community.dev/gdg-on-campus-st-joseph-engineering-college-mangaluru-india/"
+                            className="hover:text-[#EB1C2C] cursor-pointer"
+                        >
+                            Google DG SJEC
+                        </a>{" "}
+                        &{" "}
+                        <a href="https://sceptix.in" className="hover:text-[#EB1C2C] cursor-pointer">
+                            The Sceptix Club
                         </a>
                     </li>
                 </ul>

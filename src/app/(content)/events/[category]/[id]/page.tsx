@@ -169,10 +169,10 @@ const Page = () => {
                                 </span>
                             </motion.div>
 
-                            <motion.div
+                            {/* <motion.div
                                 variants={fadeIn}
                                 className="flex items-center space-x-4 text-gray-300"
-                            >
+                            > */}
                                 {/* {eventInfo?.teamEvent ? (
               <div className="flex items-center space-x-2">
                 <Users className="h-5 w-5 text-tiara_red" />
@@ -184,7 +184,7 @@ const Page = () => {
                 <span className={cn("tracking-wide text-lg", tiaraFont.className)}>Individual Event</span>
               </div>
             )} */}
-                            </motion.div>
+                            {/* </motion.div> */}
 
                             <motion.div variants={fadeIn} whileTap={{ scale: 0.95 }} className="pt-4">
                                 <Link href="/register">
