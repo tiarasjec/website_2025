@@ -5,7 +5,7 @@ export default function RegisterLayout({ children }: { children: React.ReactNode
     return (
         <>
             <RegisterHeader />
-            <main className="min-h-screen pt-20">{children}</main>
+            <main className="min-h-screen pt-20 ">{children}</main>
             <RegisterFooter />
         </>
     );

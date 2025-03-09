@@ -80,7 +80,7 @@ export const UserRegistrationEmail = ({
                         <Section className="text-center my-[32px]">
                             <Button
                                 className="bg-[#EB1C2C] rounded text-white text-[14px] font-semibold no-underline text-center px-6 py-3"
-                                href={`https://github.com/tiarasjec/assets/rulebook.pdf`}
+                                href={`${tiaraAssetsPrefix}/rulebook.pdf`}
                             >
                                 Download Rulebook
                             </Button>

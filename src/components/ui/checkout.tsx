@@ -105,11 +105,11 @@ export default function Checkout({
                                             Individual Events
                                             {hasMegaEvent ? (
                                                 <span className="ml-2">
-                                                    <Info info="With a mega event selected, you only pay the highest amount among your selected events" />
+                                                    <Info info="Each mega event (₹450) includes 3 free regular events. Additional regular events are charged in sets of 4 at ₹300 per set." />
                                                 </span>
                                             ) : itemsWith300.length > 0 ? (
                                                 <span className="ml-2">
-                                                    <Info info="Events priced at 300 rupees are grouped in sets of 4" />
+                                                    <Info info="Regular events (₹300) are grouped in sets of 4. Each set costs ₹300." />
                                                 </span>
                                             ) : null}
                                         </AccordionTrigger>
@@ -122,12 +122,49 @@ export default function Checkout({
                                                     >
                                                         <span className="text-muted-foreground">
                                                             {item.name}
+                                                            {item.amount === 450 && " (Mega)"}
                                                         </span>
                                                         <span className="text-muted-foreground">
                                                             ₹{item.amount}
                                                         </span>
                                                     </li>
                                                 ))}
+                                                {hasMegaEvent && (
+                                                    <>
+                                                        {individualEvents.filter(
+                                                            (item) => item.amount === 450
+                                                        ).length > 0 && (
+                                                            <li className="text-sm text-muted-foreground italic">
+                                                                Each mega event includes 3 free regular events
+                                                            </li>
+                                                        )}
+                                                        {(() => {
+                                                            const megaCount = individualEvents.filter(
+                                                                (item) => item.amount === 450
+                                                            ).length;
+                                                            const regularCount = individualEvents.filter(
+                                                                (item) => item.amount === 300
+                                                            ).length;
+                                                            const freeEventsAllowed = megaCount * 3;
+                                                            if (regularCount <= freeEventsAllowed) {
+                                                                return (
+                                                                    <li className="text-sm text-muted-foreground italic">
+                                                                        {regularCount} of {freeEventsAllowed}{" "}
+                                                                        free regular events selected
+                                                                    </li>
+                                                                );
+                                                            }
+                                                            return (
+                                                                <li className="text-sm text-muted-foreground italic">
+                                                                    {freeEventsAllowed} free events included,{" "}
+                                                                    {regularCount - freeEventsAllowed}{" "}
+                                                                    additional regular events charged in sets
+                                                                    of 4
+                                                                </li>
+                                                            );
+                                                        })()}
+                                                    </>
+                                                )}
                                             </ul>
                                         </AccordionContent>
                                     </AccordionItem>

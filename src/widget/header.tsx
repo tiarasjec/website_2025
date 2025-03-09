@@ -28,7 +28,7 @@ const ButtonHoverRulebook = () => {
    
     return (
         <>
-            <a href={`${tiaraAssetsPrefix}/rulebook.pdf`}>
+            <Link href={`${tiaraAssetsPrefix}/rulebook.pdf`}>
                 <button className="group relative inline-flex h-10  overflow-hidden rounded-md border-2 dark:border-[#ca4a4a] border-[#e03838]  font-medium">
                     <div className="inline-flex h-10 translate-y-0 items-center justify-center px-6  bg-gradient-to-r dark:from-[#EB1C2C] dark:to-[#EB1C2C] dark:text-white text-black transition duration-500 group-hover:-translate-y-[150%]">
                         rule book
@@ -38,7 +38,7 @@ const ButtonHoverRulebook = () => {
                         <span className="z-10">rule book</span>
                     </div>
                 </button>
-            </a>
+            </Link>
         </>
     );
 };

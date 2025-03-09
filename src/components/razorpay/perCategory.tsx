@@ -129,8 +129,8 @@ export function EventTabs({
     };
 
     return (
-        <Tabs defaultValue="technical" className="border-hidden w-full pl-2">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 h-auto border-hidden">
+        <Tabs defaultValue="technical" className="border-hidden  pl-2 overflow-y-auto w-[1000px]">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-2 h-auto border-hidden overflow-y-auto ">
                 <TabsTrigger value="technical">
                     <span className="flex flex-wrap border">Technical</span>
                 </TabsTrigger>
@@ -144,7 +144,7 @@ export function EventTabs({
                     <span className="flex flex-wrap">Mega</span>
                 </TabsTrigger>
             </TabsList>
-            <div className="h-[400px] overflow-y-auto">
+            <div className="h-[850px] overflow-y-auto border-hidden">
                 <TabsContent value="technical">
                     <Card>
                         <CardHeader>
