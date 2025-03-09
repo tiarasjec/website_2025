@@ -97,13 +97,16 @@ const Page = () => {
           })
         : "";
     const formattedTime = startTime
-        ? startTime
-              .toLocaleTimeString("en-US", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-              })
-              .toLowerCase()
+        ? (() => {
+              // Create a UTC date object from the ISO string
+              const utcDate = new Date(eventInfo?.startTime || "");
+              const hours = utcDate.getUTCHours();
+              const minutes = utcDate.getUTCMinutes();
+              const ampm = hours >= 12 ? "pm" : "am";
+              const displayHours = hours % 12 || 12; // Convert 0 to 12 for 12 AM
+              const displayMinutes = minutes.toString().padStart(2, "0");
+              return `${displayHours}:${displayMinutes} ${ampm}`;
+          })()
         : "";
 
     // if (loading) return <Loading />;

@@ -14,7 +14,7 @@ const cardData = [
   {
     id: "card-1",
     frontSrc: "/assets/tiaracard.png",
-    backSrc: "/assets/technical.jpg",
+    backSrc: "/assets/tech.jpg",
     frontAlt: "Technical",
     title: "Technical",
     backText:
@@ -25,7 +25,7 @@ const cardData = [
   {
     id: "card-2",
     frontSrc: "/assets/tiaracard.png",
-    backSrc: "/assets/nontechnical.jpg",
+    backSrc: "/assets/nontech.jpg",
     frontAlt: "Non Technical",
     title: "NonTechnical",
     backText:
@@ -47,7 +47,7 @@ const cardData = [
   {
     id: "card-4",
     frontSrc: "/assets/tiaracard.png",
-    backSrc: "/assets/mega.jpg",
+    backSrc: "/assets/mega1.jpg",
     frontAlt: "Mega",
     title: "Mega",
     backText:
