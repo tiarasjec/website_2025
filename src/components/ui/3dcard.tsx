@@ -72,7 +72,6 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     ({ id, frontSrc, frontAlt, backText, title, buttonText, buttonUrl, backSrc }, ref) => {
         return (
             <>
-                <Link href={buttonUrl || ""}>
                     <div className="card" id={id} ref={ref}>
                         <div className="card-wrapper">
                             <div className="flip-card-inner">
@@ -86,6 +85,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
+                                      <Link href={buttonUrl || ""}>
                                 <div className="flip-card-back flex flex-col justify-between p-6 space-y-4">
                                     {title && (
                                         <h3
@@ -113,10 +113,11 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
                                         </InteractiveHoverButton>
                                     )}
                                 </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
-                </Link>
+               
             </>
         );
     }

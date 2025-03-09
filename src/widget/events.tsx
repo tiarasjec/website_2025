@@ -7,6 +7,7 @@ import ReactLenis from "lenis/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,39 +58,195 @@ const cardData = [
   },
 ]
 
-
 const Events: React.FC = () => {
+  const router = useRouter();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<(HTMLDivElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const scrollTriggers = useRef<ScrollTrigger[]>([]);
+  const [key, setKey] = useState<number>(Date.now()); 
+  const [hasInitialized, setHasInitialized] = useState<boolean>(false);
+  const hasMounted = useRef<boolean>(false);
 
-  // Initial card positions and rotations for desktop
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleBeforeUnload = () => {
+        sessionStorage.setItem('wasOnEventsPage', 'true');
+      };
+      
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      const wasOnEventsPage = sessionStorage.getItem('wasOnEventsPage') === 'true';
+      if (wasOnEventsPage && hasMounted.current) {
+        forceReload();
+        sessionStorage.removeItem('wasOnEventsPage');
+      }
+      
+      hasMounted.current = true;
+      
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }
+  }, []);
+
   const INITIAL_POSITIONS = [50, 50, 50, 50];
   const SPREAD_POSITIONS = [14, 38, 62, 86];
   const INITIAL_ROTATIONS = [0, 0, 0, 0];
   const SPREAD_ROTATIONS = [-15, -7.5, 7.5, 15];
 
+  // Force reload function
+  const forceReload = () => {
+    cleanupAnimations();
+    // Add a slight delay to ensure proper cleanup
+    setTimeout(() => {
+      setKey(Date.now());
+      setHasInitialized(false);
+  
+      
+      // Reset any flipped cards
+      cardRef.current.forEach(card => {
+        if (!card) return;
+        
+        const frontEl = card.querySelector(".flip-card-front") as HTMLElement;
+        const backEl = card.querySelector(".flip-card-back") as HTMLElement;
+        
+        if (frontEl && backEl) {
+          gsap.set(frontEl, { rotateY: 0 });
+          gsap.set(backEl, { rotateY: 180 });
+        }
+      });
+    }, 50);
+  };
+
+  // Function to completely clean up and reset all animations
+  const cleanupAnimations = () => {
+    // Kill all ScrollTrigger instances
+    scrollTriggers.current.forEach((trigger) => {
+      if (trigger && trigger.kill) {
+        trigger.kill();
+      }
+    });
+    scrollTriggers.current = [];
+    
+    // Clear GSAP's cache for this component
+    gsap.killTweensOf(containerRef.current);
+    
+    if (containerRef.current) {
+      // Remove any dynamically created elements
+      const cardSections = containerRef.current.querySelectorAll(".card-section");
+      cardSections.forEach((section) => {
+        if (section.parentNode) {
+          section.parentNode.removeChild(section);
+        }
+      });
+      
+      // Reset the cards container
+      const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
+      if (cardsContainer) {
+        cardsContainer.style.transform = "";
+        gsap.set(cardsContainer, { clearProps: "all" });
+      }
+    }
+    
+    // Reset all cards
+    cardRef.current.forEach(card => {
+      if (!card) return;
+      gsap.killTweensOf(card);
+      gsap.set(card, { clearProps: "all" });
+      
+      const frontEl = card.querySelector(".flip-card-front") as HTMLElement;
+      const backEl = card.querySelector(".flip-card-back") as HTMLElement;
+      
+      if (frontEl) {
+        gsap.killTweensOf(frontEl);
+        gsap.set(frontEl, { clearProps: "all" });
+      }
+      
+      if (backEl) {
+        gsap.killTweensOf(backEl);
+        gsap.set(backEl, { clearProps: "all" });
+      }
+    });
+  };
+
+  // Handle device type detection
   useEffect(() => {
-    const checkDeviceType = () => setIsMobile(window.innerWidth < 1024);
+    const checkDeviceType = () => {
+      const newIsMobile = window.innerWidth < 1024;
+      if (newIsMobile !== isMobile) {
+        setIsMobile(newIsMobile);
+        forceReload();
+      }
+    };
+    
     checkDeviceType();
     window.addEventListener("resize", checkDeviceType);
     return () => window.removeEventListener("resize", checkDeviceType);
+  }, [isMobile]);
+
+  // Handle page visibility and navigation events
+  useEffect(() => {
+
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        forceReload();
+      }
+    };
+    
+    // Mobile-specific back button detection
+    const handlePopState = () => {
+      forceReload();
+    };
+  }, []);
+
+  // Track navigation between pages using Next.js router events
+  useEffect(() => {
+    const handleRouteChange = () => {
+      // Set a flag when navigating away
+      sessionStorage.setItem('leftEventsPage', 'true');
+    };
+
+    // Add a custom event listener for route changes
+    window.addEventListener('beforeunload', handleRouteChange);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleRouteChange);
+    };
+  }, [router]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      cleanupAnimations();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
   useGSAP(
     () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || hasInitialized) return;
+      
+      // Mark as initialized to prevent duplicate initialization
+      setHasInitialized(true);
+      
       const cards = cardRef.current.filter(Boolean);
 
       // Kill existing scroll triggers
-      scrollTriggers.current.forEach((trigger) => trigger.kill());
-      scrollTriggers.current = [];
+      cleanupAnimations();
 
       if (isMobile) {
-        // Existing mobile logic remains unchanged
+        // Mobile layout
         const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
-        cardsContainer.innerHTML = "";
+        if (!cardsContainer) return;
+        
+        // Clear previous content
+        while (cardsContainer.firstChild) {
+          if (cardsContainer.lastChild) {
+            cardsContainer.removeChild(cardsContainer.lastChild);
+          }
+        }
+        
+        // Set container height
         cardsContainer.style.height = `${cards.length * 70}vh`;
 
         cards.forEach((card, index) => {
@@ -116,10 +273,14 @@ const Events: React.FC = () => {
           const backEl = card.querySelector(".flip-card-back") as HTMLElement;
 
           if (frontEl && backEl) {
+            // Reset to initial state
+            gsap.set(frontEl, { rotateY: 0 });
+            gsap.set(backEl, { rotateY: 180 });
+            
             const trigger = ScrollTrigger.create({
               trigger: cardSection,
-              start: "center 70%",
-              end: "center 90%",
+              start: "start 50%",
+              end: "start 30%",
               scrub: true,
               id: `flip-mobile-${index}`,
               onUpdate: (self) => {
@@ -132,8 +293,11 @@ const Events: React.FC = () => {
           }
         });
       } else {
+        // Desktop layout
         const totalScrollHeight = window.innerHeight * 3;
         const cardsContainer = containerRef.current.querySelector(".cards") as HTMLElement;
+        if (!cardsContainer) return;
+        
         cardsContainer.style.height = "100vh";
 
         // Pin trigger to keep cards in view
@@ -159,6 +323,14 @@ const Events: React.FC = () => {
             yPercent: -50,
             rotation: INITIAL_ROTATIONS[index],
           });
+          
+          const frontEl = card.querySelector(".flip-card-front") as HTMLElement;
+          const backEl = card.querySelector(".flip-card-back") as HTMLElement;
+          
+          if (frontEl && backEl) {
+            gsap.set(frontEl, { rotateY: 0 });
+            gsap.set(backEl, { rotateY: 180 });
+          }
         });
 
         // Create scroll trigger for card spreading
@@ -244,32 +416,33 @@ const Events: React.FC = () => {
         });
       }
     },
-    { scope: containerRef, dependencies: [isMobile] }
+    { scope: containerRef, dependencies: [isMobile, key, hasInitialized] }
   );
 
-  useEffect(() => {
-    return () => {
-      scrollTriggers.current.forEach((trigger) => trigger.kill());
-      scrollTriggers.current = [];
-
-      if (containerRef.current) {
-        const cardSections = containerRef.current.querySelectorAll(".card-section");
-        cardSections.forEach((section) => section.remove());
-      }
-    };
-  }, []);
+  // Add a manual reset button for development/testing (can be removed in production)
+  const resetAnimation = () => {
+    forceReload();
+  };
 
   return (
-    <ReactLenis root>
+    <ReactLenis root key={key}>
         <div className="mt-28">
-        <div className={cn("flex flex-wrap hover:cursor-crosshair  items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
+        <div className={cn("flex flex-wrap hover:cursor-crosshair items-center text-3xl sm:text-5xl md:text-7xl justify-center text-center sm:text-left transition hover:scale-110 ease-out duration-300", tiaraFont.className)}>
           Event Categories
         </div>
+        {/* Hidden button for manual reset - useful for testing */}
+        <button 
+          onClick={resetAnimation} 
+          className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded z-50 opacity-0"
+          style={{ pointerEvents: "none" }}
+        >
+          Reset
+        </button>
         <div className="container" ref={containerRef}>
           <section className="cards sec">
             {cardData.map((card, index) => (
               <Card
-                key={index}
+                key={`${key}-${index}`}
                 id={card.id}
                 frontSrc={card.frontSrc}
                 frontAlt={card.frontAlt}

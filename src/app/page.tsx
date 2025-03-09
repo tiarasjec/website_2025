@@ -20,6 +20,10 @@ export default function Home() {
     const lenis = useLenis(({ scroll }) => {
         // called every scroll
     });
+      useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
 
     return (
         <>
