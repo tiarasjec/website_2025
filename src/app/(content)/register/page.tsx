@@ -167,7 +167,7 @@ const Register: React.FC = () => {
     }, [technicalCheckedItems, nontechnicalCheckedItems, culturalCheckedItems, megaCheckedItems]);
 
     const getSumofCheckedItems = () => {
-        // Separate team events and individual events
+        // Get all selected items
         const allItems = [
             ...technicalCheckedItems,
             ...nontechnicalCheckedItems,
@@ -175,6 +175,7 @@ const Register: React.FC = () => {
             ...megaCheckedItems,
         ];
 
+        // Separate team events and individual events
         const teamEvents = allItems.filter((item) => item.team);
         const individualEvents = allItems.filter((item) => !item.team);
 
@@ -185,24 +186,36 @@ const Register: React.FC = () => {
 
         // Handle individual events
         if (individualEvents.length > 0) {
-            const hasMegaEvent = megaCheckedItems.some((item) => !item.team);
+            // Separate mega events (450) and regular events (300)
+            const megaEvents = individualEvents.filter((item) => item.amount === 450);
+            const regularEvents = individualEvents.filter((item) => item.amount === 300);
 
-            if (hasMegaEvent) {
-                // If mega event is selected, only charge the highest amount among selected events
-                const highestAmount = Math.max(...individualEvents.map((item) => item.amount));
-                totalSum += highestAmount;
-            } else {
-                // Original logic: group events in sets of 4 for ₹300
-                const eventsFor300 = individualEvents.filter((item) => item.amount === 300);
-                const otherEvents = individualEvents.filter((item) => item.amount !== 300);
+            // If there are mega events
+            if (megaEvents.length > 0) {
+                // Add cost for all mega events
+                totalSum += megaEvents.length * 450;
 
-                if (eventsFor300.length > 0) {
-                    totalSum += Math.ceil(eventsFor300.length / 4) * 300;
+                // Calculate free regular events (3 per mega event)
+                const totalFreeRegularEvents = megaEvents.length * 3;
+
+                // If there are more regular events than free slots
+                if (regularEvents.length > totalFreeRegularEvents) {
+                    // Calculate cost for additional regular events
+                    const additionalEvents = regularEvents.length - totalFreeRegularEvents;
+                    const additionalSets = Math.ceil(additionalEvents / 4);
+                    totalSum += additionalSets * 300;
                 }
-
-                // Add cost of other events
-                totalSum += otherEvents.reduce((acc, item) => acc + item.amount, 0);
+            } else {
+                // No mega events, handle regular events in sets of 4
+                if (regularEvents.length > 0) {
+                    const sets = Math.ceil(regularEvents.length / 4);
+                    totalSum += sets * 300;
+                }
             }
+
+            // Add cost of any other events with different pricing
+            const otherEvents = individualEvents.filter((item) => item.amount !== 300 && item.amount !== 450);
+            totalSum += otherEvents.reduce((acc, item) => acc + item.amount, 0);
         }
 
         return totalSum;
