@@ -30,7 +30,7 @@ const ShaderVisualization: React.FC<BackgroundShaderProps> = ({ className }) => 
       // Set pixel ratio based on device
       const pixelRatio = isMobile 
         ? Math.min(window.devicePixelRatio, 0.77)  // Lower for mobile
-        : Math.min(window.devicePixelRatio, 1.5);   // Higher for laptop/desktop
+        : Math.min(window.devicePixelRatio, 1.0);   // Higher for laptop/desktop
       
       renderer.setSize(width, height);
       renderer.setPixelRatio(pixelRatio);
