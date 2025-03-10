@@ -269,7 +269,7 @@ export default function Checkout({
                     </ul>
                     <Text className="text-xs">
                         By registering for the events, you agree to our{" "}
-                        <Link href="/terms">
+                        <Link href="/tc">
                             <span className="underline">Terms & Conditions</span>
                         </Link>
                         ,{" "}

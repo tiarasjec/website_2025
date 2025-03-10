@@ -130,7 +130,7 @@ export const UserRegistrationEmail = ({
                                 </Button>
                                 <span className="text-[#666666]">|</span>
                                 <Button
-                                    href="https://tiarasjec.in/terms"
+                                    href="https://tiarasjec.in/tc"
                                     className="text-[#666666] hover:text-[#EB1C2C]"
                                 >
                                     Terms and Conditions

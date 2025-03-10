@@ -72,7 +72,7 @@ export const RegistrationEmail = ({
                                 <span>|</span>
                                 <Button href="https://tiarasjec.in/refund">Refund Policy</Button>
                                 <span>|</span>
-                                <Button href="https://tiarasjec.in/terms">Terms and Conditions</Button>
+                                <Button href="https://tiarasjec.in/tc">Terms and Conditions</Button>
                             </div>
                         </div>
                     </Container>
