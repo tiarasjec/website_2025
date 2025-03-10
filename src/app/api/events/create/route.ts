@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 export async function POST(req: Request) {
     try {
-        const session = await auth();
+        const session = await getServerSideSession();
         if (!session || session.user.role !== "SUPER_ADMIN") {
             return new NextResponse("Unauthorized", { status: 401 });
         }

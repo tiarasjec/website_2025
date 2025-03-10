@@ -97,11 +97,14 @@ export function Text<T extends TagOptions>({
         }
     }
 
-    const Tag = tagStr as string;
+    const Tag = tagStr as keyof JSX.IntrinsicElements;
 
-    return (
-        <Tag className={cn(styles({ intent, weight, color }), className)} {...props}>
-            {children}
-        </Tag>
+    return React.createElement(
+        Tag,
+        {
+            className: cn(styles({ intent, weight, color }), className),
+            ...props,
+        },
+        children
     );
 }

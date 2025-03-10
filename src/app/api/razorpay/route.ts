@@ -1,11 +1,11 @@
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { NextRequest, NextResponse } from "next/server";
 import shortid from "shortid";
 import { razorpay } from "@/lib/razorpay";
 import { UserRole } from "@prisma/client";
 
 export async function GET(request: NextRequest) {
-    const session = await auth();
+    const session = await getServerSideSession();
     if (!session) {
         return NextResponse.json({ message: "Unauthorized", isOk: false }, { status: 401 });
     }
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-    const session = await auth();
+    const session = await getServerSideSession();
 
     if (!session) {
         return NextResponse.json({ message: "Unauthorized", isOk: false }, { status: 401 });

@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { prisma } from "@/lib/prisma";
 
 interface EventRegistration {
@@ -8,9 +8,9 @@ interface EventRegistration {
 }
 
 export async function GET(req: NextRequest, { params }: { params: { event: string } }) {
-    const session = await auth();
+    const session = await getServerSideSession();
     if (!session) {
-        return NextResponse.json({ error: "Unauthorized", isOk: false }, { status: 401 });
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
     if (session.user.role === "PARTICIPANT") {
         return NextResponse.json({ error: "Unauthorized", isOk: false }, { status: 401 });

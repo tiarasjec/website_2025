@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import { UserRole } from "@prisma/client";
 import { ThemeProvider } from "next-themes";
@@ -24,6 +24,9 @@ import { RestrictedAccess } from "@/components/ui/restricted-access";
 export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
     const { data: session, status } = useSession({
         required: true,
+        onUnauthenticated: async () => {
+            await signIn("google");
+        },
     });
 
     if (status === "loading") {

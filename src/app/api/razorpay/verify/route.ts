@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { PaymentStatus } from "@prisma/client";
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { sendRegistrationEmail } from "@/lib/registrationEmail";
 import { razorpay } from "@/lib/razorpay";
 import { generatedSignature } from "@/lib/utils";
@@ -23,7 +23,7 @@ interface PaymentResponse {
 
 export async function POST(request: NextRequest) {
     const data: PaymentResponse = await request.json();
-    const session = await auth();
+    const session = await getServerSideSession();
     if (!session) {
         return NextResponse.json({ message: "Unauthorized", isOk: false }, { status: 401 });
     }

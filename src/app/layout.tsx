@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Goldman } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DataTableStoreProvider } from "@/stores/dataTableStoreProvider";
@@ -9,6 +8,7 @@ import Script from "next/script";
 import { TailwindIndicator } from "@/components/shared/tailwind";
 import { ThemeProvider } from "next-themes";
 import { ReactLenis, useLenis } from "lenis/react";
+import Provider from "@/components/layout/Provider";
 const goldman = Goldman({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
@@ -34,8 +34,8 @@ export default function RootLayout({
             ></Script>
             <body className={`${goldman.className} overflow-x-hidden bg-background text-foreground`}>
                 <ReactLenis root>
-                    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-                        <SessionProvider>
+                    <Provider>
+                        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
                             <TooltipProvider>
                                 <DataTableStoreProvider isSelecting={false}>
                                     {children}
@@ -43,8 +43,8 @@ export default function RootLayout({
                                 </DataTableStoreProvider>
                             </TooltipProvider>
                             <TailwindIndicator />
-                        </SessionProvider>
-                    </ThemeProvider>
+                        </ThemeProvider>
+                    </Provider>
                 </ReactLenis>
             </body>
             <Script src="https://checkout.razorpay.com/v2/checkout.js" />
