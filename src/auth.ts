@@ -28,19 +28,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     pages: {
         signIn: "/auth/signin",
     },
+    // For Auth.js beta, use trustHost and specific cookie configuration
+    trustHost: true,
     cookies: {
-        pkceCodeVerifier: {
-            name: "next-auth.pkce.code_verifier",
+        sessionToken: {
+            name: "next-auth.session-token",
             options: {
                 httpOnly: true,
-                sameSite: "none",
+                sameSite: "lax",
                 path: "/",
-                secure: true,
+                secure: process.env.NODE_ENV === "production",
+            },
+        },
+        csrfToken: {
+            name: "next-auth.csrf-token",
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: process.env.NODE_ENV === "production",
             },
         },
     },
     providers: [
         Google({
+            clientId: process.env.AUTH_GOOGLE_ID,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET,
             profile(profile: GoogleProfile) {
                 return {
                     id: profile.sub,
@@ -49,6 +62,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     image: profile.picture,
                     role: (profile.role as UserRole) ?? UserRole.PARTICIPANT,
                 };
+            },
+            authorization: {
+                params: {
+                    prompt: "consent",
+                    access_type: "offline",
+                    response_type: "code",
+                },
             },
         }),
     ],
