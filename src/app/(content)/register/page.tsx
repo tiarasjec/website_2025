@@ -9,11 +9,12 @@ import { tiaraFont } from "@/lib/fonts";
 import { CheckedItem, Event, Events } from "@/lib/interfaces";
 import { cn } from "@/lib/utils";
 import { UserRole } from "@prisma/client";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { PageLoading } from "@/components/ui/page-loading";
 import { DataLoading } from "@/components/ui/page-loading";
 import { RestrictedAccess } from "@/components/ui/restricted-access";
+import { Button } from "@/components/ui/button";
 
 // export const maxDuration = 300;
 
@@ -260,14 +261,20 @@ const Register: React.FC = () => {
                     </div>
                     <div className="flex flex-col w-full md:w-1/2 gap-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input
-                            type="email"
-                            id="email"
-                            aria-label="Email"
-                            placeholder="Email"
-                            value={session?.user?.email!}
-                            disabled
-                        />
+                        <div className="flex gap-2">
+                            <Input
+                                type="email"
+                                id="email"
+                                aria-label="Email"
+                                placeholder="Email"
+                                value={session?.user?.email!}
+                                disabled
+                                className="flex-1"
+                            />
+                            <Button variant="outline" onClick={() => signOut()} className="whitespace-nowrap">
+                                Change Account
+                            </Button>
+                        </div>
                     </div>
                 </div>
                 <Separator className="my-2" />
