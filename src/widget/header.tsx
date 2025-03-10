@@ -25,7 +25,6 @@ const ButtonHoverRegister = () => {
     );
 };
 const ButtonHoverRulebook = () => {
-   
     return (
         <>
             <Link href={`${tiaraAssetsPrefix}/rulebook.pdf`}>
@@ -144,19 +143,21 @@ export const Header = () => {
             {/* Text container positioned above the wave */}
             <div className="absolute md:px-10  inset-x-0 top-0 z-[60] flex flex-row justify-between items-center p-4 w-full">
                 {/* Logo and Name - positioned on the left */}
-                <div className="flex order-1">
-                    <ul className="flex items-center">
-                        <li>
-                            <Image
-                                src={logo}
-                                alt="Tiara'25 Logo"
-                                width={60} // Adjust width as needed
-                                height={60} // Adjust height as needed
-                                className="cursor-crosshair"
-                            />
-                        </li>
-                    </ul>
-                </div>
+                <Link href="/">
+                    <div className="flex order-1">
+                        <ul className="flex items-center">
+                            <li>
+                                <Image
+                                    src={logo}
+                                    alt="Tiara'25 Logo"
+                                    width={60} // Adjust width as needed
+                                    height={60} // Adjust height as needed
+                                    className="cursor-crosshair"
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </Link>
 
                 {/* Desktop Navigation - Original layout for larger screens */}
                 <div className="hidden md:block order-2 ml-auto">

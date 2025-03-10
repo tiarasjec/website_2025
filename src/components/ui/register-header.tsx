@@ -30,19 +30,21 @@ export function RegisterHeader() {
         <header className="fixed top-0 w-full z-50 md:bg-black/80 bg-black backdrop-blur-sm border-b border-white/10">
             <div className="md:px-10 flex flex-row justify-between items-center p-4 w-full">
                 {/* Logo and Name */}
-                <div className="flex">
-                    <ul className="flex items-center">
-                        <li>
-                            <Image
-                                src={logo}
-                                alt="Tiara'25 Logo"
-                                width={60}
-                                height={60}
-                                className="cursor-pointer"
-                            />
-                        </li>
-                    </ul>
-                </div>
+                <Link href="/">
+                    <div className="flex">
+                        <ul className="flex items-center">
+                            <li>
+                                <Image
+                                    src={logo}
+                                    alt="Tiara'25 Logo"
+                                    width={60}
+                                    height={60}
+                                    className="cursor-pointer"
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:block">
