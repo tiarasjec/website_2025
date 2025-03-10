@@ -24,6 +24,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     secret: process.env.AUTH_SECRET,
     session: {
         strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60, // 30 days
     },
     pages: {
         signIn: "/auth/signin",
@@ -32,7 +33,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     trustHost: true,
     cookies: {
         sessionToken: {
-            name: "next-auth.session-token",
+            name: `${process.env.NODE_ENV === "production" ? "__Secure-" : ""}next-auth.session-token`,
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: process.env.NODE_ENV === "production",
+                domain: process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_APP_URL : undefined,
+            },
+        },
+        callbackUrl: {
+            name: `${process.env.NODE_ENV === "production" ? "__Secure-" : ""}next-auth.callback-url`,
             options: {
                 httpOnly: true,
                 sameSite: "lax",
@@ -41,7 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
         },
         csrfToken: {
-            name: "next-auth.csrf-token",
+            name: `${process.env.NODE_ENV === "production" ? "__Secure-" : ""}next-auth.csrf-token`,
             options: {
                 httpOnly: true,
                 sameSite: "lax",
@@ -65,31 +76,26 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
             authorization: {
                 params: {
-                    prompt: "consent",
+                    prompt: "select_account",
                     access_type: "offline",
                     response_type: "code",
+                    scope: "openid email profile",
                 },
             },
         }),
     ],
     callbacks: {
-        async jwt({ token }) {
-            if (!token.sub) return token;
-            const user = await prisma.user.findUnique({
-                where: { id: token.sub },
-            });
-            if (!user) return token;
-            token.role = user.role;
+        async jwt({ token, user }) {
+            if (user && "role" in user) {
+                token.role = user.role as UserRole;
+            }
             return token;
         },
-        session({ session, token }) {
-            return {
-                ...session,
-                user: {
-                    ...session.user,
-                    role: token.role,
-                },
-            };
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.role = token.role;
+            }
+            return session;
         },
     },
 });
