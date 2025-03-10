@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { razorpay } from "@/lib/razorpay";
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { UserRole } from "@prisma/client";
 
 export async function GET(request: Request, context: { params: { id: string } }) {
-    const session = await auth();
+    const session = await getServerSideSession();
     if (!session) {
         return NextResponse.json({ message: "Unauthorized", isOk: false }, { status: 401 });
     }

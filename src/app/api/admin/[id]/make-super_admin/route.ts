@@ -1,13 +1,13 @@
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { UserRole } from "@prisma/client";
 
 export async function POST(request: NextRequest, context: { params: { id: string } }) {
-    const session = await auth();
-    if (!session) {
-        return NextResponse.json({ message: "Unauthorized", isOk: false }, { status: 401 });
-    }
+   const session = await getServerSideSession();
+   if (!session) {
+       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+   }
 
     if (session.user.role !== UserRole.SUPER_ADMIN) {
         return NextResponse.json({ message: "Forbidden", isOk: false }, { status: 403 });

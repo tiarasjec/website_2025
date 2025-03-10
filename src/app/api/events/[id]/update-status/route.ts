@@ -1,10 +1,10 @@
-import { auth } from "@/auth";
+import { getServerSideSession } from "@/lib/getServerSideSession";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
     try {
-        const session = await auth();
+        const session = await getServerSideSession();
         if (!session || session.user.role !== "SUPER_ADMIN") {
             return new NextResponse("Unauthorized", { status: 401 });
         }

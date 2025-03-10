@@ -72,20 +72,20 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     ({ id, frontSrc, frontAlt, backText, title, buttonText, buttonUrl, backSrc }, ref) => {
         return (
             <>
-                <Link href={buttonUrl || ""}>
-                    <div className="card" id={id} ref={ref}>
-                        <div className="card-wrapper">
-                            <div className="flip-card-inner">
-                                <div className="flip-card-front">
-                                    <Image
-                                        priority
-                                        src={frontSrc || "/placeholder.svg"}
-                                        width={500}
-                                        height={500}
-                                        alt={frontAlt}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
+                <div className="card" id={id} ref={ref}>
+                    <div className="card-wrapper">
+                        <div className="flip-card-inner">
+                            <div className="flip-card-front">
+                                <Image
+                                    priority
+                                    src={frontSrc || "/placeholder.svg"}
+                                    width={500}
+                                    height={500}
+                                    alt={frontAlt}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <Link href={buttonUrl || ""}>
                                 <div className="flip-card-back flex flex-col justify-between p-6 space-y-4">
                                     {title && (
                                         <h3
@@ -113,10 +113,10 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
                                         </InteractiveHoverButton>
                                     )}
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
-                </Link>
+                </div>
             </>
         );
     }
