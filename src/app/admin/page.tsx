@@ -97,14 +97,6 @@ export default function AdminUsersTablePage() {
                 },
             },
             {
-                accessorKey: "role",
-                id: "role",
-                header: "Role",
-                meta: {
-                    filterVariant: "select",
-                },
-            },
-            {
                 accessorKey: "contact",
                 id: "contact",
                 header: "Contact",
@@ -112,6 +104,15 @@ export default function AdminUsersTablePage() {
                     filterVariant: "text",
                 },
             },
+            {
+                accessorKey: "role",
+                id: "role",
+                header: "Role",
+                meta: {
+                    filterVariant: "select",
+                },
+            },
+
             {
                 id: "actions",
                 cell: ({ row }) => {
