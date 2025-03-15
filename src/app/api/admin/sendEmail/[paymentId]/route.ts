@@ -20,11 +20,11 @@ export async function POST(request: NextRequest, context: { params: { paymentId:
     const signature = generatedSignature(payment.order_id, paymentId);
 
     const user = await prisma.user.findUnique({
-        where: { email: session.user.email! },
+        where: { email: payment.notes.customerEmail },
     });
 
     const prismaPayment = await prisma.payment.findUnique({
-        where: { razorpayPaymentId: paymentId },
+        where: { razorpayPaymentId: payment.id },
     });
 
     try {
@@ -51,19 +51,19 @@ export async function POST(request: NextRequest, context: { params: { paymentId:
                     status: PaymentStatus.SUCCESS,
                     user: {
                         connect: {
-                            email: session.user?.email!,
+                            email: user?.email!,
                         },
                     },
                 },
             });
             const existingUser = await prisma.user.findUnique({
-                where: { email: session.user?.email! },
+                where: { email: user?.email! },
                 include: { teams: true },
             });
 
             const mergedEvents = [...existingUser?.events!, ...payment.notes.events.split(",")];
             await prisma.user.update({
-                where: { email: session.user?.email! },
+                where: { email: user?.email! },
                 data: {
                     registrationEmailSent: true,
                     contact: payment.contact.toString(),
