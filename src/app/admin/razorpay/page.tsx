@@ -74,8 +74,7 @@ const formSchema = z.object({
 
 async function getData() {
     const response = await fetch("/api/razorpay");
-    const json = await response.json();
-    return json;
+    return response.json();
 }
 
 function FetchRazorpayPaymentData() {
