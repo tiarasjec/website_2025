@@ -105,6 +105,10 @@ function FetchRazorpayPaymentData({ params }: { params: { id: string } }) {
                     />
                 </Label>
                 <Label>
+                    Captured
+                    <Input value={paymentData?.captured ? "Yes" : "No"} disabled />
+                </Label>
+                <Label>
                     Email
                     <Input value={paymentData?.email} disabled />
                 </Label>
