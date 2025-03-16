@@ -34,7 +34,7 @@ export async function POST(request: NextRequest, context: { params: { paymentId:
             teamName: [],
             contactNumber: payment.contact.toString(),
             name: user?.name!,
-            events: payment.notes.events.split(","),
+            events: payment.notes.events.split(",").map((event) => event.trim()),
             registrationLink: `https://tiarasjec.in/api/verify/${user?.id}`,
         });
     } catch (error) {
@@ -61,7 +61,10 @@ export async function POST(request: NextRequest, context: { params: { paymentId:
                 include: { teams: true },
             });
 
-            const mergedEvents = [...existingUser?.events!, ...payment.notes.events.split(",")];
+            const mergedEvents = [
+                ...existingUser?.events!,
+                ...payment.notes.events.split(",").map((event) => event.trim()),
+            ];
             await prisma.user.update({
                 where: { email: user?.email! },
                 data: {
