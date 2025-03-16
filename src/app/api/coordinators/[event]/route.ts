@@ -22,5 +22,12 @@ export async function GET(req: NextRequest, context: { params: { event: string }
             },
         },
     });
-    return NextResponse.json({ users, isOk: true }, { status: 200 });
+    const totalRegistrations = await prisma.user.count({
+        where: {
+            events: {
+                has: event,
+            },
+        },
+    });
+    return NextResponse.json({ users, totalRegistrations, isOk: true }, { status: 200 });
 }

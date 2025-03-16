@@ -5,19 +5,24 @@ import { useState, useEffect } from "react";
 import { AdvancedDataTable } from "@/components/datatable";
 import { DataTableCheckBox } from "@/components/datatable/data-table-checkbox";
 import { Payment } from "@prisma/client";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 async function getData(event: string) {
     const response = await fetch(`/api/coordinators/${event}`);
     const data = await response.json();
-    return data.users;
+    return { users: data.users, totalRegistrations: data.totalRegistrations };
 }
 
 export default function IndividualEventPage({ params }: { params: { event: string } }) {
     const filename = decodeURIComponent(params.event);
     const [data, setData] = useState([]);
+    const [totalRegistrations, setTotalRegistrations] = useState(0);
 
     useEffect(() => {
-        getData(params.event).then(setData);
+        getData(params.event).then((result) => {
+            setData(result.users);
+            setTotalRegistrations(result.totalRegistrations);
+        });
     }, [params.event]);
 
     const columns: ColumnDef<Payment>[] = [
@@ -77,12 +82,22 @@ export default function IndividualEventPage({ params }: { params: { event: strin
     ];
 
     return (
-        <AdvancedDataTable<Payment>
-            columns={columns}
-            data={data}
-            exportProps={{
-                exportFileName: filename,
-            }}
-        />
+        <div className="space-y-4">
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">
+                        Total Registrations for {filename}: {totalRegistrations}
+                    </CardTitle>
+                </CardHeader>
+            </Card>
+
+            <AdvancedDataTable<Payment>
+                columns={columns}
+                data={data}
+                exportProps={{
+                    exportFileName: filename,
+                }}
+            />
+        </div>
     );
 }
